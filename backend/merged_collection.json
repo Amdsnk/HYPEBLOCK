@@ -1,0 +1,5034 @@
+[
+ {
+  "token_id": 1,
+  "name": "Vicious Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Bubblegum",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 2,
+  "name": "Vandal Goblin",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Laser",
+   "Headwear": "Devil Horns",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 3,
+  "name": "Neon Snitch",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Bubblegum",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 4,
+  "name": "Riot Shredder",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Cyclops",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 5,
+  "name": "Gutter Fiend",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 6,
+  "name": "Vandal Hooligan",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Denim",
+   "Background": "Acid Green",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 7,
+  "name": "Blaze Prowler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "3D Glasses",
+   "Headwear": "Beanie",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 8,
+  "name": "Savage Lurker",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Cyclops",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Hot Pink",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 9,
+  "name": "Feral Fiend",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Denim",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 10,
+  "name": "Frantic Snitch",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 11,
+  "name": "Neon Gremlin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "Beanie",
+   "Mouth": "Cigar",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 12,
+  "name": "Vandal Fiend",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Laser",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 13,
+  "name": "Glitch Lurker",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 14,
+  "name": "Gutter Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Puffer",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 15,
+  "name": "Rowdy Imp",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Toothpick",
+   "Outfit": "Tracksuit",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 16,
+  "name": "Vicious Vandal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Bomber",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 17,
+  "name": "Neon Fiend",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Bubblegum",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 18,
+  "name": "Wired Punk",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 19,
+  "name": "Menace Fiend",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Beanie",
+   "Mouth": "Cigar",
+   "Outfit": "Puffer",
+   "Background": "Deep Purple",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 20,
+  "name": "Venom Fiend",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 21,
+  "name": "Reckless Rascal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Mischief",
+   "Headwear": "Space-buns",
+   "Mouth": "Cigar",
+   "Outfit": "Chain-only",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 22,
+  "name": "Rabid Menace",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Chain-only",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 23,
+  "name": "Rogue Hustler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 24,
+  "name": "Static Rascal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Chain-only",
+   "Background": "Neon Split",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 25,
+  "name": "Sludge Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 26,
+  "name": "Gutter Scrapper",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Durag",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 27,
+  "name": "Neon Hustler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tracksuit",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 28,
+  "name": "Frantic Rat",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Visor",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Bubblegum",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 29,
+  "name": "Neon Lurker",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 30,
+  "name": "Chrome Rascal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Durag",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 31,
+  "name": "Chrome Tagger",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 32,
+  "name": "Wired Brawler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Space-buns",
+   "Mouth": "Cigar",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 33,
+  "name": "Hazard Outlaw",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "Crown",
+   "Mouth": "Toothpick",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 34,
+  "name": "Grimey Wraith",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 35,
+  "name": "Sludge Trickster",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Hot Pink",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 36,
+  "name": "Vicious Imp",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "Headphones",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 37,
+  "name": "Toxic Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Hoop"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 38,
+  "name": "Genesis King",
+  "tier": "Mythic",
+  "price_pol": 0,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Diamond",
+   "Eyes": "Flame",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 39,
+  "name": "Riot Hustler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 40,
+  "name": "Feral Creep",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Acid Green",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 41,
+  "name": "Blaze Vandal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Denim",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 42,
+  "name": "Vandal Creep",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Mischief",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Leather",
+   "Background": "Neon Split",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 43,
+  "name": "Frantic Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 44,
+  "name": "Grim Gremlin",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "Beanie",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 45,
+  "name": "Glitch Fiend",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Acid Green",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 46,
+  "name": "Frantic Tagger",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 47,
+  "name": "Neon Trickster",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Puffer",
+   "Background": "Hot Pink",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 48,
+  "name": "Hazard Vandal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Puffer",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 49,
+  "name": "Gutter Gremlin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Visor",
+   "Headwear": "Durag",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Denim",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 50,
+  "name": "Grim Scrapper",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Denim",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 51,
+  "name": "Reckless Trickster",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Toothpick",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Acid Green",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 52,
+  "name": "Blaze Gremlin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 53,
+  "name": "Savage Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Bomber",
+   "Background": "Neon Split",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 54,
+  "name": "Riot Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Space-buns",
+   "Mouth": "Toothpick",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 55,
+  "name": "Blaze Hustler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 56,
+  "name": "Rowdy Tagger",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Tongue Out",
+   "Outfit": "Chain-only",
+   "Background": "Neon Split",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 57,
+  "name": "Glitch Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 58,
+  "name": "Menace Imp",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Crown",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 59,
+  "name": "Vicious Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "3D Glasses",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Denim",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 60,
+  "name": "Reckless Snitch",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Beanie",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 61,
+  "name": "Hazard Brawler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Beanie",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Tracksuit",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 62,
+  "name": "Rowdy Brawler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Denim",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 63,
+  "name": "Static Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 64,
+  "name": "Wired Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 65,
+  "name": "Blaze Fiend",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Durag",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Puffer",
+   "Background": "Deep Purple",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 66,
+  "name": "Chrome Vandal",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "3D Glasses",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Neon Split",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 67,
+  "name": "Sludge Lurker",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Beanie",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 68,
+  "name": "Venom Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "3D Glasses",
+   "Headwear": "Beanie",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 69,
+  "name": "Hazard Fiend",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 70,
+  "name": "Vicious Rascal",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Denim",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 71,
+  "name": "Wired Rascal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "3D Glasses",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Bubblegum",
+   "Outfit": "Puffer",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 72,
+  "name": "Menace Trickster",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 73,
+  "name": "Frantic Outlaw",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Gold",
+   "Eyes": "Laser",
+   "Headwear": "Crown",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Bomber",
+   "Background": "Legendary Glow",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 74,
+  "name": "Static Brawler",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Pink Mohawk",
+   "Mouth": "Bubblegum",
+   "Outfit": "Hoodie",
+   "Background": "Acid Green",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 75,
+  "name": "Feral Trickster",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "VR Visor",
+   "Headwear": "Beanie",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Neon Split",
+   "Accessory": "Hoop"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 76,
+  "name": "Hazard Hustler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 77,
+  "name": "Rowdy Trickster",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Cyclops",
+   "Headwear": "Space-buns",
+   "Mouth": "Cigar",
+   "Outfit": "Puffer",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 78,
+  "name": "Grimey Prowler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Chain-only",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 79,
+  "name": "Wired Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Denim",
+   "Background": "Hot Pink",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 80,
+  "name": "Chrome Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "3D Glasses",
+   "Headwear": "Snapback",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 81,
+  "name": "Rogue Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Toothpick",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 82,
+  "name": "Grim Snitch",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 83,
+  "name": "Static Snitch",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Denim",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 84,
+  "name": "Chrome Hustler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 85,
+  "name": "Rowdy Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "3D Glasses",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Puffer",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 86,
+  "name": "Gutter Hooligan",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 87,
+  "name": "Vandal Shredder",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Bomber",
+   "Background": "Neon Split",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 88,
+  "name": "Vicious Biter",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Headphones",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 89,
+  "name": "Grimey Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 90,
+  "name": "Menace Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 91,
+  "name": "Reckless Imp",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Laser",
+   "Headwear": "Devil Horns",
+   "Mouth": "Cigar",
+   "Outfit": "Leather",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 92,
+  "name": "Savage Scrapper",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 93,
+  "name": "Blaze Lurker",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Bomber",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 94,
+  "name": "Rogue Biter",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Durag",
+   "Mouth": "Toothpick",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 95,
+  "name": "Blaze Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 96,
+  "name": "Reckless Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Hoodie",
+   "Background": "Hot Pink",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 97,
+  "name": "Riot Trickster",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 98,
+  "name": "Blaze Creep",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Space-buns",
+   "Mouth": "Grin",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 99,
+  "name": "Chrome Punk",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Bubblegum",
+   "Outfit": "Hoodie",
+   "Background": "Acid Green",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 100,
+  "name": "Gutter Wraith",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "VR Visor",
+   "Headwear": "Space-buns",
+   "Mouth": "Cigar",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 101,
+  "name": "Toxic Snitch",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "3D Glasses",
+   "Headwear": "Durag",
+   "Mouth": "Bubblegum",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 102,
+  "name": "Toxic Trickster",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 103,
+  "name": "Vicious Hooligan",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 104,
+  "name": "Rowdy Snitch",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 105,
+  "name": "Blaze Hooligan",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "Space-buns",
+   "Mouth": "Bubblegum",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 106,
+  "name": "Wired Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Bomber",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 107,
+  "name": "Static Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Puffer",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 108,
+  "name": "Snarl Imp",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 109,
+  "name": "Glitch Scrapper",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Cyclops",
+   "Headwear": "Devil Horns",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tracksuit",
+   "Background": "Neon Split",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 110,
+  "name": "Sludge Menace",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 111,
+  "name": "Chrome Creep",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Stoned",
+   "Headwear": "Snapback",
+   "Mouth": "Toothpick",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 112,
+  "name": "Venom Hooligan",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Chain-only",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 113,
+  "name": "Chrome Fiend",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 114,
+  "name": "Reckless Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Deep Purple",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 115,
+  "name": "Sludge Fiend",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 116,
+  "name": "Rabid Punk",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "Beanie",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 117,
+  "name": "Cyber Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 118,
+  "name": "Grimey Rat",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Visor",
+   "Headwear": "Beanie",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Acid Green",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 119,
+  "name": "Gutter Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 120,
+  "name": "Cyber Lurker",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 121,
+  "name": "Toxic Gremlin",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Gold",
+   "Eyes": "Laser",
+   "Headwear": "Crown",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Puffer",
+   "Background": "Legendary Glow",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 122,
+  "name": "Menace Hooligan",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Denim",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 123,
+  "name": "Venom Trickster",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 124,
+  "name": "Sludge Bandit",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 125,
+  "name": "Frantic Fiend",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Laser",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Bubblegum",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 126,
+  "name": "Savage Menace",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Beanie",
+   "Mouth": "Bubblegum",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 127,
+  "name": "Toxic Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Bubblegum",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "Hoop"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 128,
+  "name": "Snarl Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Beanie",
+   "Mouth": "Cigar",
+   "Outfit": "Leather",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 129,
+  "name": "Venom Vandal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Cigar",
+   "Outfit": "Denim",
+   "Background": "Acid Green",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 130,
+  "name": "Menace Brawler",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Gold",
+   "Eyes": "Laser",
+   "Headwear": "Crown",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Puffer",
+   "Background": "Legendary Glow",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 131,
+  "name": "Savage Vandal",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 132,
+  "name": "Wired Shredder",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Gold",
+   "Eyes": "Mischief",
+   "Headwear": "Crown",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Deep Purple",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 133,
+  "name": "Blaze Rascal",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 134,
+  "name": "Hazard Tagger",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 135,
+  "name": "Vandal Imp",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 136,
+  "name": "Grim Bandit",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 137,
+  "name": "Static Scrapper",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 138,
+  "name": "Rogue Lurker",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 139,
+  "name": "Rabid Bandit",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tracksuit",
+   "Background": "Graffiti Wall",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 140,
+  "name": "Vandal Menace",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "Devil Horns",
+   "Mouth": "Toothpick",
+   "Outfit": "Leather",
+   "Background": "Acid Green",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 141,
+  "name": "Wired Menace",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 142,
+  "name": "Rowdy Biter",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Devil Horns",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 143,
+  "name": "Toxic Tagger",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Stoned",
+   "Headwear": "Beanie",
+   "Mouth": "Toothpick",
+   "Outfit": "Chain-only",
+   "Background": "Neon Split",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 144,
+  "name": "Grimey Creep",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 145,
+  "name": "Rabid Tagger",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Visor",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 146,
+  "name": "Grimey Snitch",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 147,
+  "name": "Sludge Snitch",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Bomber",
+   "Background": "Neon Split",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 148,
+  "name": "Rabid Scrapper",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 149,
+  "name": "Cyber Biter",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 150,
+  "name": "Venom Scrapper",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Visor",
+   "Headwear": "None",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Denim",
+   "Background": "Deep Purple",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 151,
+  "name": "Vicious Punk",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 152,
+  "name": "Venom Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Stoned",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Cigar",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 153,
+  "name": "Vandal Vandal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Visor",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 154,
+  "name": "Hazard Hooligan",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Leather",
+   "Background": "Neon Split",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 155,
+  "name": "Sludge Rascal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "Cyclops",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Bomber",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 156,
+  "name": "Grimey Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 157,
+  "name": "Sludge Scrapper",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Flame",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Chain-only",
+   "Background": "Deep Purple",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 158,
+  "name": "Rabid Prowler",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 159,
+  "name": "Frantic Vandal",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Laser",
+   "Headwear": "Devil Horns",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 160,
+  "name": "Frantic Gremlin",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 161,
+  "name": "Glitch Biter",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Visor",
+   "Headwear": "Beanie",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 162,
+  "name": "Snarl Menace",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Denim",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 163,
+  "name": "Blaze Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Beanie",
+   "Mouth": "Toothpick",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Neon Split",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 164,
+  "name": "Static Vandal",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Stoned",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Tongue Out",
+   "Outfit": "Puffer",
+   "Background": "Neon Split",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 165,
+  "name": "Venom Menace",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 166,
+  "name": "Feral Brawler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Denim",
+   "Background": "Neon Split",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 167,
+  "name": "Grimey Hustler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Bomber",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 168,
+  "name": "Savage Gremlin",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Gold",
+   "Eyes": "Mischief",
+   "Headwear": "Crown",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 169,
+  "name": "Sludge Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Chain-only",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 170,
+  "name": "Sludge Tagger",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Flame",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Chain-only",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 171,
+  "name": "Cyber Brawler",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Visor",
+   "Headwear": "Devil Horns",
+   "Mouth": "Bubblegum",
+   "Outfit": "Denim",
+   "Background": "Neon Split",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 172,
+  "name": "Venom Brawler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 173,
+  "name": "Frantic Hooligan",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 174,
+  "name": "Rogue Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Puffer",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 175,
+  "name": "Cyber Creep",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 176,
+  "name": "Static Creep",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 177,
+  "name": "Blaze Snitch",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Flame",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 178,
+  "name": "Feral Hustler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Cyclops",
+   "Headwear": "Cyber Ponytail",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 179,
+  "name": "Wired Snitch",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Flame",
+   "Headwear": "Crown",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 180,
+  "name": "Rabid Rat",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 181,
+  "name": "Cyber Hooligan",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Toothpick",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 182,
+  "name": "Rowdy Rascal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Durag",
+   "Mouth": "Toothpick",
+   "Outfit": "Puffer",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 183,
+  "name": "Neon Tagger",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Chain-only",
+   "Background": "Acid Green",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 184,
+  "name": "Rogue Scrapper",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 185,
+  "name": "Vicious Snitch",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "VR Visor",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 186,
+  "name": "Rabid Rascal",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Visor",
+   "Headwear": "Headphones",
+   "Mouth": "Cigar",
+   "Outfit": "Bomber",
+   "Background": "Deep Purple",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 187,
+  "name": "Toxic Rascal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 188,
+  "name": "Glitch Trickster",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Beanie",
+   "Mouth": "Cigar",
+   "Outfit": "Denim",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 189,
+  "name": "Frantic Imp",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "3D Glasses",
+   "Headwear": "Durag",
+   "Mouth": "Toothpick",
+   "Outfit": "Puffer",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 190,
+  "name": "Snarl Gremlin",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 191,
+  "name": "Frantic Creep",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 192,
+  "name": "Hazard Goblin",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "Space-buns",
+   "Mouth": "Cigar",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 193,
+  "name": "Frantic Trickster",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Diamond",
+   "Eyes": "Flame",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Chain-only",
+   "Background": "Legendary Glow",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 194,
+  "name": "Rabid Vandal",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Cyclops",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Chain-only",
+   "Background": "Deep Purple",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 195,
+  "name": "Static Fiend",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Gold",
+   "Eyes": "Flame",
+   "Headwear": "Crown",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 196,
+  "name": "Frantic Scrapper",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Denim",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 197,
+  "name": "Static Biter",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 198,
+  "name": "Wired Biter",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "Devil Horns",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Legendary Glow",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 199,
+  "name": "Riot Rascal",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Puffer",
+   "Background": "Acid Green",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 200,
+  "name": "Vandal Snitch",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 201,
+  "name": "Static Prowler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Puffer",
+   "Background": "Deep Purple",
+   "Accessory": "Hoop"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 202,
+  "name": "Rogue Prowler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Durag",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 203,
+  "name": "Rowdy Creep",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 204,
+  "name": "Glitch Punk",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 205,
+  "name": "Rowdy Hustler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 206,
+  "name": "Reckless Goblin",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Crown",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 207,
+  "name": "Toxic Imp",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Durag",
+   "Mouth": "Bubblegum",
+   "Outfit": "Hoodie",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 208,
+  "name": "Cyber Snitch",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 209,
+  "name": "Reckless Hooligan",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Neon Split",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 210,
+  "name": "Sludge Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "Snapback",
+   "Mouth": "Bubblegum",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "Hoop"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 211,
+  "name": "Rogue Imp",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 212,
+  "name": "Snarl Rat",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 213,
+  "name": "Blaze Punk",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Mischief",
+   "Headwear": "Durag",
+   "Mouth": "Toothpick",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Deep Purple",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 214,
+  "name": "Wired Trickster",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Puffer",
+   "Background": "Hot Pink",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 215,
+  "name": "Hazard Gremlin",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Stoned",
+   "Headwear": "Snapback",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 216,
+  "name": "Venom Creep",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Bomber",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 217,
+  "name": "Frantic Brawler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 218,
+  "name": "Reckless Hustler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Visor",
+   "Headwear": "Headphones",
+   "Mouth": "Cigar",
+   "Outfit": "Puffer",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 219,
+  "name": "Blaze Menace",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "3D Glasses",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Cigar",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 220,
+  "name": "Blaze Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Stoned",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Toothpick",
+   "Outfit": "Puffer",
+   "Background": "Acid Green",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 221,
+  "name": "Vandal Hustler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Chain-only",
+   "Background": "Neon Split",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 222,
+  "name": "Static Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Visor",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Denim",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 223,
+  "name": "Venom Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 224,
+  "name": "Riot Rat",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Cigar",
+   "Outfit": "Leather",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 225,
+  "name": "Grimey Gremlin",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Flame",
+   "Headwear": "None",
+   "Mouth": "Bubblegum",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 226,
+  "name": "Feral Scrapper",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 227,
+  "name": "Cyber Rat",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Denim",
+   "Background": "Neon Split",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 228,
+  "name": "Static Rat",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Bomber",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 229,
+  "name": "Snarl Outlaw",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Toothpick",
+   "Outfit": "Tracksuit",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 230,
+  "name": "Cyber Imp",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Beanie",
+   "Mouth": "Bubblegum",
+   "Outfit": "Puffer",
+   "Background": "Acid Green",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 231,
+  "name": "Savage Punk",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Chain-only",
+   "Background": "Neon Split",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 232,
+  "name": "Sludge Brawler",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "Crown",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Hot Pink",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 233,
+  "name": "Vandal Tagger",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Visor",
+   "Headwear": "Beanie",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 234,
+  "name": "Chrome Menace",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Mischief",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Bubblegum",
+   "Outfit": "Bomber",
+   "Background": "Graffiti Wall",
+   "Accessory": "Hoop"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 235,
+  "name": "Rowdy Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 236,
+  "name": "Rogue Fiend",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 237,
+  "name": "Hazard Prowler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Bubblegum",
+   "Outfit": "Puffer",
+   "Background": "Acid Green",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 238,
+  "name": "Hazard Lurker",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Beanie",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 239,
+  "name": "Vicious Prowler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Denim",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 240,
+  "name": "Sludge Imp",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Bomber",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 241,
+  "name": "Menace Punk",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 242,
+  "name": "Chrome Biter",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Diamond",
+   "Eyes": "Flame",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Bomber",
+   "Background": "Legendary Glow",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 243,
+  "name": "Venom Prowler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Bubblegum",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 244,
+  "name": "Snarl Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 245,
+  "name": "Chrome Bandit",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 246,
+  "name": "Cyber Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "Stoned",
+   "Headwear": "Space-buns",
+   "Mouth": "Grin",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 247,
+  "name": "Feral Biter",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 248,
+  "name": "Toxic Outlaw",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Leather",
+   "Background": "Acid Green",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 249,
+  "name": "Feral Vandal",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Bubblegum",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 250,
+  "name": "Cyber Trickster",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Visor",
+   "Headwear": "Snapback",
+   "Mouth": "Toothpick",
+   "Outfit": "Tracksuit",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 251,
+  "name": "Gutter Prowler",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Flame",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Deep Purple",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 252,
+  "name": "Feral Rat",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Flame",
+   "Headwear": "Devil Horns",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tracksuit",
+   "Background": "Deep Purple",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 253,
+  "name": "Chrome Imp",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Stoned",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Cigar",
+   "Outfit": "Tracksuit",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 254,
+  "name": "Neon Prowler",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Legendary Glow",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 255,
+  "name": "Chrome Wraith",
+  "tier": "Legendary",
+  "price_pol": 200,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Diamond",
+   "Eyes": "Flame",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Leather",
+   "Background": "Legendary Glow",
+   "Accessory": "Iced Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 256,
+  "name": "Grimey Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 257,
+  "name": "Grim Wraith",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "Flaming Halo",
+   "Mouth": "Tongue Out",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 258,
+  "name": "Glitch Bandit",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Laser",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 259,
+  "name": "Reckless Scrapper",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Neon Split",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 260,
+  "name": "Hazard Snitch",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 261,
+  "name": "Grim Lurker",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "Laser",
+   "Headwear": "Snapback",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Deep Purple",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 262,
+  "name": "Venom Gremlin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Denim",
+   "Background": "Hot Pink",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 263,
+  "name": "Glitch Goblin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Denim",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 264,
+  "name": "Chrome Snitch",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Cyclops",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Leather",
+   "Background": "Deep Purple",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 265,
+  "name": "Cyber Gremlin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "VR Visor",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Cigar",
+   "Outfit": "Chain-only",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 266,
+  "name": "Diamond Warlord",
+  "tier": "Mythic",
+  "price_pol": 0,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Gold",
+   "Eyes": "Laser",
+   "Headwear": "Crown",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 267,
+  "name": "Wired Prowler",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Laser",
+   "Headwear": "Snapback",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 268,
+  "name": "Static Outlaw",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 269,
+  "name": "Vandal Lurker",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Grin",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 270,
+  "name": "Vicious Wraith",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Hot Pink",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 271,
+  "name": "Riot Gremlin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "3D Glasses",
+   "Headwear": "Space-buns",
+   "Mouth": "Cigar",
+   "Outfit": "Bomber",
+   "Background": "Graffiti Wall",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 272,
+  "name": "Static Hooligan",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "3D Glasses",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Toothpick",
+   "Outfit": "Denim",
+   "Background": "Acid Green",
+   "Accessory": "Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 273,
+  "name": "Wired Tagger",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Purple Haze",
+   "Eyes": "Visor",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Denim",
+   "Background": "Deep Purple",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 274,
+  "name": "Rowdy Gremlin",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "None",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 275,
+  "name": "Wired Hooligan",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "3D Glasses",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Hoop"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 276,
+  "name": "Toxic Biter",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 277,
+  "name": "Glitch Hustler",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Mischief",
+   "Headwear": "Beanie",
+   "Mouth": "Cigar",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 278,
+  "name": "Golden Overlord",
+  "tier": "Mythic",
+  "price_pol": 0,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Gold",
+   "Eyes": "Laser",
+   "Headwear": "Crown",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 279,
+  "name": "Cyber Tagger",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Toothpick",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 280,
+  "name": "Static Lurker",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Zombie",
+   "Eyes": "Laser",
+   "Headwear": "Snapback",
+   "Mouth": "Tongue Out",
+   "Outfit": "Bomber",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 281,
+  "name": "Menace Snitch",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "3D Glasses",
+   "Headwear": "Snapback",
+   "Mouth": "Cigar",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 282,
+  "name": "Neon Vandal",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Cigar",
+   "Outfit": "Denim",
+   "Background": "Acid Green",
+   "Accessory": "Earring"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 283,
+  "name": "Cyber Goblin",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "VR Visor",
+   "Headwear": "Beanie",
+   "Mouth": "Grin",
+   "Outfit": "Leather",
+   "Background": "Graffiti Wall",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 284,
+  "name": "Rabid Creep",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Cyclops",
+   "Headwear": "Devil Horns",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 285,
+  "name": "Cyber Fiend",
+  "tier": "Epic",
+  "price_pol": 80,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Mischief",
+   "Headwear": "Crown",
+   "Mouth": "Tongue Out",
+   "Outfit": "Puffer",
+   "Background": "Neon Split",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 286,
+  "name": "Savage Hooligan",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Bucket Hat",
+   "Mouth": "Tongue Out",
+   "Outfit": "Leather",
+   "Background": "Hot Pink",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 287,
+  "name": "Rowdy Bandit",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Albino",
+   "Eyes": "Cyclops",
+   "Headwear": "None",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Denim",
+   "Background": "Acid Green",
+   "Accessory": "Diamond Chain"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 288,
+  "name": "Neon Goblin",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Snapback",
+   "Mouth": "Grin",
+   "Outfit": "Chain-only",
+   "Background": "Graffiti Wall",
+   "Accessory": "Chain"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 289,
+  "name": "Hazard Trickster",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "VR Visor",
+   "Headwear": "Durag",
+   "Mouth": "Tongue Out",
+   "Outfit": "Denim",
+   "Background": "Hot Pink",
+   "Accessory": "Star Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 290,
+  "name": "Venom Snitch",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Zombie",
+   "Eyes": "3D Glasses",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Tongue Out",
+   "Outfit": "Puffer",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 291,
+  "name": "Cyber Shredder",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Stoned",
+   "Headwear": "Durag",
+   "Mouth": "Cigar",
+   "Outfit": "Hoodie",
+   "Background": "Graffiti Wall",
+   "Accessory": "None"
+  },
+  "has_render": true
+ },
+ {
+  "token_id": 292,
+  "name": "Sludge Biter",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Albino",
+   "Eyes": "VR Visor",
+   "Headwear": "Beanie",
+   "Mouth": "Cigar",
+   "Outfit": "Tracksuit",
+   "Background": "Hot Pink",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 293,
+  "name": "Blaze Tagger",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Purple Haze",
+   "Eyes": "Stoned",
+   "Headwear": "None",
+   "Mouth": "Toothpick",
+   "Outfit": "Tie-dye Tee",
+   "Background": "Graffiti Wall",
+   "Accessory": "Earring"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 294,
+  "name": "Gutter Biter",
+  "tier": "Common",
+  "price_pol": 15,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "Mischief",
+   "Headwear": "Neon-green Hair",
+   "Mouth": "Grin",
+   "Outfit": "Tracksuit",
+   "Background": "Acid Green",
+   "Accessory": "None"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 295,
+  "name": "Rabid Hooligan",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Female",
+   "Skin": "Toxic Blue",
+   "Eyes": "3D Glasses",
+   "Headwear": "None",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Bomber",
+   "Background": "Acid Green",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ },
+ {
+  "token_id": 296,
+  "name": "Vicious Scrapper",
+  "tier": "Rare",
+  "price_pol": 40,
+  "traits": {
+   "Gender": "Male",
+   "Skin": "Classic Green",
+   "Eyes": "Mischief",
+   "Headwear": "Durag",
+   "Mouth": "Gold Grillz",
+   "Outfit": "Denim",
+   "Background": "Hot Pink",
+   "Accessory": "Face Tattoo"
+  },
+  "has_render": false
+ }
+]

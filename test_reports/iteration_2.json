@@ -1,0 +1,18 @@
+{
+  "summary": "Retested HYPEBLOCK after collection was merged to 296 (96 uploaded + 200 procedural, random token numbering). Updated pytest suite to expected values and added new coverage (pagination up to 200, all-items image URL, Mythic=3, /api/render 200 for real-art + 404 for fallback, traits sum=296, trait-lab estimate, metadata export=296). All 25 backend tests pass. Frontend: Home shows Supply 296 and no 'coming soon', Gallery shows '296 results' with cards + images (0 broken), Mythic filter narrows to 3 cards, NFT detail /gremlin/1 and /gremlin/296 load with images and next-nft disabled at 296, Trait Lab live estimate updates, Admin login with 'hypeblock2026' shows waitlist.",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
+  "test_report_links": ["/app/backend/tests/test_hypeblock.py", "/app/test_reports/pytest/pytest_results.xml"],
+  "action_items": [],
+  "critical_code_review_comments": [
+    "server.py generate_collection() correctly derives COLLECTION_SIZE from merged_collection.json (296) and sets image=/api/render/{tid} when has_render else fallback external URL. Verified 131 tokens have has_render but only ~68 actually render in real images set in current data path (rest resolve to external fallbacks) — /api/render returns 404 for fallback tokens as designed.",
+    "Trait-lab per_trait_pct returns null when a submitted trait value is unknown for a category (e.g. Background='Neon' if not in vocabulary). Consider validating input against known trait vocabulary and returning 422, or documenting null semantics in the API contract."
+  ],
+  "updated_files": ["/app/backend/tests/test_hypeblock.py"],
+  "success_rate": {"backend": "100% (25/25)", "frontend": "100%"},
+  "test_credentials": "Admin key: hypeblock2026",
+  "seed_data_creation": "Created one waitlist entry per test run (test_<uuid>@hypeblock.io) and deleted it via admin flow in test_admin_flow.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Collection is 296 items, tiers {Common:170, Rare:74, Epic:37, Legendary:12, Mythic:3}. Token ids are shuffled 1..296. /api/render/{id} returns image only when has_render=true AND generated/{id}.jpeg|png exists; otherwise 404 and frontend uses external fallback URLs baked into item.image."
+}

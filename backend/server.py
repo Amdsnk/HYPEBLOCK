@@ -27,12 +27,12 @@ ADMIN_KEY = os.environ.get('ADMIN_KEY', 'hypeblock2026')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
 BATCH_SIZE = 20
 LAUNCH_DATE = datetime(2026, 6, 16, tzinfo=timezone.utc)
-COLLECTION_VERSION = "v6"
+COLLECTION_VERSION = "v7"
 
 try:
-    COLLECTION_SIZE = len(json.loads((ROOT_DIR / "collection_data.json").read_text()))
+    COLLECTION_SIZE = len(json.loads((ROOT_DIR / "merged_collection.json").read_text()))
 except Exception:
-    COLLECTION_SIZE = 200
+    COLLECTION_SIZE = 296
 
 
 def _public_base():
@@ -205,7 +205,7 @@ def build_prompt(t, name=None, seed=0):
 
 
 def generate_collection():
-    data_file = ROOT_DIR / "collection_data.json"
+    data_file = ROOT_DIR / "merged_collection.json"
     raw = json.loads(data_file.read_text())
     N = len(raw)
     items = []
@@ -213,6 +213,11 @@ def generate_collection():
         tid = c["token_id"]
         tier = c["tier"]
         traits = dict(c["traits"])
+        rng = random.Random(tid)
+        if c.get("has_render"):
+            image = f"{PUBLIC_BASE}/api/render/{tid}"
+        else:
+            image = _fallback_image(traits["Skin"], tier, traits["Gender"], rng)
         if tier == "Mythic":
             traits["1 of 1"] = c["name"]
             desc = f"A 1-of-1 crown jewel of the HYPEBLOCK underground collective — the {c['name']}. Sold via auction."
@@ -224,7 +229,7 @@ def generate_collection():
             "name": c["name"],
             "title": f"HYPEBLOCK #{tid:03d}",
             "description": desc,
-            "image": f"{PUBLIC_BASE}/api/render/{tid}",
+            "image": image,
             "tier": tier,
             "traits": traits,
             "price_pol": c["price_pol"],
@@ -287,7 +292,7 @@ async def seed_collection():
         await db.meta.replace_one({"_id": "trait_counts"}, {"_id": "trait_counts", "counts": counts}, upsert=True)
         await db.meta.replace_one({"_id": "collection"}, {"_id": "collection", "version": COLLECTION_VERSION}, upsert=True)
         logger.info("Reseeded HYPEBLOCK collection %s", COLLECTION_VERSION)
-    logger.info("HYPEBLOCK collection ready (200 NFTs)")
+    logger.info("HYPEBLOCK collection ready (%s NFTs)", COLLECTION_SIZE)
 
 
 def _released(batch):
@@ -336,7 +341,7 @@ async def batches():
 @api_router.get("/traits")
 async def traits():
     doc = await db.meta.find_one({"_id": "trait_counts"})
-    return {"total": 200, "counts": doc["counts"] if doc else {}}
+    return {"total": COLLECTION_SIZE, "counts": doc["counts"] if doc else {}}
 
 
 class TraitLabIn(BaseModel):
@@ -455,7 +460,7 @@ async def nft_metadata(token_id: int):
 
 @api_router.get("/metadata/export")
 async def metadata_export():
-    docs = await db.nfts.find({}, {"_id": 0}).sort("token_id", 1).to_list(200)
+    docs = await db.nfts.find({}, {"_id": 0}).sort("token_id", 1).to_list(1000)
     payload = [_opensea_meta(d) for d in docs]
     return JSONResponse(content=payload, headers={"Content-Disposition": "attachment; filename=hypeblock-metadata.json"})
 
@@ -475,7 +480,7 @@ async def render_image(token_id: int):
 @api_router.get("/render-status")
 async def render_status():
     done = len(list(GENERATED_DIR.glob("*.png"))) if GENERATED_DIR.exists() else 0
-    return {"generated": done, "total": 200}
+    return {"generated": done, "total": COLLECTION_SIZE}
 
 
 @api_router.post("/waitlist")

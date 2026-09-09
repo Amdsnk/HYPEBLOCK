@@ -11,7 +11,7 @@ export default function Footer() {
             <span className="font-display text-lg font-extrabold text-white">HYPEBLOCK</span>
           </div>
           <p className="mt-3 text-sm text-slate-400 max-w-xs leading-relaxed">
-            96 original graffiti gremlin PFPs. Underground collective. Polygon · ERC-721 · Free lazy mint.
+            296 original graffiti gremlin PFPs. Underground collective. Polygon · ERC-721 · Free lazy mint.
           </p>
         </div>
         <div className="font-mono2 text-xs text-slate-500 space-y-2">

@@ -14,23 +14,23 @@ import RarityBadge from "@/components/RarityBadge";
 import WaitlistForm from "@/components/WaitlistForm";
 
 const TICKER = [
-  "96 ORIGINAL PFP", "POLYGON / MATIC", "ERC-721 SINGLE", "FREE LAZY MINT",
+  "296 ORIGINAL PFP", "POLYGON / MATIC", "ERC-721 SINGLE", "FREE LAZY MINT",
   "5 RARITY TIERS", "8 TRAIT CATEGORIES", "RARIBLE VERIFIED", "ROYALTY 5–10%",
 ];
 
 const TIER_INFO = [
-  { tier: "Common", pct: "52%", pcs: 50, price: "8–15 POL", icon: Shield, desc: "Everyday street gremlins." },
-  { tier: "Rare", pct: "25%", pcs: 24, price: "20–40 POL", icon: Sparkles, desc: "Rare traits — diamond chains & horns." },
-  { tier: "Epic", pct: "13.5%", pcs: 13, price: "60–120 POL", icon: Flame, desc: "Laser / flame eyes, crown energy." },
-  { tier: "Legendary", pct: "6.25%", pcs: 6, price: "200+ POL", icon: Crown, desc: "Gold & diamond skins, flaming halo." },
-  { tier: "Mythic", pct: "3.1%", pcs: 3, price: "Auction", icon: Gem, desc: "The 1-of-1 crown-jewel kings & queens." },
+  { tier: "Common", pct: "57%", pcs: 170, price: "8–15 POL", icon: Shield, desc: "Everyday street gremlins." },
+  { tier: "Rare", pct: "25%", pcs: 74, price: "20–40 POL", icon: Sparkles, desc: "Rare traits — diamond chains & horns." },
+  { tier: "Epic", pct: "12.5%", pcs: 37, price: "60–120 POL", icon: Flame, desc: "Laser / flame eyes, crown energy." },
+  { tier: "Legendary", pct: "4.05%", pcs: 12, price: "200+ POL", icon: Crown, desc: "Gold & diamond skins, flaming halo." },
+  { tier: "Mythic", pct: "1.01%", pcs: 3, price: "Auction", icon: Gem, desc: "The 1-of-1 crown-jewel kings & queens." },
 ];
 
 const FAQS = [
-  { q: "What is HYPEBLOCK Graffiti Gremlins?", a: "A collection of 96 original 'graffiti gremlin' PFP mascots — bold, edgy, streetwear, neon spray-paint style. Every gremlin is a unique 1-of-1 artwork, with traits & rarity like top PFP collections, but 100% original mascots (gremlins, not apes)." },
-  { q: "How big is the collection and where is it listed?", a: "96 unique items total (HYPEBLOCK #001–#096). Listed on Rarible on the Polygon network as ERC-721 (Single / 1-of-1) with free lazy minting — the buyer pays gas at purchase." },
+  { q: "What is HYPEBLOCK Graffiti Gremlins?", a: "A collection of 296 original 'graffiti gremlin' PFP mascots — bold, edgy, streetwear, neon spray-paint style. Every gremlin is a unique 1-of-1 artwork, with traits & rarity like top PFP collections, but 100% original mascots (gremlins, not apes)." },
+  { q: "How big is the collection and where is it listed?", a: "296 unique items total (HYPEBLOCK #001–#296). Listed on Rarible on the Polygon network as ERC-721 (Single / 1-of-1) with free lazy minting — the buyer pays gas at purchase." },
   { q: "Why Polygon?", a: "Polygon is cheap and fast. With lazy minting the creator cost is ~0 and buyers only pay a tiny gas fee at purchase. Perfect for an art-only drop." },
-  { q: "How are Rarity Score & Tier calculated?", a: "The rarity score is based on how scarce each trait is across the 96 items (the rarer a trait, the higher the score). Tiers: Common, Rare, Epic, Legendary, and 3 Mythic 1-of-1 crown jewels." },
+  { q: "How are Rarity Score & Tier calculated?", a: "The rarity score is based on how scarce each trait is across the 296 items (the rarer a trait, the higher the score). Tiers: Common, Rare, Epic, Legendary, and 3 Mythic 1-of-1 crown jewels." },
   { q: "How do I join the Gremlin Gang waitlist?", a: "Drop your email (and optional wallet) in the Waitlist form. The waitlist hears about drops and Mythic auctions first." },
 ];
 
@@ -56,13 +56,13 @@ export default function Home() {
           <div className="lg:col-span-7">
             <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
               <span className="inline-flex items-center gap-2 font-mono2 text-[11px] uppercase tracking-[0.25em] text-[#00E5FF] border border-[#00E5FF]/30 rounded-full px-3 py-1.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-[#00E5FF] animate-pulse" /> 96 PFP · Polygon / Rarible
+                <span className="h-1.5 w-1.5 rounded-full bg-[#00E5FF] animate-pulse" /> 296 PFP · Polygon / Rarible
               </span>
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[0.95] uppercase text-white mt-5">
                 Graffiti Gremlin <span className="text-[#FF0055] neon-pink-text">Collective</span>
               </h1>
               <p className="mt-5 text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed">
-                96 original street gremlin mascots. Bold, edgy, neon spray-paint. Rowdy, gang, hype —
+                296 original street gremlin mascots. Bold, edgy, neon spray-paint. Rowdy, gang, hype —
                 underground PFP for lovers of offbeat art.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -174,7 +174,7 @@ export default function Home() {
         <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase text-white mt-2">Roadmap</h2>
         <div className="mt-10 relative border-l-2 border-[#252A3E] ml-3 space-y-10">
           {[
-            { p: "PHASE 1", t: "Tagging the Block", d: "96 unique original gremlin PFPs live, Rarible store on Polygon, lazy mint ready." },
+            { p: "PHASE 1", t: "Tagging the Block", d: "296 unique original gremlin PFPs live, Rarible store on Polygon, lazy mint ready." },
             { p: "PHASE 2", t: "Gremlin Gang Invasion", d: "Waitlist + drip release ~20–30/week, underground Discord gang opens." },
             { p: "PHASE 3", t: "Merch Drip & Spray Cans", d: "Free wallpaper pack, sticker bombs, holder Discord role, mini-comic lore." },
             { p: "PHASE 4", t: "Underground Vault", d: "Community vault, secondary royalty sharing, artist collabs." },

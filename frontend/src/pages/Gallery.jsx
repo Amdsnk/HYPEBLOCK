@@ -7,8 +7,8 @@ import NftCard from "@/components/NftCard";
 const FILTER_CATS = ["Gender", "Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory"];
 const SORTS = [
   { v: "rank_asc", l: "Rank (Rarest first)" },
-  { v: "id_asc", l: "ID: #001 → #096" },
-  { v: "id_desc", l: "ID: #096 → #001" },
+  { v: "id_asc", l: "ID: #001 → #296" },
+  { v: "id_desc", l: "ID: #296 → #001" },
   { v: "price_desc", l: "Price: High → Low" },
   { v: "price_asc", l: "Price: Low → High" },
 ];

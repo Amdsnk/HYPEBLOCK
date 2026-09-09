@@ -46,6 +46,16 @@ Koleksi 200 PFP maskot "graffiti gremlin" original (Bold, edgy, streetwear, spra
 - Images served from backend disk (/app/backend/generated). For on-chain listing, pin them + metadata to IPFS.
 - Admin is a static-key gate (key hypeblock2026).
 
+## Updated (2026-06) — round 5: MERGED to 296 (restore 200 + keep 96)
+- FIX of prior mistake: previous round replaced the 200 procedural NFTs with only the 96 uploaded ones. User demanded both be combined (ADD, not replace).
+- New source of truth: backend/merged_collection.json = 296 items = 96 uploaded (real art) + 200 procedural (from token_meta.json). RANDOM token numbering (shuffle seed=4207, token_id 1..296).
+- Restored 35 previously-generated procedural PNG renders from git commit 1b1d0f8 (they had been deleted). User asked to RESTORE previous images, not regenerate — no AI generation run.
+- Images: 131 tokens have real art via /api/render/{id} (96 uploaded jpeg + 35 restored png); remaining 165 procedural use fallback hosted library images baked into item.image. build_merged.py rearranges generated/ files to {new_token_id}.ext.
+- generate_collection() rewritten to load merged_collection.json; image=/api/render/{tid} when has_render else _fallback_image(). COLLECTION_VERSION v7, COLLECTION_SIZE=296.
+- Tiers now Common170/Rare74/Epic37/Legendary12/Mythic3 (=296). 3 Mythic 1-of-1s forced to top ranks.
+- Frontend copy 96 -> 296 (config COLLECTION_TOTAL, Home stats/FAQ/ticker/tiers, Footer, Gallery sort labels).
+- Retested: backend 25/25 pass, frontend 100% (0 broken images, Mythic filter=3, detail #1 & #296 OK, Trait Lab live, Admin login OK).
+
 ## Backlog
 - P1: Generate full 200 unique gremlin renders (batch, one per token).
 - P1: Interactive "Trait Lab" remix previewer with live rarity estimate.

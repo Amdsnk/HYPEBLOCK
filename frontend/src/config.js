@@ -28,4 +28,4 @@ export const TIER_STYLES = {
 export const priceLabel = (n) => (n && n.price_pol === 0 ? "Auction" : `${n.price_pol} POL`);
 
 // Total NFTs in the collection (built from the uploaded generated art)
-export const COLLECTION_TOTAL = 96;
+export const COLLECTION_TOTAL = 296;
