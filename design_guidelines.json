@@ -1,0 +1,181 @@
+{
+  "project_name": "HYPEBLOCK — Graffiti Gremlins",
+  "theme": "Dark Mode — Underground Streetwear Neon Spray-Paint & Cyberpunk Subway Vault",
+  "archetype": "ARCHETYPE 7: ELECTRIC & NEON / STREET ART BRUTALISM",
+  "typography": {
+    "fonts": {
+      "headings": "'Unbounded', 'Bebas Neue', cursive, sans-serif",
+      "subheadings": "'Outfit', 'Cabinet Grotesk', sans-serif",
+      "body": "'Plus Jakarta Sans', sans-serif",
+      "monospace_stats": "'JetBrains Mono', monospace"
+    },
+    "scale": {
+      "hero_title": "text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-none uppercase",
+      "h2_section": "text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight uppercase",
+      "h3_card": "text-xl sm:text-2xl font-bold tracking-normal",
+      "body": "text-base sm:text-sm text-slate-300 leading-relaxed",
+      "label": "text-xs font-mono tracking-[0.2em] uppercase text-cyan-400"
+    }
+  },
+  "colors": {
+    "background": {
+      "primary": "#08090D",
+      "secondary": "#0F111A",
+      "card_surface": "#161926",
+      "glass_overlay": "rgba(15, 17, 26, 0.85)"
+    },
+    "borders": {
+      "subtle": "#252A3E",
+      "neon_pink": "#FF0055",
+      "cyber_cyan": "#00E5FF",
+      "volt_green": "#CCFF00",
+      "purple_glow": "#8B00FF"
+    },
+    "accents": {
+      "pink_drip": "#FF0055",
+      "cyan_spray": "#00E5FF",
+      "volt_lime": "#CCFF00",
+      "purple_gang": "#9D00FF",
+      "gold_legendary": "#FFB800"
+    },
+    "rarity_tiers": {
+      "common": {
+        "color": "#94A3B8",
+        "bg": "bg-slate-800/80 text-slate-300 border-slate-600",
+        "glow": "shadow-[0_0_12px_rgba(148,163,184,0.3)]"
+      },
+      "rare": {
+        "color": "#00E5FF",
+        "bg": "bg-cyan-950/80 text-cyan-300 border-cyan-500",
+        "glow": "shadow-[0_0_15px_rgba(0,229,255,0.4)]"
+      },
+      "epic": {
+        "color": "#9D00FF",
+        "bg": "bg-purple-950/80 text-purple-300 border-purple-500",
+        "glow": "shadow-[0_0_18px_rgba(157,0,255,0.5)]"
+      },
+      "legendary": {
+        "color": "#FFB800",
+        "bg": "bg-amber-950/80 text-amber-300 border-amber-400",
+        "glow": "shadow-[0_0_22px_rgba(255,184,0,0.6)]"
+      }
+    }
+  },
+  "visual_enhancers": {
+    "neon_spray_drip": "Use CSS drop-shadow or text-shadow glows: shadow-[0_0_20px_rgba(255,0,85,0.6)] and border-cyan-400/40",
+    "sticker_bomb_badges": "Angled badges (-2deg, 2deg rotation) with thick 2px borders, rough street tag aesthetics, and bold uppercase text",
+    "grit_texture": "Subtle radial dark overlays and noise pattern background to simulate concrete alley wall",
+    "card_hover_effect": "3D tilt / translateY(-6px) with neon border illuminate state and multi-layered box-shadow glow"
+  },
+  "layout_and_components": {
+    "header_nav": {
+      "style": "Fixed top-0 z-50 w-full backdrop-blur-xl bg-[#08090D]/85 border-b border-[#252A3E]",
+      "elements": [
+        "HYPEBLOCK Graffiti Logo with Neon Spray Drip Effect",
+        "Nav Links: Showcase, 200 Gremlins, Trait Lab, Roadmap, FAQ, Waitlist",
+        "Creator Wallet Badge (Polygon): 0x71C...3A9",
+        "Primary CTA: 'View on Rarible' (Neon Magenta Button with external link icon)"
+      ]
+    },
+    "hero_section": {
+      "structure": "Grid 12 cols (8 cols main content + 4 cols dynamic featured Gremlin spotlight)",
+      "badge": "200 ORIGINAL PFP MASKOT · POLYGON / RARIBLE",
+      "title": "HYPEBLOCK: GRAFFITI GREMLIN COLLECTIVE",
+      "tagline": "200 PFP maskot 'graffiti gremlin' original. Bold, edgy, streetwear, gaya spray-paint neon. Nakal, geng, hype.",
+      "ctas": [
+        "View on Rarible (Primary Neon Pink CTA)",
+        "Explore 200 Gremlins Gallery",
+        "Join Underground Waitlist"
+      ],
+      "live_stats_ticker": [
+        "Total Supply: 200 PFP",
+        "Network: Polygon (MATIC)",
+        "Rarity Tiers: 4 Tiers",
+        "Traits: 8 Categories",
+        "Marketplace: Rarible Verified"
+      ]
+    },
+    "gallery_section": {
+      "features": [
+        "Full dataset of 200 Gremlins with deterministic traits (Gender, Background, Fur/Skin, Eyes, Mouth, Outfit, Headwear, Accessory)",
+        "Search Input by ID (#001 - #200) or Name ('Cyber Vandal', 'Neon Biter', etc.)",
+        "Filter Sidebar: Rarity Tier (Common/Rare/Epic/Legendary), Gender (Male/Female), Trait category dropdowns",
+        "Sort Options: Rank #1 to #200 (Most Rare to Common), ID Ascending, ID Descending",
+        "View Mode Toggle: Grid View vs Compact Dense List View",
+        "Card Details: Bust portrait SVG/canvas, ID tag, Name, Tier Badge, Rarity Rank (#X), Rarity Score, Quick 'View Details' button"
+      ]
+    },
+    "nft_detail_modal_page": {
+      "features": [
+        "High-res Gremlin Bust portrait display with glow backdrop",
+        "Trait Matrix: 8 trait cards showing Trait Name, Value, and Rarity % in the 200 collection (e.g. 'Laser Eyes - 2.5% Rare')",
+        "Rarity Score Breakdown & Overall Rank Badge",
+        "Direct Buy / View Link on Rarible Marketplace (Polygon)",
+        "Provability & Contract Info (Token ID, Contract Address, Creator Wallet 0x71C...3A9)"
+      ]
+    },
+    "trait_lab_remix_section": {
+      "description": "Interactive Gremlin Customizer / Dress-Up preview tool where collectors can remix traits live to calculate theoretical rarity rank!"
+    },
+    "roadmap_section": {
+      "style": "Vertical Underground Subway Line / Timeline with neon glowing nodes",
+      "phases": [
+        {"phase": "PHASE 1", "title": "Tagging the Block", "desc": "Design 200 original Gremlin PFPs, smart contract deploy on Polygon, Rarible store setup."},
+        {"phase": "PHASE 2", "title": "Gremlin Gang Invasion", "desc": "Waitlist mint drop, Polygon gas-free trading, Discord underground gang opening."},
+        {"phase": "PHASE 3", "title": "Merch Drip & Spray Cans", "desc": "Physical streetwear hoodies, sticker bombs, and neon spray paint art cans for holders."},
+        {"phase": "PHASE 4", "title": "Underground Vault & DAO", "desc": "Community vault activation, secondary royalty sharing, 3D Metaverse avatar drop."}
+      ]
+    },
+    "faq_accordion": {
+      "questions": [
+        "Apa itu HYPEBLOCK Graffiti Gremlins?",
+        "Berapa total koleksi dan di mana listing-nya?",
+        "Mengapa memilih blockchain Polygon?",
+        "Bagaimana cara menghitung Rarity Score dan Tier?",
+        "Bagaimana cara bergabung dengan Waitlist geng Gremlin?"
+      ]
+    },
+    "waitlist_section": {
+      "features": [
+        "Email capture + optional Polygon wallet address input",
+        "Form submission saved to FastAPI + MongoDB backend (/api/waitlist)",
+        "Instant Sonner toast alert upon successful registration",
+        "Live waitlist counter badge"
+      ]
+    },
+    "admin_waitlist_page": {
+      "route": "/admin",
+      "features": [
+        "Token/Password protected access (default: hypeblock2026)",
+        "Data Table displaying Email, Wallet, Submission Time, Status",
+        "Search bar + Export to CSV button",
+        "Delete / Mark Contacted actions"
+      ]
+    }
+  },
+  "image_urls": {
+    "graffiti_mural_1": "https://images.unsplash.com/photo-1767520832395-bd2f08cb2100?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwzfHxncmFmZml0aSUyMHN0cmVldCUyMGFydCUyMG5lb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODg5NTQ1NjR8MA&ixlib=rb-4.1.0&q=85",
+    "streetwear_model_1": "https://images.unsplash.com/photo-1776630421007-bd8ceaca5136?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHw0fHxncmFmZml0aSUyMHN0cmVldCUyMGFydCUyMG5lb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODg5NTQ1NjR8MA&ixlib=rb-4.1.0&q=85",
+    "graffiti_wall_portrait": "https://images.unsplash.com/photo-1591275800092-27cc3ade60e4?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwyfHxncmFmZml0aSUyMHN0cmVldCUyMGFydCUyMG5lb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODg5NTQ1NjR8MA&ixlib=rb-4.1.0&q=85",
+    "neon_signage": "https://images.unsplash.com/photo-1570341395883-6a8e5a601d93?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwxfHxncmFmZml0aSUyMHN0cmVldCUyMGFydCUyMG5lb24lMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODg5NTQ1NjR8MA&ixlib=rb-4.1.0&q=85",
+    "streetwear_neon_pose": "https://images.pexels.com/photos/6835774/pexels-photo-6835774.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+    "sticker_bomb_door": "https://images.unsplash.com/photo-1709510713058-ec6703495efb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwzfHxuZW9uJTIwdXJiYW4lMjBncmFmZml0aSUyMHN0cmVldHdlYXJ8ZW58MHx8fHwxNzg3NjIwMTc5fDA&ixlib=rb-4.1.0&q=85",
+    "skater_city_street": "https://images.unsplash.com/photo-1721713168896-11db10d9740b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODF8MHwxfHNlYXJjaHwyfHxuZW9uJTIwdXJiYW4lMjBncmFmZml0aSUyMHN0cmVldHdlYXJ8ZW58MHx8fHwxNzg3NjIwMTc5fDA&ixlib=rb-4.1.0&q=85",
+    "urban_red_neon_graffiti": "https://images.pexels.com/photos/12569726/pexels-photo-12569726.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+  },
+  "instructions_to_main_agent": [
+    "Ensure all interactive elements have data-testid attributes (e.g. data-testid='view-rarible-btn', data-testid='nft-search-input', data-testid='rarity-filter-legendary', data-testid='waitlist-submit-btn').",
+    "Generate a complete 200 Gremlin dataset with deterministic SVG/Canvas procedural avatar renderers so each Gremlin #001 to #200 has distinct visual traits (Mouth spray drip, eyes, headwear like bucket hats/caps/horns, streetwear jackets, background tags).",
+    "Integrate full FastAPI + MongoDB backend for waitlist persistence and listing metadata query.",
+    "Make sure Sonner is used for toasts notifications on waitlist submissions and link copy actions.",
+    "Include an Admin view at /admin with password prompt ('hypeblock2026') to view, search, and export captured waitlist emails.",
+    "Follow dark mode cyberpunk streetwear aesthetics with high contrast neon pink, cyan, volt green, and gold accents."
+  ],
+  "UNIVERSAL GUIDELINES FOR MAIN AGENT": [
+    "Avoid generic AI slop aesthetic - make the frontend edgy, street-art themed, interactive, and distinct.",
+    "Do not use dark colors as soft gradients; use dark obsidian surfaces (#08090D) with crisp 1px neon stroke highlights.",
+    "Do not center align the app container globally.",
+    "Provide seamless micro-animations on button hover, card lift, filter click, and modal popups.",
+    "Never use AI assistant emojis like 🤖🧠💭💡 for UI icons; use Lucide-react or Phosphor React icons."
+  ]
+}
