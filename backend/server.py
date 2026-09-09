@@ -27,7 +27,7 @@ ADMIN_KEY = os.environ.get('ADMIN_KEY', 'hypeblock2026')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
 BATCH_SIZE = 20
 LAUNCH_DATE = datetime(2026, 6, 16, tzinfo=timezone.utc)
-COLLECTION_VERSION = "v3"
+COLLECTION_VERSION = "v4"
 
 app = FastAPI(title="HYPEBLOCK API")
 api_router = APIRouter(prefix="/api")
@@ -57,16 +57,24 @@ IMG = {
     "zombie_laser_epic": BASE + "8649abd12c1f9cd3a93b658ac81826576854ca8b4f8c52b7b5214db824c63ff2.jpeg",
     "gold_crown_laser": BASE + "1457c54c9767fd5fa4931d94ad1dab717471e6ff27432c366e32ad90d47e6e98.jpeg",
     "diamond_halo_flame": BASE + "4c34eab44cdba05869cb9177ed7e1db6287a3c5845f62755902b80d3c6a1d4a8.jpeg",
+    # --- 5 original base-style renders supplied by the creator ---
+    "att_female_green_buns": "https://customer-assets-m6fa6gv7.emergentagent.net/job_hypeblock-nft/artifacts/jlykm00u_image-1788909840905.jpeg",
+    "att_zombie_devil_epic": "https://customer-assets-m6fa6gv7.emergentagent.net/job_hypeblock-nft/artifacts/8m9ykes4_image-1788909077929.jpeg",
+    "att_blue_snapback": "https://customer-assets-m6fa6gv7.emergentagent.net/job_hypeblock-nft/artifacts/3li42p89_image-1788908924637.jpeg",
+    "att_female_blue_neon": "https://customer-assets-m6fa6gv7.emergentagent.net/job_hypeblock-nft/artifacts/ts9wg36e_image-5%20%287%29.jpeg",
 }
-FEMALE_IMAGES = {"female_green_crown", "female_blue_vr"}
+# The single crown-jewel 1-of-1 (Mythic) hero render
+MYTHIC_IMAGE = "https://customer-assets-m6fa6gv7.emergentagent.net/job_hypeblock-nft/artifacts/6hfjziwu_image-5%20%288%29.jpeg"
+FEMALE_IMAGES = {"female_green_crown", "female_blue_vr", "att_female_green_buns", "att_female_blue_neon"}
 SKIN_IMAGES = {
-    "Classic Green": ["green_beanie", "green_vr", "green_stoned", "green_cyclops_cigar", "female_green_crown"],
-    "Toxic Blue": ["blue_snapback", "blue_bucket", "blue_chainonly", "female_blue_vr"],
+    "Classic Green": ["green_beanie", "green_vr", "green_stoned", "green_cyclops_cigar", "female_green_crown", "att_female_green_buns"],
+    "Toxic Blue": ["blue_snapback", "blue_bucket", "blue_chainonly", "female_blue_vr", "att_blue_snapback", "att_female_blue_neon"],
     "Purple Haze": ["purple_3dglasses", "purple_cyclops"],
     "Albino": ["albino_durag", "albino_devil"],
     "Zombie": ["zombie_horns", "zombie_bomber"],
 }
-EPIC_IMAGES = {"Toxic Blue": ["blue_laser_epic"], "Purple Haze": ["purple_flame_epic"], "Zombie": ["zombie_laser_epic"]}
+EPIC_IMAGES = {"Toxic Blue": ["blue_laser_epic"], "Purple Haze": ["purple_flame_epic"],
+               "Zombie": ["zombie_laser_epic", "att_zombie_devil_epic"]}
 
 
 def _fallback_image(skin, tier, gender, rng):
@@ -89,29 +97,27 @@ def _fallback_image(skin, tier, gender, rng):
 
 
 # ---------------------------------------------------------------------------
-# Expanded trait scheme
+# Original trait scheme (locked to the founding spec)
 # ---------------------------------------------------------------------------
 COMMON_SKINS = ["Classic Green", "Toxic Blue", "Purple Haze", "Albino", "Zombie"]
 
-MALE_HAIR_COMMON = ["Beanie", "Snapback", "Bucket Hat", "Durag", "None"]
-FEMALE_HAIR_COMMON = ["Neon-green Hair", "Space-buns", "Bucket Hat", "None"]
-MALE_HAIR_RARE = ["Headphones"]
-FEMALE_HAIR_RARE = ["Cyber Ponytail", "Headphones"]
-STAR_HEADWEAR = ["Crown", "Flaming Halo"]
-EPIC_HEADWEAR_EXTRA = {"F": ["Pink Mohawk"], "M": ["Devil Horns"]}
+HEADWEAR_COMMON = ["Beanie", "Snapback", "Bucket Hat", "Durag", "None"]
+HEADWEAR_STAR = ["Crown", "Flaming Halo"]
+HEADWEAR_EPIC_EXTRA = ["Devil Horns"]
 
-COMMON_EYES = ["Mischief", "3D Glasses", "Stoned", "VR Visor", "Visor"]
-STAR_EYES = ["Laser", "Flame"]
+EYES_COMMON = ["Mischief", "3D Glasses", "Stoned", "VR Visor"]
+EYES_RARE = ["Cyclops"]
+EYES_STAR = ["Laser", "Flame"]
 
-MOUTHS_COMMON = ["Grin", "Gold Grillz", "Toothpick", "Tongue Out", "Cigar", "Bubblegum"]
+MOUTHS = ["Grin", "Gold Grillz", "Toothpick", "Tongue Out", "Cigar", "Bubblegum"]
 
-OUTFITS_COMMON = ["Hoodie", "Bomber", "Tie-dye Tee", "Puffer", "Tracksuit", "Chain-only", "Denim"]
-OUTFITS_RARE = ["Leather"]
+OUTFITS = ["Hoodie", "Bomber", "Tie-dye Tee", "Puffer", "Tracksuit", "Chain-only"]
 
-ACC_COMMON = ["None", "Chain", "Hoop", "Earring"]
-ACC_RARE = ["Diamond Chain", "Face Tattoo", "Star Tattoo"]
+ACC_COMMON = ["None", "Chain", "Earring"]
+ACC_RARE = ["Diamond Chain", "Face Tattoo"]
 
-COMMON_BG = ["Neon Split", "Acid Green", "Hot Pink", "Deep Purple", "Graffiti Wall"]
+BG_COMMON = ["Neon Split", "Acid Green", "Hot Pink", "Deep Purple", "Graffiti Wall"]
+BG_STAR = ["Legendary Glow"]
 
 ADJ = ["Neon", "Toxic", "Rowdy", "Grimey", "Feral", "Cyber", "Sludge", "Riot", "Vandal",
        "Static", "Hazard", "Reckless", "Savage", "Gutter", "Wired", "Rabid", "Glitch",
@@ -160,7 +166,8 @@ def build_prompt(t):
 
 def generate_collection():
     rng = random.Random(77)
-    tiers = ["Common"] * 120 + ["Rare"] * 50 + ["Epic"] * 24 + ["Legendary"] * 6
+    # 200 total = 1 Mythic (1-of-1) + 5 Legendary + 24 Epic + 50 Rare + 120 Common
+    tiers = ["Common"] * 120 + ["Rare"] * 50 + ["Epic"] * 24 + ["Legendary"] * 5 + ["Mythic"] * 1
     order = list(range(200))
     rng.shuffle(order)
     tier_map = {idx: tiers[slot] for slot, idx in enumerate(order)}
@@ -170,8 +177,37 @@ def generate_collection():
     for i in range(200):
         token_id = i + 1
         tier = tier_map[i]
+
+        if tier == "Mythic":
+            # The single crown-jewel 1-of-1 — the founding "Genesis King"
+            gender = "Male"
+            skin = "Toxic Blue"
+            eyes = "Flame"
+            headwear = "Crown"
+            mouth = "Gold Grillz"
+            outfit = "Chain-only"
+            background = "Legendary Glow"
+            accessory = "Diamond Chain"
+            traits = {"Gender": gender, "Skin": skin, "Eyes": eyes, "Headwear": headwear,
+                      "Mouth": mouth, "Outfit": outfit, "Background": background, "Accessory": accessory,
+                      "1 of 1": "Genesis King"}
+            batch = (token_id - 1) // BATCH_SIZE + 1
+            items.append({
+                "id": str(uuid.uuid4()),
+                "token_id": token_id,
+                "name": "Genesis King",
+                "title": f"HYPEBLOCK #{token_id:03d}",
+                "description": "The 1-of-1 crown jewel of the HYPEBLOCK underground collective — the founding Genesis King. Sold via auction.",
+                "image": MYTHIC_IMAGE,
+                "tier": tier,
+                "traits": traits,
+                "price_pol": 0,  # 0 == auction / 1-of-1
+                "batch": batch,
+                "prompt": build_prompt(traits),
+            })
+            continue
+
         gender = "Female" if rng.random() < 0.35 else "Male"
-        gk = "F" if gender == "Female" else "M"
 
         if tier == "Legendary":
             skin = "Gold" if leg_count % 2 == 0 else "Diamond"
@@ -179,36 +215,36 @@ def generate_collection():
             eyes = "Laser" if skin == "Gold" else "Flame"
             headwear = "Crown" if skin == "Gold" else "Flaming Halo"
             mouth = "Gold Grillz"
-            outfit = rng.choice(["Bomber", "Puffer", "Leather", "Chain-only"])
+            outfit = rng.choice(["Bomber", "Puffer", "Chain-only"])
             background = "Legendary Glow"
-            accessory = "Iced Chain"
+            accessory = "Diamond Chain"
         elif tier == "Epic":
             skin = rng.choice(COMMON_SKINS)
             if rng.random() < 0.6:
-                eyes = rng.choice(STAR_EYES)
-                headwear = rng.choice((FEMALE_HAIR_COMMON if gk == "F" else MALE_HAIR_COMMON) + EPIC_HEADWEAR_EXTRA[gk])
+                eyes = rng.choice(EYES_STAR)
+                headwear = rng.choice(HEADWEAR_COMMON + HEADWEAR_EPIC_EXTRA)
             else:
-                eyes = rng.choice(COMMON_EYES + ["Cyclops"])
-                headwear = rng.choice(STAR_HEADWEAR + EPIC_HEADWEAR_EXTRA[gk])
-            mouth = rng.choice(MOUTHS_COMMON)
-            outfit = rng.choice(OUTFITS_COMMON + OUTFITS_RARE)
-            background = rng.choice(COMMON_BG)
-            accessory = rng.choice(["Diamond Chain", "Iced Chain", "Star Tattoo"])
+                eyes = rng.choice(EYES_COMMON + EYES_RARE)
+                headwear = rng.choice(HEADWEAR_STAR + HEADWEAR_EPIC_EXTRA)
+            mouth = rng.choice(MOUTHS)
+            outfit = rng.choice(OUTFITS)
+            background = rng.choice(BG_COMMON)
+            accessory = rng.choice(["Diamond Chain", "Face Tattoo"])
         elif tier == "Rare":
             skin = rng.choice(COMMON_SKINS)
-            eyes = rng.choice(COMMON_EYES + ["Cyclops"])
-            headwear = rng.choice((FEMALE_HAIR_COMMON + FEMALE_HAIR_RARE) if gk == "F" else (MALE_HAIR_COMMON + MALE_HAIR_RARE))
-            mouth = rng.choice(MOUTHS_COMMON)
-            outfit = rng.choice(OUTFITS_COMMON + OUTFITS_RARE)
-            background = rng.choice(COMMON_BG)
+            eyes = rng.choice(EYES_COMMON + EYES_RARE)
+            headwear = rng.choice(HEADWEAR_COMMON + HEADWEAR_EPIC_EXTRA)
+            mouth = rng.choice(MOUTHS)
+            outfit = rng.choice(OUTFITS)
+            background = rng.choice(BG_COMMON)
             accessory = rng.choice(ACC_RARE + ["Chain"])
         else:  # Common
             skin = rng.choice(COMMON_SKINS)
-            eyes = rng.choice(COMMON_EYES)
-            headwear = rng.choice(FEMALE_HAIR_COMMON if gk == "F" else MALE_HAIR_COMMON)
-            mouth = rng.choice(MOUTHS_COMMON)
-            outfit = rng.choice(OUTFITS_COMMON)
-            background = rng.choice(COMMON_BG)
+            eyes = rng.choice(EYES_COMMON)
+            headwear = rng.choice(HEADWEAR_COMMON)
+            mouth = rng.choice(MOUTHS)
+            outfit = rng.choice(OUTFITS)
+            background = rng.choice(BG_COMMON)
             accessory = rng.choice(ACC_COMMON)
 
         traits = {"Gender": gender, "Skin": skin, "Eyes": eyes, "Headwear": headwear,
@@ -236,6 +272,10 @@ def generate_collection():
             counts[c][v] = counts[c].get(v, 0) + 1
     for it in items:
         it["rarity_score"] = round(sum(200.0 / counts[c][it["traits"][c]] for c in scored), 2)
+    # The 1-of-1 Mythic is always the #1 rarest by design
+    for it in items:
+        if it["tier"] == "Mythic":
+            it["rarity_score"] = round(max(x["rarity_score"] for x in items) + 100.0, 2)
     ranked = sorted(items, key=lambda x: x["rarity_score"], reverse=True)
     for rank, it in enumerate(ranked, start=1):
         it["rank"] = rank
@@ -305,7 +345,7 @@ async def root():
 @api_router.get("/stats")
 async def stats():
     total = await db.nfts.count_documents({})
-    tiers = {t: await db.nfts.count_documents({"tier": t}) for t in ["Common", "Rare", "Epic", "Legendary"]}
+    tiers = {t: await db.nfts.count_documents({"tier": t}) for t in ["Common", "Rare", "Epic", "Legendary", "Mythic"]}
     return {
         "total_supply": total,
         "network": "Polygon",

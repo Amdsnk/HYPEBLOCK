@@ -3,7 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
-  ExternalLink, ArrowRight, Sparkles, Flame, Shield, Crown,
+  ExternalLink, ArrowRight, Sparkles, Flame, Shield, Crown, Gem,
 } from "lucide-react";
 import {
   Accordion, AccordionContent, AccordionItem, AccordionTrigger,
@@ -15,22 +15,23 @@ import WaitlistForm from "@/components/WaitlistForm";
 
 const TICKER = [
   "200 ORIGINAL PFP", "POLYGON / MATIC", "ERC-721 SINGLE", "FREE LAZY MINT",
-  "4 RARITY TIERS", "8 TRAIT CATEGORIES", "RARIBLE VERIFIED", "ROYALTY 5–10%",
+  "5 RARITY TIERS", "8 TRAIT CATEGORIES", "RARIBLE VERIFIED", "ROYALTY 5–10%",
 ];
 
 const TIER_INFO = [
-  { tier: "Common", pct: "60%", pcs: 120, price: "8–15 POL", icon: Shield, desc: "Gremlin jalanan sehari-hari." },
-  { tier: "Rare", pct: "25%", pcs: 50, price: "20–40 POL", icon: Sparkles, desc: "Trait langka, diamond chain / horns." },
-  { tier: "Epic", pct: "12%", pcs: 24, price: "60–120 POL", icon: Flame, desc: "Laser/flame eyes, crown vibes." },
-  { tier: "Legendary", pct: "3%", pcs: 6, price: "200+ POL", icon: Crown, desc: "Gold & diamond, flaming halo." },
+  { tier: "Common", pct: "60%", pcs: 120, price: "8–15 POL", icon: Shield, desc: "Everyday street gremlins." },
+  { tier: "Rare", pct: "25%", pcs: 50, price: "20–40 POL", icon: Sparkles, desc: "Rare traits — diamond chains & horns." },
+  { tier: "Epic", pct: "12%", pcs: 24, price: "60–120 POL", icon: Flame, desc: "Laser / flame eyes, crown energy." },
+  { tier: "Legendary", pct: "2.5%", pcs: 5, price: "200+ POL", icon: Crown, desc: "Gold & diamond skins, flaming halo." },
+  { tier: "Mythic", pct: "0.5%", pcs: 1, price: "Auction", icon: Gem, desc: "The 1-of-1 Genesis King crown jewel." },
 ];
 
 const FAQS = [
-  { q: "Apa itu HYPEBLOCK Graffiti Gremlins?", a: "Koleksi 200 PFP maskot 'graffiti gremlin' original — bold, edgy, streetwear, gaya spray-paint neon. Tiap gremlin unik dengan trait & rarity ala koleksi PFP top, tapi 100% maskot original (gremlin, bukan kera)." },
-  { q: "Berapa total koleksi dan di mana listing-nya?", a: "Total 200 item (HYPEBLOCK #001–#200). Listing di Rarible pada jaringan Polygon sebagai ERC-721 (Single / 1-of-1) dengan free lazy mint — gas dibayar pembeli saat beli." },
-  { q: "Kenapa pilih Polygon?", a: "Polygon murah dan cepat. Dengan lazy mint, biaya kreator ~0 dan pembeli cuma bayar gas kecil saat transaksi. Cocok buat art-only drop." },
-  { q: "Gimana cara hitung Rarity Score & Tier?", a: "Rarity score dihitung dari kelangkaan tiap trait (semakin jarang trait muncul di 200 item, semakin tinggi skornya). Tier dibagi jadi Common 60%, Rare 25%, Epic 12%, Legendary 3%." },
-  { q: "Gimana cara gabung Waitlist geng Gremlin?", a: "Isi email (dan wallet opsional) di form Waitlist. Kita drip release ~20–30 gremlin per minggu, dan waitlist dapet kabar drop duluan." },
+  { q: "What is HYPEBLOCK Graffiti Gremlins?", a: "A collection of 200 original 'graffiti gremlin' PFP mascots — bold, edgy, streetwear, neon spray-paint style. Every gremlin is unique, with traits & rarity like top PFP collections, but 100% original mascots (gremlins, not apes)." },
+  { q: "How big is the collection and where is it listed?", a: "200 items total (HYPEBLOCK #001–#200). Listed on Rarible on the Polygon network as ERC-721 (Single / 1-of-1) with free lazy minting — the buyer pays gas at purchase." },
+  { q: "Why Polygon?", a: "Polygon is cheap and fast. With lazy minting the creator cost is ~0 and buyers only pay a tiny gas fee at purchase. Perfect for an art-only drop." },
+  { q: "How are Rarity Score & Tier calculated?", a: "The rarity score is based on how scarce each trait is (the rarer a trait across the 200 items, the higher the score). Tiers: Common 60%, Rare 25%, Epic 12%, Legendary 2.5%, and a single Mythic 1-of-1 (0.5%)." },
+  { q: "How do I join the Gremlin Gang waitlist?", a: "Drop your email (and optional wallet) in the Waitlist form. We drip-release ~20–30 gremlins per week, and the waitlist hears about drops first." },
 ];
 
 export default function Home() {
@@ -61,8 +62,8 @@ export default function Home() {
                 Graffiti Gremlin <span className="text-[#FF0055] neon-pink-text">Collective</span>
               </h1>
               <p className="mt-5 text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed">
-                200 maskot gremlin jalanan original. Bold, edgy, spray-paint neon. Nakal, geng, hype —
-                underground PFP buat yang demen art nyeleneh.
+                200 original street gremlin mascots. Bold, edgy, neon spray-paint. Rowdy, gang, hype —
+                underground PFP for lovers of offbeat art.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
                 <a data-testid="hero-rarible-btn" href={LINKS.rarible} target="_blank" rel="noreferrer"
@@ -80,7 +81,7 @@ export default function Home() {
                   {[
                     { k: "Supply", v: stats.total_supply },
                     { k: "Network", v: stats.network },
-                    { k: "Tiers", v: "4" },
+                    { k: "Tiers", v: "5" },
                     { k: "Traits", v: "8" },
                   ].map((x) => (
                     <div key={x.k} className="rounded-xl border border-[#252A3E] bg-[#0F111A]/70 p-3">
@@ -145,8 +146,8 @@ export default function Home() {
       {/* RARITY TIERS */}
       <section className="mx-auto max-w-[1400px] px-6 pb-8">
         <p className="font-mono2 text-xs uppercase tracking-[0.25em] text-[#CCFF00]">Distribution</p>
-        <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase text-white mt-2">4 Rarity Tiers</h2>
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase text-white mt-2">5 Rarity Tiers</h2>
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
           {TIER_INFO.map(({ tier, pct, pcs, price, icon: Icon, desc }) => {
             const s = TIER_STYLES[tier];
             return (
@@ -173,10 +174,10 @@ export default function Home() {
         <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase text-white mt-2">Roadmap</h2>
         <div className="mt-10 relative border-l-2 border-[#252A3E] ml-3 space-y-10">
           {[
-            { p: "PHASE 1", t: "Tagging the Block", d: "Design 200 gremlin PFP original, setup Rarible store di Polygon, lazy mint siap." },
-            { p: "PHASE 2", t: "Gremlin Gang Invasion", d: "Waitlist + drip release ~20–30/minggu, Discord underground gang dibuka." },
-            { p: "PHASE 3", t: "Merch Drip & Spray Cans", d: "Wallpaper pack gratis, sticker bomb, Discord role holder, mini-comic lore." },
-            { p: "PHASE 4", t: "Underground Vault", d: "Community vault, secondary royalty sharing, kolaborasi artist." },
+            { p: "PHASE 1", t: "Tagging the Block", d: "Design 200 original gremlin PFPs, set up the Rarible store on Polygon, lazy mint ready." },
+            { p: "PHASE 2", t: "Gremlin Gang Invasion", d: "Waitlist + drip release ~20–30/week, underground Discord gang opens." },
+            { p: "PHASE 3", t: "Merch Drip & Spray Cans", d: "Free wallpaper pack, sticker bombs, holder Discord role, mini-comic lore." },
+            { p: "PHASE 4", t: "Underground Vault", d: "Community vault, secondary royalty sharing, artist collabs." },
           ].map((ph, i) => (
             <motion.div key={ph.p} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
               className="relative pl-8">

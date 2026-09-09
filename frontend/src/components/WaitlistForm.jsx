@@ -27,9 +27,9 @@ export default function WaitlistForm() {
       setCount(r.data.count);
       loadCount();
       setEmail(""); setWallet("");
-      toast.success("Lo masuk geng! 🔥", { description: "Kita kabarin pas drop berikutnya." });
+      toast.success("You're in the gang! 🔥", { description: "We'll ping you on the next drop." });
     } catch (err) {
-      const msg = err?.response?.data?.detail || "Gagal daftar. Coba lagi.";
+      const msg = err?.response?.data?.detail || "Sign-up failed. Try again.";
       toast.error(msg);
     } finally {
       setLoading(false);
@@ -44,10 +44,10 @@ export default function WaitlistForm() {
           <Zap size={14} /> Underground Waitlist
         </div>
         <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white mt-3 uppercase">
-          Gabung geng gremlin
+          Join the Gremlin Gang
         </h3>
         <p className="text-slate-400 mt-2 text-sm max-w-lg">
-          Drip release bertahap ~20–30/minggu. Daftar biar dapet kabar drop duluan — no spam, cuma hype.
+          Staggered drip release ~20–30/week. Sign up to hear about drops first — no spam, just hype.
         </p>
 
         <form onSubmit={submit} className="mt-6 grid gap-3 sm:grid-cols-[1.4fr_1fr_auto]">
@@ -65,7 +65,7 @@ export default function WaitlistForm() {
             type="text"
             value={wallet}
             onChange={(e) => setWallet(e.target.value)}
-            placeholder="0x… wallet (opsional)"
+            placeholder="0x… wallet (optional)"
             className="h-12 rounded-xl bg-[#161926] border border-[#252A3E] px-4 text-white placeholder:text-slate-500 focus:border-[#00E5FF] outline-none transition-colors font-mono2 text-sm"
           />
           <button
@@ -73,13 +73,13 @@ export default function WaitlistForm() {
             disabled={loading}
             className="h-12 px-6 rounded-xl bg-[#FF0055] hover:bg-[#ff2e73] disabled:opacity-60 text-white font-head font-bold transition-colors shadow-[0_0_20px_rgba(255,0,85,0.4)] whitespace-nowrap"
           >
-            {loading ? "…" : "Join Geng"}
+            {loading ? "…" : "Join Gang"}
           </button>
         </form>
 
         {count !== null && (
           <p data-testid="waitlist-count" className="mt-4 font-mono2 text-xs text-slate-400">
-            <span className="text-[#00E5FF] font-bold">{count}</span> gremlin udah antre di waitlist
+            <span className="text-[#00E5FF] font-bold">{count}</span> gremlins already in the waitlist
           </p>
         )}
       </div>

@@ -101,3 +101,96 @@
 #====================================================================================================
 # Testing Data - Main Agent and testing sub agent both should log testing data below this section
 #====================================================================================================
+user_problem_statement: "Continue HYPEBLOCK (200 Graffiti Gremlins NFT showcase). Fixes requested vs founding spec: website must be in English; restore ORIGINAL trait scheme; wire the real Rarible link (creator wallet); fix missing images (integrate the 5 supplied base renders); show all 200; add a 1-of-1 super-rare (Mythic); provide OpenSea/Rarible upload data (metadata export); deliver a plan + architecture."
+
+backend:
+  - task: "Collection generation v4 — original trait scheme + Mythic 1-of-1 + all 200 released"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "Rewrote trait scheme to founding spec (Skin/Eyes/Headwear/Mouth/Outfit/Background/Accessory/Gender). Distribution now Common120/Rare50/Epic24/Legendary5/Mythic1=200. Added Mythic 'Genesis King' (price 0=auction) forced to rank #1. Integrated 5 supplied base renders into image library; Mythic uses the gold-cap hero render. RELEASED_BATCHES=10 so all 200 released. COLLECTION_VERSION bumped v3->v4 to force reseed. Verified via curl: /api/stats shows Mythic:1, released_count:200; rank#1 = Genesis King."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Collection v4 working correctly. GET /api/stats returns total_supply=200, all 5 tiers correct (Common:120, Rare:50, Epic:24, Legendary:5, Mythic:1), released_count=200, creator_wallet present. Mythic 'Genesis King' (token_id=65) confirmed at rank #1 with price_pol=0 (auction). All 200 NFTs generated with original trait scheme."
+  - task: "Stats/NFT list/detail/traits endpoints reflect 5 tiers"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "stats tiers now include Mythic + Legendary. Verify list/filter/sort/paginate, detail with trait_rarity_pct, and that Mythic token returns price_pol 0."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: All endpoints working correctly. GET /api/nfts pagination works (page/limit), filters work (tier=Mythic returns 1 Genesis King, tier=Legendary returns 5, trait filters like skin=Zombie work), sorting works (rank_asc puts Mythic at #1, price_desc/price_asc order correctly). GET /api/nfts/{token_id} returns trait_rarity_pct for all tokens. GET /api/traits returns counts object with 8 categories."
+  - task: "Metadata export (Mint Kit) for OpenSea/Rarible"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "/api/metadata/export returns 200-item OpenSea-standard array (verified count=200 via curl). Also /api/nfts/{id}/metadata per token. Confirm attributes include Rarity + Rarity Rank and image URLs resolve."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Metadata export working correctly. GET /api/metadata/export returns JSON array of exactly 200 items, each with OpenSea-standard fields (name, description, image, attributes). Mythic item present in export. GET /api/nfts/{token_id}/metadata returns proper OpenSea metadata with Rarity and Rarity Rank attributes included."
+  - task: "Waitlist + Admin (unchanged logic, retest smoke)"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "POST /api/waitlist (dedupe 409), GET /api/waitlist/count, admin endpoints with key hypeblock2026. Smoke test only."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Waitlist and admin endpoints working correctly. POST /api/waitlist accepts valid emails and returns {ok:true,count}, duplicate emails return 409. GET /api/waitlist/count returns count. GET /api/admin/waitlist?key=hypeblock2026 returns entries, wrong key returns 401. Note: EmailStr validator correctly rejects special-use domains like .test TLD."
+
+frontend:
+  - task: "English translation + 5 tiers (Mythic) + Auction price + Mint Kit download + Rarible link"
+    implemented: true
+    working: "NA"
+    file: "frontend/src/pages/Home.jsx, Gallery.jsx, Admin.jsx, NftDetail.jsx, components/WaitlistForm.jsx, NftCard.jsx, config.js"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "All Indonesian copy translated to English. Added Mythic tier style + gallery filter. price_pol 0 now shows 'Auction'. Admin has 'Mint Kit JSON' download. Rarible link points to creator wallet profile. Verified visually via screenshot (5 RARITY TIERS + Mythic render)."
+
+metadata:
+  created_by: "main_agent"
+  version: "2.0"
+  test_sequence: 2
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Collection generation v4 — original trait scheme + Mythic 1-of-1 + all 200 released"
+    - "Stats/NFT list/detail/traits endpoints reflect 5 tiers"
+    - "Metadata export (Mint Kit) for OpenSea/Rarible"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    -agent: "main"
+    -message: "Restored app (recreated missing .env). Reworked backend to founding spec: original traits, 5 tiers incl 1-of-1 Mythic, all 200 released, integrated 5 supplied base renders, metadata export ready. Please retest backend endpoints only (stats, nfts filter/sort/paginate, nft detail w/ rarity %, metadata export count=200 incl Mythic price 0, waitlist smoke). Admin key: hypeblock2026. Do NOT test frontend yet."
+    -agent: "testing"
+    -message: "✅ ALL BACKEND TESTS PASSED (31/31). Comprehensive testing completed for all backend endpoints. Collection v4 verified with 200 NFTs, 5 tiers including Mythic 1-of-1 'Genesis King' at rank #1 with price_pol=0. All API endpoints working: stats, nfts (list/filter/sort/pagination), nft detail with trait_rarity_pct, metadata export (200 items), traits, waitlist (with proper email validation), and admin endpoints. No critical issues found. Backend is production-ready."

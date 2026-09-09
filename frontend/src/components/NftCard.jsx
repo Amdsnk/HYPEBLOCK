@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { TIER_STYLES } from "@/config";
+import { TIER_STYLES, priceLabel } from "@/config";
 import RarityBadge from "@/components/RarityBadge";
 
 export default function NftCard({ nft }) {
@@ -33,7 +33,7 @@ export default function NftCard({ nft }) {
         <p className="font-head font-bold text-white text-[15px] leading-tight mt-0.5 truncate">{nft.name}</p>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-[11px] text-slate-400 font-mono2">{nft.traits?.Skin}</span>
-          <span className="text-[13px] font-bold text-[#CCFF00] font-mono2">{nft.price_pol} POL</span>
+          <span className="text-[13px] font-bold text-[#CCFF00] font-mono2">{priceLabel(nft)}</span>
         </div>
       </div>
     </Link>

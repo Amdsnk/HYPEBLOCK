@@ -19,7 +19,7 @@ export default function Admin() {
       setEntries(r.data.entries);
       setAuthed(true);
     } catch (e) {
-      toast.error("Key salah. Coba lagi.");
+      toast.error("Wrong key. Try again.");
       setAuthed(false);
     } finally {
       setLoading(false);
@@ -31,13 +31,13 @@ export default function Admin() {
   const markContacted = async (id) => {
     await axios.post(`${API}/admin/waitlist/${id}/contacted`, null, { params: { key } });
     setEntries((es) => es.map((x) => (x.id === id ? { ...x, contacted: true } : x)));
-    toast.success("Ditandai contacted");
+    toast.success("Marked as contacted");
   };
 
   const del = async (id) => {
     await axios.delete(`${API}/admin/waitlist/${id}`, { params: { key } });
     setEntries((es) => es.filter((x) => x.id !== id));
-    toast.success("Entry dihapus");
+    toast.success("Entry deleted");
   };
 
   const exportCsv = () => {
@@ -50,6 +50,20 @@ export default function Admin() {
     URL.revokeObjectURL(url);
   };
 
+  const downloadMetadata = async () => {
+    try {
+      const r = await axios.get(`${API}/metadata/export`);
+      const blob = new Blob([JSON.stringify(r.data, null, 2)], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url; a.download = "hypeblock-metadata.json"; a.click();
+      URL.revokeObjectURL(url);
+      toast.success("Metadata JSON downloaded (200 items)");
+    } catch (e) {
+      toast.error("Failed to export metadata");
+    }
+  };
+
   const filtered = entries.filter((e) => e.email.toLowerCase().includes(q.toLowerCase()) || (e.wallet || "").toLowerCase().includes(q.toLowerCase()));
 
   if (!authed) {
@@ -60,7 +74,7 @@ export default function Admin() {
             <Lock size={22} />
           </div>
           <h1 className="font-display text-2xl font-extrabold text-white uppercase">Admin Access</h1>
-          <p className="text-slate-400 text-sm mt-1">Masukin key buat lihat waitlist.</p>
+          <p className="text-slate-400 text-sm mt-1">Enter the key to view the waitlist.</p>
           <input data-testid="admin-key-input" type="password" value={key} onChange={(e) => setKey(e.target.value)}
             placeholder="Admin key" autoFocus
             className="mt-5 w-full h-12 rounded-xl bg-[#161926] border border-[#252A3E] px-4 text-white placeholder:text-slate-500 focus:border-[#FF0055] outline-none" />
@@ -90,6 +104,9 @@ export default function Admin() {
             <button data-testid="admin-export-btn" onClick={exportCsv} className="h-11 px-4 rounded-xl bg-[#CCFF00] text-black inline-flex items-center gap-2 font-head font-bold text-sm">
               <Download size={16} /> Export CSV
             </button>
+            <button data-testid="admin-metadata-btn" onClick={downloadMetadata} className="h-11 px-4 rounded-xl bg-[#00E5FF] text-black inline-flex items-center gap-2 font-head font-bold text-sm">
+              <Download size={16} /> Mint Kit JSON
+            </button>
           </div>
         </div>
 
@@ -109,7 +126,7 @@ export default function Admin() {
             </thead>
             <tbody data-testid="admin-waitlist-table">
               {filtered.length === 0 ? (
-                <tr><td colSpan={5} className="px-4 py-12 text-center text-slate-500 font-mono2">Belum ada signup.</td></tr>
+                <tr><td colSpan={5} className="px-4 py-12 text-center text-slate-500 font-mono2">No signups yet.</td></tr>
               ) : filtered.map((e) => (
                 <tr key={e.id} data-testid={`admin-row-${e.id}`} className="border-t border-[#252A3E] hover:bg-[#0F111A]">
                   <td className="px-4 py-3 text-white">{e.email}</td>

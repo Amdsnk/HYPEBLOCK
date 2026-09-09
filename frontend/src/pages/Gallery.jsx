@@ -57,7 +57,7 @@ export default function Gallery() {
       <div>
         <p className="font-mono2 text-[11px] uppercase tracking-[0.2em] text-slate-500 mb-2">Rarity Tier</p>
         <div className="flex flex-wrap gap-2">
-          {["Common", "Rare", "Epic", "Legendary"].map((t) => {
+          {["Common", "Rare", "Epic", "Legendary", "Mythic"].map((t) => {
             const s = TIER_STYLES[t];
             const active = tier === t;
             return (
@@ -109,7 +109,7 @@ export default function Gallery() {
           <div className="relative flex-1 min-w-[200px]">
             <Search size={16} className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" />
             <input data-testid="nft-search-input" value={search} onChange={(e) => setSearch(e.target.value)}
-              placeholder="Cari ID (#42) atau nama…"
+              placeholder="Search ID (#42) or name…"
               className="w-full h-11 rounded-xl bg-[#161926] border border-[#252A3E] pl-9 pr-3 text-white placeholder:text-slate-500 focus:border-[#00E5FF] outline-none" />
           </div>
           <select data-testid="sort-select" value={sort} onChange={(e) => setSort(e.target.value)}
@@ -155,7 +155,7 @@ export default function Gallery() {
                 ))}
               </div>
             ) : items.length === 0 ? (
-              <div className="py-24 text-center text-slate-500 font-mono2">No gremlins match — coba clear filter.</div>
+              <div className="py-24 text-center text-slate-500 font-mono2">No gremlins match — try clearing the filters.</div>
             ) : (
               <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4">
                 {items.map((n) => <NftCard key={n.token_id} nft={n} />)}

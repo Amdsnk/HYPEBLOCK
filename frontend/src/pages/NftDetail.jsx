@@ -79,7 +79,7 @@ export default function NftDetail() {
               </div>
               <div className="rounded-xl border border-[#252A3E] bg-[#0F111A] p-4">
                 <p className="font-mono2 text-[10px] uppercase tracking-[0.2em] text-slate-500">Price</p>
-                <p className="font-display font-black text-[#CCFF00] text-xl mt-1">{nft.price_pol}<span className="text-xs"> POL</span></p>
+                <p className="font-display font-black text-[#CCFF00] text-xl mt-1">{nft.price_pol === 0 ? "Auction" : <>{nft.price_pol}<span className="text-xs"> POL</span></>}</p>
               </div>
             </div>
 
