@@ -3,7 +3,7 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "sonner";
 import { ArrowLeft, ExternalLink, Copy, ChevronLeft, ChevronRight } from "lucide-react";
-import { API, LINKS, CREATOR_WALLET, TIER_STYLES } from "@/config";
+import { API, LINKS, CREATOR_WALLET, TIER_STYLES, COLLECTION_TOTAL } from "@/config";
 import RarityBadge from "@/components/RarityBadge";
 
 export default function NftDetail() {
@@ -45,7 +45,7 @@ export default function NftDetail() {
           <div className="flex items-center gap-2">
             <button data-testid="prev-nft" disabled={tokenId <= 1} onClick={() => nav(`/gremlin/${tokenId - 1}`)}
               className="h-9 w-9 grid place-items-center rounded-lg border border-[#252A3E] text-white disabled:opacity-40"><ChevronLeft size={17} /></button>
-            <button data-testid="next-nft" disabled={tokenId >= 200} onClick={() => nav(`/gremlin/${tokenId + 1}`)}
+            <button data-testid="next-nft" disabled={tokenId >= COLLECTION_TOTAL} onClick={() => nav(`/gremlin/${tokenId + 1}`)}
               className="h-9 w-9 grid place-items-center rounded-lg border border-[#252A3E] text-white disabled:opacity-40"><ChevronRight size={17} /></button>
           </div>
         </div>

@@ -32,10 +32,19 @@ Koleksi 200 PFP maskot "graffiti gremlin" original (Bold, edgy, streetwear, spra
 - Added /app/HYPEBLOCK_PLAN.md — full architecture + Rarible/OpenSea listing steps + go-to-market plan.
 - Backend retested: 31/31 pass.
 
-## Notes / Mocked
-- Social links (X/IG/Discord) in `src/config.js` are PLACEHOLDERS — update `LINKS` when live. Rarible link uses creator wallet profile until the collection URL exists.
-- Art is a curated library of hero renders mapped across 200 items (not 200 unique renders yet). Path to 200 uniques needs an image-gen key (Gemini nano-banana via Emergent LLM Key).
-- Admin is a simple static-key gate (no user accounts).
+## Updated (2026-09) — round 4: rebuilt from user-uploaded art
+- Collection REBUILT from the user's HYPEBLOCK.zip: 96 UNIQUE renders (6 exact dups removed). Each token serves its own uploaded image via /api/render/{id}. No duplicates.
+- Traits classified per-image with vision (8 labeled grids). collection_data.json drives seeding; generate_collection loads it (no procedural art).
+- Dynamic COLLECTION_SIZE=96 (v6). Tiers Common50/Rare24/Epic13/Legendary6/Mythic3. Mythic 3 crown-jewel 1-of-1s (auction).
+- Removed drip/"coming soon": everything released, no countdown.
+- Added Trait Lab (/trait-lab) + POST /api/trait-lab/estimate for live rarity estimates.
+- Added image render endpoints (/api/render/{id}, /api/render-status). Frontend copy updated 200 -> 96 (COLLECTION_TOTAL).
+- Backend retested: 87/87 pass. Mint Kit metadata (96) at /app/hypeblock-metadata.json.
+
+## Notes / Mocked (current)
+- Social links (X/IG/Discord) in `src/config.js` are PLACEHOLDERS; Rarible link = creator wallet profile until the collection URL exists.
+- Images served from backend disk (/app/backend/generated). For on-chain listing, pin them + metadata to IPFS.
+- Admin is a static-key gate (key hypeblock2026).
 
 ## Backlog
 - P1: Generate full 200 unique gremlin renders (batch, one per token).

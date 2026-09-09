@@ -7,8 +7,8 @@ import NftCard from "@/components/NftCard";
 const FILTER_CATS = ["Gender", "Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory"];
 const SORTS = [
   { v: "rank_asc", l: "Rank (Rarest first)" },
-  { v: "id_asc", l: "ID: #001 → #200" },
-  { v: "id_desc", l: "ID: #200 → #001" },
+  { v: "id_asc", l: "ID: #001 → #096" },
+  { v: "id_desc", l: "ID: #096 → #001" },
   { v: "price_desc", l: "Price: High → Low" },
   { v: "price_asc", l: "Price: Low → High" },
 ];
@@ -99,7 +99,7 @@ export default function Gallery() {
         <div className="flex items-end justify-between flex-wrap gap-4">
           <div>
             <p className="font-mono2 text-xs uppercase tracking-[0.25em] text-[#CCFF00]">The Collection</p>
-            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white mt-2">200 Gremlins</h1>
+            <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white mt-2">The Gremlins</h1>
           </div>
           <p className="font-mono2 text-sm text-slate-400"><span className="text-[#00E5FF] font-bold">{total}</span> results</p>
         </div>

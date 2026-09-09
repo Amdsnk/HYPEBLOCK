@@ -5,7 +5,7 @@ import { LINKS, CREATOR_WALLET } from "@/config";
 
 const NAV = [
   { label: "Showcase", to: "/#showcase" },
-  { label: "200 Gremlins", to: "/gremlins" },
+  { label: "The Gremlins", to: "/gremlins" },
   { label: "Trait Lab", to: "/trait-lab" },
   { label: "Roadmap", to: "/#roadmap" },
   { label: "FAQ", to: "/#faq" },

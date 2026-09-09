@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { FlaskConical, Shuffle, RotateCcw } from "lucide-react";
-import { API, TIER_STYLES } from "@/config";
+import { API, TIER_STYLES, COLLECTION_TOTAL } from "@/config";
 import RarityBadge from "@/components/RarityBadge";
 
 const CATS = ["Gender", "Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory"];
@@ -68,7 +68,7 @@ export default function TraitLab() {
         </div>
         <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl font-black uppercase text-white mt-2">Trait Lab</h1>
         <p className="text-slate-400 mt-3 max-w-2xl">
-          Mix &amp; match traits and see a live rarity estimate — score, tier and where it would rank in the 200.
+          Mix &amp; match traits and see a live rarity estimate — score, tier and where it would rank in the collection.
           Great for planning which gremlin to hunt.
         </p>
 
@@ -92,7 +92,7 @@ export default function TraitLab() {
                 <div className="flex flex-wrap gap-2">
                   {(options[cat] || []).map((val) => {
                     const active = sel[cat] === val;
-                    const pct = counts[cat]?.[val] ? Math.round((counts[cat][val] / 200) * 100) : 0;
+                    const pct = counts[cat]?.[val] ? Math.round((counts[cat][val] / COLLECTION_TOTAL) * 100) : 0;
                     return (
                       <button
                         key={val}

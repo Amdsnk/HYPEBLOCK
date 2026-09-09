@@ -1,657 +1,499 @@
 #!/usr/bin/env python3
 """
-HYPEBLOCK Backend API Test Suite - Collection v5
-Tests all backend endpoints for the HYPEBLOCK NFT collection v5
+Comprehensive backend API tests for HYPEBLOCK v6 (96-item collection)
+Tests all endpoints against the rebuilt collection from user-uploaded art.
 """
 import requests
 import json
 import sys
-from typing import Dict, Any, List, Optional
+from pathlib import Path
 
-# Backend URL from frontend/.env
-BASE_URL = "https://497b437d-23b7-404e-866e-5236299aa49c.preview.emergentagent.com/api"
-ADMIN_KEY = "hypeblock2026"
+# Read backend URL from frontend/.env
+def get_backend_url():
+    env_file = Path("/app/frontend/.env")
+    if env_file.exists():
+        for line in env_file.read_text().splitlines():
+            if line.startswith("REACT_APP_BACKEND_URL"):
+                return line.split("=", 1)[1].strip().rstrip("/")
+    return "http://localhost:8001"
+
+BASE_URL = get_backend_url()
+API_URL = f"{BASE_URL}/api"
+
+print(f"Testing HYPEBLOCK backend at: {API_URL}\n")
 
 # Test results tracking
-test_results = {
-    "passed": [],
-    "failed": [],
-    "warnings": []
-}
+passed = 0
+failed = 0
+errors = []
 
-def log_pass(test_name: str, details: str = ""):
-    """Log a passed test"""
-    msg = f"✅ PASS: {test_name}"
-    if details:
-        msg += f" - {details}"
-    print(msg)
-    test_results["passed"].append(test_name)
+def test(name, condition, error_msg=""):
+    global passed, failed, errors
+    if condition:
+        print(f"✅ {name}")
+        passed += 1
+    else:
+        print(f"❌ {name}")
+        if error_msg:
+            print(f"   Error: {error_msg}")
+            errors.append(f"{name}: {error_msg}")
+        failed += 1
 
-def log_fail(test_name: str, details: str):
-    """Log a failed test"""
-    msg = f"❌ FAIL: {test_name} - {details}"
-    print(msg)
-    test_results["failed"].append(f"{test_name}: {details}")
-
-def log_warning(test_name: str, details: str):
-    """Log a warning"""
-    msg = f"⚠️  WARNING: {test_name} - {details}"
-    print(msg)
-    test_results["warnings"].append(f"{test_name}: {details}")
-
-def test_stats_endpoint():
-    """Test 1: GET /api/stats - v5 collection specs"""
-    print("\n" + "="*80)
-    print("TEST 1: GET /api/stats (v5 collection)")
-    print("="*80)
+# ============================================================================
+# 1. GET /api/stats - verify collection v6 specs
+# ============================================================================
+print("=" * 70)
+print("TEST 1: GET /api/stats")
+print("=" * 70)
+try:
+    r = requests.get(f"{API_URL}/stats", timeout=10)
+    test("Stats endpoint returns 200", r.status_code == 200, f"Got {r.status_code}")
     
-    try:
-        response = requests.get(f"{BASE_URL}/stats", timeout=10)
-        
-        if response.status_code != 200:
-            log_fail("Stats endpoint", f"Expected 200, got {response.status_code}")
-            return
-        
-        data = response.json()
-        print(f"Response: {json.dumps(data, indent=2)}")
-        
-        # Check total_supply
-        if data.get("total_supply") != 200:
-            log_fail("Stats total_supply", f"Expected 200, got {data.get('total_supply')}")
-        else:
-            log_pass("Stats total_supply", "200 NFTs")
-        
-        # Check tiers (v5: 3 Mythics, 5 Legendary, 24 Epic, 50 Rare, 118 Common)
-        expected_tiers = {
-            "Common": 118,
-            "Rare": 50,
-            "Epic": 24,
-            "Legendary": 5,
-            "Mythic": 3
-        }
+    if r.status_code == 200:
+        data = r.json()
+        test("total_supply = 96", data.get("total_supply") == 96, 
+             f"Got {data.get('total_supply')}")
+        test("released_count = 96", data.get("released_count") == 96,
+             f"Got {data.get('released_count')}")
         
         tiers = data.get("tiers", {})
-        tier_match = True
-        for tier_name, expected_count in expected_tiers.items():
-            actual_count = tiers.get(tier_name, 0)
-            if actual_count != expected_count:
-                log_fail(f"Stats tier {tier_name}", f"Expected {expected_count}, got {actual_count}")
-                tier_match = False
+        test("Common tier = 50", tiers.get("Common") == 50, f"Got {tiers.get('Common')}")
+        test("Rare tier = 24", tiers.get("Rare") == 24, f"Got {tiers.get('Rare')}")
+        test("Epic tier = 13", tiers.get("Epic") == 13, f"Got {tiers.get('Epic')}")
+        test("Legendary tier = 6", tiers.get("Legendary") == 6, f"Got {tiers.get('Legendary')}")
+        test("Mythic tier = 3", tiers.get("Mythic") == 3, f"Got {tiers.get('Mythic')}")
         
-        if tier_match:
-            log_pass("Stats tiers", "All 5 tiers correct (Common:118, Rare:50, Epic:24, Legendary:5, Mythic:3)")
-        
-        # Check released_count (v5: only batches 1-2 = 40 NFTs)
-        if data.get("released_count") != 40:
-            log_fail("Stats released_count", f"Expected 40 (batches 1-2), got {data.get('released_count')}")
-        else:
-            log_pass("Stats released_count", "40 NFTs (batches 1-2 only)")
-        
-        # Check creator_wallet
-        if not data.get("creator_wallet"):
-            log_fail("Stats creator_wallet", "Creator wallet missing")
-        else:
-            log_pass("Stats creator_wallet", f"Present: {data.get('creator_wallet')}")
-        
-    except Exception as e:
-        log_fail("Stats endpoint", f"Exception: {str(e)}")
+        test("creator_wallet present", "creator_wallet" in data)
+except Exception as e:
+    test("Stats endpoint accessible", False, str(e))
 
-def test_nfts_filter_mythic():
-    """Test 2: GET /api/nfts?tier=Mythic - should return 3 items"""
-    print("\n" + "="*80)
-    print("TEST 2: GET /api/nfts?tier=Mythic (v5: 3 Mythics)")
-    print("="*80)
-    
-    try:
-        response = requests.get(f"{BASE_URL}/nfts?tier=Mythic", timeout=10)
-        
-        if response.status_code != 200:
-            log_fail("NFTs filter Mythic", f"Expected 200, got {response.status_code}")
-            return []
-        
-        data = response.json()
-        
-        # Should return exactly 3 items
-        if data.get("total") != 3:
-            log_fail("NFTs filter Mythic count", f"Expected 3, got {data.get('total')}")
-            return []
-        
-        if len(data.get("items", [])) != 3:
-            log_fail("NFTs filter Mythic items", f"Expected 3 items, got {len(data.get('items', []))}")
-            return []
-        
-        log_pass("NFTs filter Mythic count", "Returns exactly 3 items")
-        
-        mythic_items = data["items"]
-        expected_names = {"Genesis King", "Toxic Queen", "Diamond Warlord"}
-        actual_names = {item.get("name") for item in mythic_items}
-        
-        print(f"Mythic names found: {actual_names}")
-        
-        # Check all 3 expected names are present
-        if actual_names != expected_names:
-            log_fail("NFTs filter Mythic names", f"Expected {expected_names}, got {actual_names}")
-        else:
-            log_pass("NFTs filter Mythic names", "Genesis King, Toxic Queen, Diamond Warlord")
-        
-        # Check all have price_pol=0
-        all_zero_price = all(item.get("price_pol") == 0 for item in mythic_items)
-        if not all_zero_price:
-            prices = [item.get("price_pol") for item in mythic_items]
-            log_fail("NFTs filter Mythic prices", f"Expected all 0 (auction), got {prices}")
-        else:
-            log_pass("NFTs filter Mythic prices", "All 3 have price_pol=0 (auction)")
-        
-        return mythic_items
-        
-    except Exception as e:
-        log_fail("NFTs filter Mythic", f"Exception: {str(e)}")
-        return []
+# ============================================================================
+# 2. GET /api/nfts - list, pagination, filters, sorting
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST 2: GET /api/nfts - List, Pagination, Filters, Sorting")
+print("=" * 70)
 
-def test_nft_released_flag():
-    """Test 3: GET /api/nfts/{id} - released flag and unlock_date"""
-    print("\n" + "="*80)
-    print("TEST 3: GET /api/nfts/{id} - released flag & unlock_date")
-    print("="*80)
+# 2a. Basic list
+try:
+    r = requests.get(f"{API_URL}/nfts", timeout=10)
+    test("NFT list endpoint returns 200", r.status_code == 200, f"Got {r.status_code}")
     
-    try:
-        # Test token in batch 1 (token_id=5, batch 1)
-        print("\n--- Testing token_id=5 (batch 1, should be released) ---")
-        response1 = requests.get(f"{BASE_URL}/nfts/5", timeout=10)
-        
-        if response1.status_code != 200:
-            log_fail("NFT detail batch 1", f"Expected 200, got {response1.status_code}")
-        else:
-            data1 = response1.json()
-            print(f"Token 5: released={data1.get('released')}, unlock_date={data1.get('unlock_date')}")
-            
-            if data1.get("released") != True:
-                log_fail("NFT detail batch 1 released", f"Expected True, got {data1.get('released')}")
-            else:
-                log_pass("NFT detail batch 1 released", "Token 5 is released=True")
-            
-            if data1.get("unlock_date") is not None:
-                log_fail("NFT detail batch 1 unlock_date", f"Expected None, got {data1.get('unlock_date')}")
-            else:
-                log_pass("NFT detail batch 1 unlock_date", "Token 5 has unlock_date=None")
-        
-        # Test token in batch 3 (token_id=60, batch 3, should be locked)
-        print("\n--- Testing token_id=60 (batch 3, should be locked) ---")
-        response2 = requests.get(f"{BASE_URL}/nfts/60", timeout=10)
-        
-        if response2.status_code != 200:
-            log_fail("NFT detail batch 3", f"Expected 200, got {response2.status_code}")
-        else:
-            data2 = response2.json()
-            print(f"Token 60: released={data2.get('released')}, unlock_date={data2.get('unlock_date')}")
-            
-            if data2.get("released") != False:
-                log_fail("NFT detail batch 3 released", f"Expected False, got {data2.get('released')}")
-            else:
-                log_pass("NFT detail batch 3 released", "Token 60 is released=False")
-            
-            unlock_date = data2.get("unlock_date")
-            if unlock_date is None:
-                log_fail("NFT detail batch 3 unlock_date", "Expected future ISO timestamp, got None")
-            else:
-                # Check it's a valid ISO timestamp
-                from datetime import datetime
-                try:
-                    dt = datetime.fromisoformat(unlock_date.replace('Z', '+00:00'))
-                    log_pass("NFT detail batch 3 unlock_date", f"Valid future ISO timestamp: {unlock_date}")
-                except:
-                    log_fail("NFT detail batch 3 unlock_date", f"Invalid ISO timestamp: {unlock_date}")
-        
-        # Test token in batch 10 (token_id=190, batch 10, should be locked)
-        print("\n--- Testing token_id=190 (batch 10, should be locked) ---")
-        response3 = requests.get(f"{BASE_URL}/nfts/190", timeout=10)
-        
-        if response3.status_code != 200:
-            log_fail("NFT detail batch 10", f"Expected 200, got {response3.status_code}")
-        else:
-            data3 = response3.json()
-            print(f"Token 190: released={data3.get('released')}, unlock_date={data3.get('unlock_date')}")
-            
-            if data3.get("released") != False:
-                log_fail("NFT detail batch 10 released", f"Expected False, got {data3.get('released')}")
-            else:
-                log_pass("NFT detail batch 10 released", "Token 190 is released=False")
-            
-            unlock_date = data3.get("unlock_date")
-            if unlock_date is None:
-                log_fail("NFT detail batch 10 unlock_date", "Expected future ISO timestamp, got None")
-            else:
-                from datetime import datetime
-                try:
-                    dt = datetime.fromisoformat(unlock_date.replace('Z', '+00:00'))
-                    log_pass("NFT detail batch 10 unlock_date", f"Valid future ISO timestamp: {unlock_date}")
-                except:
-                    log_fail("NFT detail batch 10 unlock_date", f"Invalid ISO timestamp: {unlock_date}")
-        
-    except Exception as e:
-        log_fail("NFT released flag test", f"Exception: {str(e)}")
-
-def test_trait_lab_estimate():
-    """Test 4: POST /api/trait-lab/estimate"""
-    print("\n" + "="*80)
-    print("TEST 4: POST /api/trait-lab/estimate")
-    print("="*80)
-    
-    try:
-        # Test 1: Common combo
-        print("\n--- Testing common trait combo ---")
-        common_traits = {
-            "traits": {
-                "Gender": "Male",
-                "Skin": "Classic Green",
-                "Eyes": "Mischief",
-                "Headwear": "Beanie",
-                "Mouth": "Grin",
-                "Outfit": "Hoodie",
-                "Background": "Acid Green",
-                "Accessory": "None"
-            }
-        }
-        
-        response1 = requests.post(
-            f"{BASE_URL}/trait-lab/estimate",
-            json=common_traits,
-            timeout=10
-        )
-        
-        if response1.status_code != 200:
-            log_fail("Trait lab common combo", f"Expected 200, got {response1.status_code}")
-        else:
-            data1 = response1.json()
-            print(f"Common combo response: {json.dumps(data1, indent=2)}")
-            
-            # Check required fields
-            required_fields = ["score", "per_trait_pct", "percentile", "tier_guess", "rank_estimate"]
-            missing_fields = [f for f in required_fields if f not in data1]
-            
-            if missing_fields:
-                log_fail("Trait lab common combo fields", f"Missing fields: {missing_fields}")
-            else:
-                log_pass("Trait lab common combo fields", "All required fields present")
-            
-            # Check per_trait_pct is an object
-            if not isinstance(data1.get("per_trait_pct"), dict):
-                log_fail("Trait lab per_trait_pct", f"Expected object, got {type(data1.get('per_trait_pct'))}")
-            else:
-                log_pass("Trait lab per_trait_pct", "Returns object with trait percentages")
-        
-        # Test 2: Maxed rare combo (should be Legendary or Mythic with high percentile)
-        print("\n--- Testing maxed rare combo ---")
-        maxed_traits = {
-            "traits": {
-                "Gender": "Male",
-                "Skin": "Gold",
-                "Eyes": "Flame",
-                "Headwear": "Crown",
-                "Mouth": "Gold Grillz",
-                "Outfit": "Chain-only",
-                "Background": "Legendary Glow",
-                "Accessory": "Diamond Chain"
-            }
-        }
-        
-        response2 = requests.post(
-            f"{BASE_URL}/trait-lab/estimate",
-            json=maxed_traits,
-            timeout=10
-        )
-        
-        if response2.status_code != 200:
-            log_fail("Trait lab maxed combo", f"Expected 200, got {response2.status_code}")
-        else:
-            data2 = response2.json()
-            print(f"Maxed combo response: {json.dumps(data2, indent=2)}")
-            
-            tier_guess = data2.get("tier_guess")
-            percentile = data2.get("percentile", 0)
-            
-            # Check tier_guess is Legendary or Mythic
-            if tier_guess not in ["Legendary", "Mythic"]:
-                log_fail("Trait lab maxed combo tier", f"Expected Legendary or Mythic, got {tier_guess}")
-            else:
-                log_pass("Trait lab maxed combo tier", f"tier_guess={tier_guess}")
-            
-            # Check percentile >= 96
-            if percentile < 96:
-                log_fail("Trait lab maxed combo percentile", f"Expected >=96, got {percentile}")
-            else:
-                log_pass("Trait lab maxed combo percentile", f"percentile={percentile} (>=96)")
-        
-    except Exception as e:
-        log_fail("Trait lab estimate", f"Exception: {str(e)}")
-
-def test_render_status():
-    """Test 5: GET /api/render-status"""
-    print("\n" + "="*80)
-    print("TEST 5: GET /api/render-status")
-    print("="*80)
-    
-    try:
-        response = requests.get(f"{BASE_URL}/render-status", timeout=10)
-        
-        if response.status_code != 200:
-            log_fail("Render status", f"Expected 200, got {response.status_code}")
-            return
-        
-        data = response.json()
-        print(f"Render status response: {json.dumps(data, indent=2)}")
-        
-        # Check required fields
-        if "generated" not in data or "total" not in data:
-            log_fail("Render status fields", "Missing generated or total fields")
-            return
-        
-        generated = data.get("generated")
-        total = data.get("total")
-        
-        # Check total is 200
-        if total != 200:
-            log_fail("Render status total", f"Expected 200, got {total}")
-        else:
-            log_pass("Render status total", "total=200")
-        
-        # Check generated is between 0 and 200
-        if not isinstance(generated, int) or generated < 0 or generated > 200:
-            log_fail("Render status generated", f"Expected 0-200, got {generated}")
-        else:
-            log_pass("Render status generated", f"generated={generated} (valid range)")
-        
-    except Exception as e:
-        log_fail("Render status", f"Exception: {str(e)}")
-
-def test_render_image():
-    """Test 6: GET /api/render/{id}"""
-    print("\n" + "="*80)
-    print("TEST 6: GET /api/render/{id}")
-    print("="*80)
-    
-    try:
-        # Test render/1 (likely generated)
-        print("\n--- Testing GET /api/render/1 ---")
-        response1 = requests.get(f"{BASE_URL}/render/1", timeout=10)
-        
-        if response1.status_code == 200:
-            # Check content-type is image/*
-            content_type = response1.headers.get("content-type", "")
-            if content_type.startswith("image/"):
-                log_pass("Render image 1", f"Returns image (content-type: {content_type})")
-            else:
-                log_fail("Render image 1", f"Expected image/*, got {content_type}")
-        elif response1.status_code == 404:
-            log_warning("Render image 1", "Image not generated yet (404) - acceptable")
-        else:
-            log_fail("Render image 1", f"Unexpected status code: {response1.status_code}")
-        
-        # Test render/199 (likely not generated yet)
-        print("\n--- Testing GET /api/render/199 ---")
-        response2 = requests.get(f"{BASE_URL}/render/199", timeout=10)
-        
-        if response2.status_code == 404:
-            log_pass("Render image 199", "Returns 404 (not generated yet) - correct behavior")
-        elif response2.status_code == 200:
-            content_type = response2.headers.get("content-type", "")
-            if content_type.startswith("image/"):
-                log_pass("Render image 199", f"Returns image (content-type: {content_type}) - already generated")
-            else:
-                log_fail("Render image 199", f"Expected image/* or 404, got {content_type}")
-        else:
-            log_fail("Render image 199", f"Unexpected status code: {response2.status_code}")
-        
-    except Exception as e:
-        log_fail("Render image", f"Exception: {str(e)}")
-
-def test_nfts_pagination():
-    """Test 7: GET /api/nfts - pagination regression"""
-    print("\n" + "="*80)
-    print("TEST 7: GET /api/nfts - Pagination (regression)")
-    print("="*80)
-    
-    try:
-        # Test default pagination
-        response = requests.get(f"{BASE_URL}/nfts", timeout=10)
-        
-        if response.status_code != 200:
-            log_fail("NFTs pagination", f"Expected 200, got {response.status_code}")
-            return
-        
-        data = response.json()
-        
-        # Check total
-        if data.get("total") != 200:
-            log_fail("NFTs pagination total", f"Expected 200, got {data.get('total')}")
-        else:
-            log_pass("NFTs pagination total", "200 items")
-        
-        # Check pagination fields
-        if "page" not in data or "limit" not in data or "items" not in data:
-            log_fail("NFTs pagination fields", "Missing page/limit/items fields")
-        else:
-            log_pass("NFTs pagination fields", f"page={data['page']}, limit={data['limit']}")
-        
-    except Exception as e:
-        log_fail("NFTs pagination", f"Exception: {str(e)}")
-
-def test_nfts_trait_filter():
-    """Test 8: GET /api/nfts - trait filter regression"""
-    print("\n" + "="*80)
-    print("TEST 8: GET /api/nfts?skin=Zombie - Trait filter (regression)")
-    print("="*80)
-    
-    try:
-        response = requests.get(f"{BASE_URL}/nfts?skin=Zombie", timeout=10)
-        
-        if response.status_code != 200:
-            log_fail("NFTs trait filter", f"Expected 200, got {response.status_code}")
-            return
-        
-        data = response.json()
+    if r.status_code == 200:
+        data = r.json()
+        test("Total NFTs = 96", data.get("total") == 96, f"Got {data.get('total')}")
         items = data.get("items", [])
+        test("Items returned", len(items) > 0, f"Got {len(items)} items")
         
-        if len(items) == 0:
-            log_warning("NFTs trait filter", "No Zombie-skin items found")
-            return
-        
-        # Verify all items have Zombie skin
-        all_zombie = all(item.get("traits", {}).get("Skin") == "Zombie" for item in items)
-        
-        if all_zombie:
-            log_pass("NFTs trait filter", f"Returns {len(items)} Zombie-skin items only")
-        else:
-            log_fail("NFTs trait filter", "Some items don't have Zombie skin")
-        
-    except Exception as e:
-        log_fail("NFTs trait filter", f"Exception: {str(e)}")
+        if items:
+            first_item = items[0]
+            test("First item has released=true", first_item.get("released") == True,
+                 f"Got {first_item.get('released')}")
+except Exception as e:
+    test("NFT list endpoint accessible", False, str(e))
 
-def test_nfts_sort():
-    """Test 9: GET /api/nfts - sort regression"""
-    print("\n" + "="*80)
-    print("TEST 9: GET /api/nfts?sort=rank_asc - Sort (regression)")
-    print("="*80)
+# 2b. Pagination
+try:
+    r = requests.get(f"{API_URL}/nfts?page=1&limit=10", timeout=10)
+    test("Pagination works (page=1, limit=10)", r.status_code == 200 and len(r.json().get("items", [])) == 10,
+         f"Got {len(r.json().get('items', []))} items")
     
-    try:
-        response = requests.get(f"{BASE_URL}/nfts?sort=rank_asc&limit=5", timeout=10)
-        
-        if response.status_code != 200:
-            log_fail("NFTs sort rank_asc", f"Expected 200, got {response.status_code}")
-            return
-        
-        data = response.json()
-        items = data.get("items", [])
-        
-        if len(items) == 0:
-            log_fail("NFTs sort rank_asc", "No items returned")
-            return
-        
-        first_item = items[0]
-        
-        # First item should be a Mythic with rank 1
-        if first_item.get("rank") == 1 and first_item.get("tier") == "Mythic":
-            log_pass("NFTs sort rank_asc", f"First item is Mythic rank #1 ({first_item.get('name')})")
-        else:
-            log_fail("NFTs sort rank_asc", f"First item rank={first_item.get('rank')}, tier={first_item.get('tier')}")
-        
-    except Exception as e:
-        log_fail("NFTs sort", f"Exception: {str(e)}")
+    r2 = requests.get(f"{API_URL}/nfts?page=2&limit=10", timeout=10)
+    test("Pagination page 2 works", r2.status_code == 200 and len(r2.json().get("items", [])) == 10)
+except Exception as e:
+    test("Pagination test", False, str(e))
 
-def test_metadata_export():
-    """Test 10: GET /api/metadata/export - regression"""
-    print("\n" + "="*80)
-    print("TEST 10: GET /api/metadata/export (regression)")
-    print("="*80)
+# 2c. Filter by tier=Mythic (should return exactly 3 items, all with price_pol=0)
+try:
+    r = requests.get(f"{API_URL}/nfts?tier=Mythic", timeout=10)
+    test("Filter tier=Mythic returns 200", r.status_code == 200, f"Got {r.status_code}")
     
-    try:
-        response = requests.get(f"{BASE_URL}/metadata/export", timeout=15)
+    if r.status_code == 200:
+        data = r.json()
+        mythic_items = data.get("items", [])
+        test("tier=Mythic returns exactly 3 items", len(mythic_items) == 3,
+             f"Got {len(mythic_items)} items")
         
-        if response.status_code != 200:
-            log_fail("Metadata export", f"Expected 200, got {response.status_code}")
-            return
-        
-        data = response.json()
-        
-        # Check it's an array
-        if not isinstance(data, list):
-            log_fail("Metadata export format", f"Expected array, got {type(data)}")
-            return
-        
-        # Check count is exactly 200
-        if len(data) != 200:
-            log_fail("Metadata export count", f"Expected 200 items, got {len(data)}")
-        else:
-            log_pass("Metadata export", "Returns array of 200 items")
-        
-    except Exception as e:
-        log_fail("Metadata export", f"Exception: {str(e)}")
+        if mythic_items:
+            all_price_zero = all(item.get("price_pol") == 0 for item in mythic_items)
+            test("All Mythic items have price_pol=0", all_price_zero,
+                 f"Prices: {[item.get('price_pol') for item in mythic_items]}")
+except Exception as e:
+    test("Filter tier=Mythic test", False, str(e))
 
-def test_waitlist():
-    """Test 11: Waitlist endpoints - regression"""
-    print("\n" + "="*80)
-    print("TEST 11: Waitlist endpoints (regression)")
-    print("="*80)
-    
-    try:
-        # Generate unique email for testing
-        import time
-        unique_email = f"test_{int(time.time())}@example.com"
+# 2d. Filter by skin (test with new values from v6 collection)
+# First, let's get available skins from traits endpoint
+try:
+    r = requests.get(f"{API_URL}/traits", timeout=10)
+    if r.status_code == 200:
+        traits_data = r.json()
+        counts = traits_data.get("counts", {})
+        skins = counts.get("Skin", {})
         
-        # Test POST /api/waitlist
-        response = requests.post(
-            f"{BASE_URL}/waitlist",
-            json={"email": unique_email},
-            timeout=10
-        )
+        # Test Gold skin filter if it exists
+        if "Gold" in skins:
+            r_gold = requests.get(f"{API_URL}/nfts?skin=Gold", timeout=10)
+            test("Filter skin=Gold returns 200", r_gold.status_code == 200)
+            if r_gold.status_code == 200:
+                gold_items = r_gold.json().get("items", [])
+                test("skin=Gold returns items", len(gold_items) > 0,
+                     f"Got {len(gold_items)} items, expected > 0")
+                if gold_items:
+                    all_gold = all(item.get("traits", {}).get("Skin") == "Gold" for item in gold_items)
+                    test("All returned items have Skin=Gold", all_gold)
         
-        if response.status_code != 200:
-            log_fail("Waitlist POST", f"Expected 200, got {response.status_code}")
-        else:
-            data = response.json()
-            if data.get("ok") and "count" in data:
-                log_pass("Waitlist POST", "Works correctly")
-            else:
-                log_fail("Waitlist POST", f"Unexpected response: {data}")
-        
-        # Test GET /api/waitlist/count
-        response2 = requests.get(f"{BASE_URL}/waitlist/count", timeout=10)
-        
-        if response2.status_code != 200:
-            log_fail("Waitlist GET count", f"Expected 200, got {response2.status_code}")
-        else:
-            log_pass("Waitlist GET count", "Works correctly")
-        
-    except Exception as e:
-        log_fail("Waitlist endpoints", f"Exception: {str(e)}")
+        # Test Zombie skin filter if it exists
+        if "Zombie" in skins:
+            r_zombie = requests.get(f"{API_URL}/nfts?skin=Zombie", timeout=10)
+            test("Filter skin=Zombie returns 200", r_zombie.status_code == 200)
+            if r_zombie.status_code == 200:
+                zombie_items = r_zombie.json().get("items", [])
+                test("skin=Zombie returns items", len(zombie_items) > 0,
+                     f"Got {len(zombie_items)} items")
+                if zombie_items:
+                    all_zombie = all(item.get("traits", {}).get("Skin") == "Zombie" for item in zombie_items)
+                    test("All returned items have Skin=Zombie", all_zombie)
+except Exception as e:
+    test("Skin filter test", False, str(e))
 
-def test_admin():
-    """Test 12: Admin endpoints - regression"""
-    print("\n" + "="*80)
-    print("TEST 12: Admin endpoints (regression)")
-    print("="*80)
+# 2e. Sorting tests
+try:
+    # sort=rank_asc - first item should be a Mythic (rank 1)
+    r = requests.get(f"{API_URL}/nfts?sort=rank_asc&limit=1", timeout=10)
+    test("Sort rank_asc returns 200", r.status_code == 200)
+    if r.status_code == 200:
+        items = r.json().get("items", [])
+        if items:
+            first = items[0]
+            test("sort=rank_asc first item is Mythic (rank 1)", 
+                 first.get("tier") == "Mythic" and first.get("rank") == 1,
+                 f"Got tier={first.get('tier')}, rank={first.get('rank')}")
     
-    try:
-        # Test with correct key
-        response = requests.get(
-            f"{BASE_URL}/admin/waitlist",
-            params={"key": ADMIN_KEY},
-            timeout=10
-        )
+    # sort=price_desc - verify descending order
+    r = requests.get(f"{API_URL}/nfts?sort=price_desc&limit=5", timeout=10)
+    test("Sort price_desc returns 200", r.status_code == 200)
+    if r.status_code == 200:
+        items = r.json().get("items", [])
+        if len(items) >= 2:
+            prices = [item.get("price_pol", 0) for item in items]
+            is_descending = all(prices[i] >= prices[i+1] for i in range(len(prices)-1))
+            test("sort=price_desc orders correctly", is_descending,
+                 f"Prices: {prices}")
+    
+    # sort=price_asc - verify ascending order
+    r = requests.get(f"{API_URL}/nfts?sort=price_asc&limit=5", timeout=10)
+    test("Sort price_asc returns 200", r.status_code == 200)
+    if r.status_code == 200:
+        items = r.json().get("items", [])
+        if len(items) >= 2:
+            prices = [item.get("price_pol", 0) for item in items]
+            is_ascending = all(prices[i] <= prices[i+1] for i in range(len(prices)-1))
+            test("sort=price_asc orders correctly", is_ascending,
+                 f"Prices: {prices}")
+except Exception as e:
+    test("Sorting test", False, str(e))
+
+# ============================================================================
+# 3. GET /api/nfts/{token_id} - detail endpoint
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST 3: GET /api/nfts/{token_id} - NFT Detail")
+print("=" * 70)
+
+# 3a. GET /api/nfts/1
+try:
+    r = requests.get(f"{API_URL}/nfts/1", timeout=10)
+    test("GET /api/nfts/1 returns 200", r.status_code == 200, f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        nft = r.json()
+        test("NFT 1 has released=true", nft.get("released") == True,
+             f"Got {nft.get('released')}")
+        test("NFT 1 has unlock_date=null", nft.get("unlock_date") is None,
+             f"Got {nft.get('unlock_date')}")
         
-        if response.status_code != 200:
-            log_fail("Admin waitlist", f"Expected 200, got {response.status_code}")
-        else:
-            data = response.json()
-            if "entries" in data and "count" in data:
-                log_pass("Admin waitlist", f"Works correctly (key: {ADMIN_KEY})")
-            else:
-                log_fail("Admin waitlist", f"Invalid response: {data}")
+        image_url = nft.get("image", "")
+        test("NFT 1 image URL ends with /api/render/1", image_url.endswith("/api/render/1"),
+             f"Got {image_url}")
         
-    except Exception as e:
-        log_fail("Admin endpoints", f"Exception: {str(e)}")
+        trait_rarity = nft.get("trait_rarity_pct")
+        test("NFT 1 has trait_rarity_pct as object", isinstance(trait_rarity, dict),
+             f"Got type {type(trait_rarity)}")
+except Exception as e:
+    test("GET /api/nfts/1 test", False, str(e))
 
-def print_summary():
-    """Print test summary"""
-    print("\n" + "="*80)
-    print("TEST SUMMARY")
-    print("="*80)
+# 3b. GET /api/nfts/96
+try:
+    r = requests.get(f"{API_URL}/nfts/96", timeout=10)
+    test("GET /api/nfts/96 returns 200", r.status_code == 200, f"Got {r.status_code}")
     
-    print(f"\n✅ PASSED: {len(test_results['passed'])} tests")
-    for test in test_results['passed']:
-        print(f"   - {test}")
-    
-    if test_results['warnings']:
-        print(f"\n⚠️  WARNINGS: {len(test_results['warnings'])}")
-        for warning in test_results['warnings']:
-            print(f"   - {warning}")
-    
-    if test_results['failed']:
-        print(f"\n❌ FAILED: {len(test_results['failed'])} tests")
-        for failure in test_results['failed']:
-            print(f"   - {failure}")
-    
-    print("\n" + "="*80)
-    
-    if test_results['failed']:
-        print("❌ OVERALL: TESTS FAILED")
-        return 1
-    else:
-        print("✅ OVERALL: ALL TESTS PASSED")
-        return 0
+    if r.status_code == 200:
+        nft = r.json()
+        test("NFT 96 has released=true", nft.get("released") == True,
+             f"Got {nft.get('released')}")
+        test("NFT 96 has unlock_date=null", nft.get("unlock_date") is None,
+             f"Got {nft.get('unlock_date')}")
+        
+        image_url = nft.get("image", "")
+        test("NFT 96 image URL ends with /api/render/96", image_url.endswith("/api/render/96"),
+             f"Got {image_url}")
+        
+        trait_rarity = nft.get("trait_rarity_pct")
+        test("NFT 96 has trait_rarity_pct as object", isinstance(trait_rarity, dict),
+             f"Got type {type(trait_rarity)}")
+except Exception as e:
+    test("GET /api/nfts/96 test", False, str(e))
 
-def main():
-    """Run all tests"""
-    print("="*80)
-    print("HYPEBLOCK BACKEND API TEST SUITE - Collection v5")
-    print("="*80)
-    print(f"Base URL: {BASE_URL}")
-    print(f"Admin Key: {ADMIN_KEY}")
-    print("\nTesting v5 collection specs:")
-    print("- Total: 200 NFTs")
-    print("- Tiers: Common:118, Rare:50, Epic:24, Legendary:5, Mythic:3")
-    print("- Released: 40 NFTs (batches 1-2 only)")
-    print("- Mythics: Genesis King, Toxic Queen, Diamond Warlord")
-    
-    # Run all tests
-    test_stats_endpoint()
-    test_nfts_filter_mythic()
-    test_nft_released_flag()
-    test_trait_lab_estimate()
-    test_render_status()
-    test_render_image()
-    
-    # Regression tests
-    test_nfts_pagination()
-    test_nfts_trait_filter()
-    test_nfts_sort()
-    test_metadata_export()
-    test_waitlist()
-    test_admin()
-    
-    # Print summary
-    exit_code = print_summary()
-    sys.exit(exit_code)
+# 3c. GET /api/nfts/97 - should return 404
+try:
+    r = requests.get(f"{API_URL}/nfts/97", timeout=10)
+    test("GET /api/nfts/97 returns 404", r.status_code == 404, f"Got {r.status_code}")
+except Exception as e:
+    test("GET /api/nfts/97 test", False, str(e))
 
-if __name__ == "__main__":
-    main()
+# 3d. GET /api/nfts/500 - should return 404
+try:
+    r = requests.get(f"{API_URL}/nfts/500", timeout=10)
+    test("GET /api/nfts/500 returns 404", r.status_code == 404, f"Got {r.status_code}")
+except Exception as e:
+    test("GET /api/nfts/500 test", False, str(e))
+
+# ============================================================================
+# 4. GET /api/render/{token_id} - image serving
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST 4: GET /api/render/{token_id} - Image Serving")
+print("=" * 70)
+
+# 4a. GET /api/render/1
+try:
+    r = requests.get(f"{API_URL}/render/1", timeout=10)
+    test("GET /api/render/1 returns 200", r.status_code == 200, f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        content_type = r.headers.get("content-type", "")
+        test("render/1 content-type is image/*", content_type.startswith("image/"),
+             f"Got {content_type}")
+        test("render/1 has image data", len(r.content) > 0,
+             f"Got {len(r.content)} bytes")
+except Exception as e:
+    test("GET /api/render/1 test", False, str(e))
+
+# 4b. GET /api/render/96
+try:
+    r = requests.get(f"{API_URL}/render/96", timeout=10)
+    test("GET /api/render/96 returns 200", r.status_code == 200, f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        content_type = r.headers.get("content-type", "")
+        test("render/96 content-type is image/*", content_type.startswith("image/"),
+             f"Got {content_type}")
+        test("render/96 has image data", len(r.content) > 0,
+             f"Got {len(r.content)} bytes")
+except Exception as e:
+    test("GET /api/render/96 test", False, str(e))
+
+# 4c. GET /api/render/97 - should return 404
+try:
+    r = requests.get(f"{API_URL}/render/97", timeout=10)
+    test("GET /api/render/97 returns 404", r.status_code == 404, f"Got {r.status_code}")
+except Exception as e:
+    test("GET /api/render/97 test", False, str(e))
+
+# ============================================================================
+# 5. GET /api/metadata/export - OpenSea metadata export
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST 5: GET /api/metadata/export - Metadata Export")
+print("=" * 70)
+
+try:
+    r = requests.get(f"{API_URL}/metadata/export", timeout=10)
+    test("Metadata export returns 200", r.status_code == 200, f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        data = r.json()
+        test("Metadata export is array", isinstance(data, list), f"Got type {type(data)}")
+        test("Metadata export has exactly 96 items", len(data) == 96,
+             f"Got {len(data)} items")
+        
+        if data:
+            first = data[0]
+            test("First item has 'name' field", "name" in first)
+            test("First item has 'description' field", "description" in first)
+            test("First item has 'image' field", "image" in first)
+            test("First item has 'attributes' field", "attributes" in first)
+            
+            if "attributes" in first:
+                attrs = first["attributes"]
+                test("Attributes is array", isinstance(attrs, list))
+                if isinstance(attrs, list):
+                    attr_types = [a.get("trait_type") for a in attrs]
+                    test("Attributes include 'Rarity' trait", "Rarity" in attr_types,
+                         f"Got traits: {attr_types}")
+except Exception as e:
+    test("Metadata export test", False, str(e))
+
+# ============================================================================
+# 6. GET /api/traits - trait counts
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST 6: GET /api/traits - Trait Counts")
+print("=" * 70)
+
+try:
+    r = requests.get(f"{API_URL}/traits", timeout=10)
+    test("Traits endpoint returns 200", r.status_code == 200, f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        data = r.json()
+        test("Traits has 'counts' field", "counts" in data)
+        
+        counts = data.get("counts", {})
+        if counts:
+            # Check that counts include expected categories
+            expected_cats = ["Gender", "Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory"]
+            for cat in expected_cats:
+                test(f"Counts include '{cat}' category", cat in counts,
+                     f"Available: {list(counts.keys())}")
+            
+            # Verify Gender counts sum to 96
+            if "Gender" in counts:
+                gender_counts = counts["Gender"]
+                total_gender = sum(gender_counts.values())
+                test("Gender counts sum to 96", total_gender == 96,
+                     f"Got {total_gender}, counts: {gender_counts}")
+except Exception as e:
+    test("Traits endpoint test", False, str(e))
+
+# ============================================================================
+# 7. POST /api/trait-lab/estimate - trait rarity estimation
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST 7: POST /api/trait-lab/estimate - Trait Lab")
+print("=" * 70)
+
+# 7a. Test with a high-rarity combo (should return high tier)
+try:
+    payload = {
+        "traits": {
+            "Gender": "Male",
+            "Skin": "Gold",
+            "Eyes": "Flame",
+            "Headwear": "Crown",
+            "Mouth": "Grin",
+            "Outfit": "Chain-only",
+            "Background": "Deep Purple",
+            "Accessory": "Diamond Chain"
+        }
+    }
+    r = requests.post(f"{API_URL}/trait-lab/estimate", json=payload, timeout=10)
+    test("Trait lab estimate returns 200", r.status_code == 200, f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        data = r.json()
+        test("Response has 'score' field", "score" in data)
+        test("Response has 'per_trait_pct' field", "per_trait_pct" in data)
+        test("Response has 'percentile' field", "percentile" in data)
+        test("Response has 'tier_guess' field", "tier_guess" in data)
+        test("Response has 'rank_estimate' field", "rank_estimate" in data)
+        
+        tier_guess = data.get("tier_guess")
+        # High rarity combo should return Epic/Legendary/Mythic
+        test("High rarity combo returns high tier (Epic/Legendary/Mythic)",
+             tier_guess in ["Epic", "Legendary", "Mythic"],
+             f"Got tier_guess={tier_guess}")
+except Exception as e:
+    test("Trait lab estimate test", False, str(e))
+
+# ============================================================================
+# 8. Waitlist endpoints
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST 8: Waitlist Endpoints")
+print("=" * 70)
+
+# 8a. POST /api/waitlist with unique email
+try:
+    import time
+    unique_email = f"test_{int(time.time())}@example.com"
+    payload = {"email": unique_email}
+    r = requests.post(f"{API_URL}/waitlist", json=payload, timeout=10)
+    test("POST /api/waitlist with unique email returns 200", r.status_code == 200,
+         f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        data = r.json()
+        test("Response has 'ok' field", "ok" in data)
+        test("Response has 'count' field", "count" in data)
+except Exception as e:
+    test("POST /api/waitlist unique email test", False, str(e))
+
+# 8b. POST /api/waitlist with duplicate email (should return 409)
+try:
+    # Use the same email again
+    r = requests.post(f"{API_URL}/waitlist", json={"email": unique_email}, timeout=10)
+    test("POST /api/waitlist with duplicate email returns 409", r.status_code == 409,
+         f"Got {r.status_code}")
+except Exception as e:
+    test("POST /api/waitlist duplicate email test", False, str(e))
+
+# 8c. GET /api/waitlist/count
+try:
+    r = requests.get(f"{API_URL}/waitlist/count", timeout=10)
+    test("GET /api/waitlist/count returns 200", r.status_code == 200, f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        data = r.json()
+        test("Response has 'count' field", "count" in data)
+        test("Count is a number", isinstance(data.get("count"), int),
+             f"Got type {type(data.get('count'))}")
+except Exception as e:
+    test("GET /api/waitlist/count test", False, str(e))
+
+# ============================================================================
+# 9. Admin endpoints
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST 9: Admin Endpoints")
+print("=" * 70)
+
+# 9a. GET /api/admin/waitlist with correct key
+try:
+    r = requests.get(f"{API_URL}/admin/waitlist?key=hypeblock2026", timeout=10)
+    test("GET /api/admin/waitlist with correct key returns 200", r.status_code == 200,
+         f"Got {r.status_code}")
+    
+    if r.status_code == 200:
+        data = r.json()
+        test("Response has 'entries' field", "entries" in data)
+        test("Response has 'count' field", "count" in data)
+except Exception as e:
+    test("GET /api/admin/waitlist with correct key test", False, str(e))
+
+# 9b. GET /api/admin/waitlist with wrong key (should return 401)
+try:
+    r = requests.get(f"{API_URL}/admin/waitlist?key=wrongkey", timeout=10)
+    test("GET /api/admin/waitlist with wrong key returns 401", r.status_code == 401,
+         f"Got {r.status_code}")
+except Exception as e:
+    test("GET /api/admin/waitlist with wrong key test", False, str(e))
+
+# ============================================================================
+# Summary
+# ============================================================================
+print("\n" + "=" * 70)
+print("TEST SUMMARY")
+print("=" * 70)
+print(f"✅ Passed: {passed}")
+print(f"❌ Failed: {failed}")
+print(f"Total: {passed + failed}")
+
+if failed > 0:
+    print("\n" + "=" * 70)
+    print("FAILED TESTS DETAILS:")
+    print("=" * 70)
+    for error in errors:
+        print(f"  • {error}")
+
+sys.exit(0 if failed == 0 else 1)

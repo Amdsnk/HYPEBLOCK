@@ -27,7 +27,27 @@ ADMIN_KEY = os.environ.get('ADMIN_KEY', 'hypeblock2026')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
 BATCH_SIZE = 20
 LAUNCH_DATE = datetime(2026, 6, 16, tzinfo=timezone.utc)
-COLLECTION_VERSION = "v5"
+COLLECTION_VERSION = "v6"
+
+try:
+    COLLECTION_SIZE = len(json.loads((ROOT_DIR / "collection_data.json").read_text()))
+except Exception:
+    COLLECTION_SIZE = 200
+
+
+def _public_base():
+    try:
+        fe = ROOT_DIR.parent / "frontend" / ".env"
+        if fe.exists():
+            for line in fe.read_text().splitlines():
+                if line.startswith("REACT_APP_BACKEND_URL"):
+                    return line.split("=", 1)[1].strip().rstrip("/")
+    except Exception:
+        pass
+    return os.environ.get("APP_URL", "").rstrip("/")
+
+
+PUBLIC_BASE = _public_base()
 
 app = FastAPI(title="HYPEBLOCK API")
 api_router = APIRouter(prefix="/api")
@@ -185,96 +205,31 @@ def build_prompt(t, name=None, seed=0):
 
 
 def generate_collection():
-    rng = random.Random(77)
-    # 200 total = 3 Mythic (1-of-1) + 5 Legendary + 24 Epic + 50 Rare + 118 Common
-    tiers = ["Common"] * 118 + ["Rare"] * 50 + ["Epic"] * 24 + ["Legendary"] * 5 + ["Mythic"] * 3
-    order = list(range(200))
-    rng.shuffle(order)
-    tier_map = {idx: tiers[slot] for slot, idx in enumerate(order)}
-
+    data_file = ROOT_DIR / "collection_data.json"
+    raw = json.loads(data_file.read_text())
+    N = len(raw)
     items = []
-    leg_count = 0
-    mythic_count = 0
-    for i in range(200):
-        token_id = i + 1
-        tier = tier_map[i]
-
+    for c in raw:
+        tid = c["token_id"]
+        tier = c["tier"]
+        traits = dict(c["traits"])
         if tier == "Mythic":
-            spec = MYTHIC_SPECS[mythic_count % len(MYTHIC_SPECS)]
-            mythic_count += 1
-            traits = {**spec["traits"], "1 of 1": spec["name"]}
-            batch = (token_id - 1) // BATCH_SIZE + 1
-            items.append({
-                "id": str(uuid.uuid4()),
-                "token_id": token_id,
-                "name": spec["name"],
-                "title": f"HYPEBLOCK #{token_id:03d}",
-                "description": f"A 1-of-1 crown jewel of the HYPEBLOCK underground collective — the {spec['name']}. Sold via auction.",
-                "image": spec["image"],
-                "tier": tier,
-                "traits": traits,
-                "price_pol": 0,  # 0 == auction / 1-of-1
-                "batch": batch,
-                "prompt": build_prompt(spec["traits"], spec["name"], token_id),
-            })
-            continue
-
-        gender = "Female" if rng.random() < 0.45 else "Male"
-
-        if tier == "Legendary":
-            skin = "Gold" if leg_count % 2 == 0 else "Diamond"
-            leg_count += 1
-            eyes = "Laser" if skin == "Gold" else "Flame"
-            headwear = "Crown" if skin == "Gold" else "Flaming Halo"
-            mouth = "Gold Grillz"
-            outfit = rng.choice(["Bomber", "Puffer", "Chain-only"])
-            background = "Legendary Glow"
-            accessory = "Diamond Chain"
-        elif tier == "Epic":
-            skin = rng.choice(COMMON_SKINS)
-            if rng.random() < 0.6:
-                eyes = rng.choice(EYES_STAR)
-                headwear = rng.choice(HEADWEAR_COMMON + HEADWEAR_EPIC_EXTRA)
-            else:
-                eyes = rng.choice(EYES_COMMON + EYES_RARE)
-                headwear = rng.choice(HEADWEAR_STAR + HEADWEAR_EPIC_EXTRA)
-            mouth = rng.choice(MOUTHS)
-            outfit = rng.choice(OUTFITS)
-            background = rng.choice(BG_COMMON)
-            accessory = rng.choice(["Diamond Chain", "Face Tattoo"])
-        elif tier == "Rare":
-            skin = rng.choice(COMMON_SKINS)
-            eyes = rng.choice(EYES_COMMON + EYES_RARE)
-            headwear = rng.choice(HEADWEAR_COMMON + HEADWEAR_EPIC_EXTRA)
-            mouth = rng.choice(MOUTHS)
-            outfit = rng.choice(OUTFITS)
-            background = rng.choice(BG_COMMON)
-            accessory = rng.choice(ACC_RARE + ["Chain"])
-        else:  # Common
-            skin = rng.choice(COMMON_SKINS)
-            eyes = rng.choice(EYES_COMMON)
-            headwear = rng.choice(HEADWEAR_COMMON)
-            mouth = rng.choice(MOUTHS)
-            outfit = rng.choice(OUTFITS)
-            background = rng.choice(BG_COMMON)
-            accessory = rng.choice(ACC_COMMON)
-
-        traits = {"Gender": gender, "Skin": skin, "Eyes": eyes, "Headwear": headwear,
-                  "Mouth": mouth, "Outfit": outfit, "Background": background, "Accessory": accessory}
-        batch = (token_id - 1) // BATCH_SIZE + 1
-        gremlin_name = f"{rng.choice(ADJ)} {rng.choice(NOUN)}"
+            traits["1 of 1"] = c["name"]
+            desc = f"A 1-of-1 crown jewel of the HYPEBLOCK underground collective — the {c['name']}. Sold via auction."
+        else:
+            desc = f"One of {N} original Graffiti Gremlins from the HYPEBLOCK underground collective."
         items.append({
             "id": str(uuid.uuid4()),
-            "token_id": token_id,
-            "name": gremlin_name,
-            "title": f"HYPEBLOCK #{token_id:03d}",
-            "description": "One of 200 Graffiti Gremlins from the HYPEBLOCK underground collective.",
-            "image": _fallback_image(skin, tier, gender, rng),
+            "token_id": tid,
+            "name": c["name"],
+            "title": f"HYPEBLOCK #{tid:03d}",
+            "description": desc,
+            "image": f"{PUBLIC_BASE}/api/render/{tid}",
             "tier": tier,
             "traits": traits,
-            "price_pol": _price(tier, rng),
-            "batch": batch,
-            "prompt": build_prompt(traits, gremlin_name, token_id),
+            "price_pol": c["price_pol"],
+            "batch": (tid - 1) // BATCH_SIZE + 1,
+            "prompt": build_prompt(c["traits"], c["name"], tid),
         })
 
     scored = ["Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory", "Gender"]
@@ -284,24 +239,16 @@ def generate_collection():
             v = it["traits"][c]
             counts[c][v] = counts[c].get(v, 0) + 1
     for it in items:
-        it["rarity_score"] = round(sum(200.0 / counts[c][it["traits"][c]] for c in scored), 2)
-    # The 1-of-1 Mythic is always the #1 rarest by design
+        it["rarity_score"] = round(sum(100.0 / counts[c][it["traits"][c]] for c in scored), 2)
+    # Mythics are always the rarest by design
+    base_max = max(x["rarity_score"] for x in items)
     for it in items:
         if it["tier"] == "Mythic":
-            it["rarity_score"] = round(max(x["rarity_score"] for x in items) + 100.0, 2)
+            it["rarity_score"] = round(base_max + 100.0 + it["token_id"] * 0.01, 2)
     ranked = sorted(items, key=lambda x: x["rarity_score"], reverse=True)
     for rank, it in enumerate(ranked, start=1):
         it["rank"] = rank
     items.sort(key=lambda x: x["token_id"])
-
-    # overlay per-token renders if available
-    img_file = ROOT_DIR / "gremlin_images.json"
-    if img_file.exists():
-        mapping = json.loads(img_file.read_text())
-        for it in items:
-            url = mapping.get(str(it["token_id"]))
-            if url:
-                it["image"] = url
     return items, counts
 
 
@@ -316,11 +263,7 @@ def _price(tier, rng):
 
 
 def batch_unlock(batch):
-    # Released batches are already live (no countdown). Upcoming batches unlock weekly.
-    if batch <= RELEASED_BATCHES:
-        return None
-    weeks = batch - RELEASED_BATCHES
-    return (datetime.now(timezone.utc) + timedelta(days=7 * weeks - 4)).isoformat()
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -337,7 +280,7 @@ class WaitlistCreate(BaseModel):
 @app.on_event("startup")
 async def seed_collection():
     meta = await db.meta.find_one({"_id": "collection"})
-    if not meta or meta.get("version") != COLLECTION_VERSION or await db.nfts.count_documents({}) != 200:
+    if not meta or meta.get("version") != COLLECTION_VERSION or await db.nfts.count_documents({}) != COLLECTION_SIZE:
         items, counts = generate_collection()
         await db.nfts.delete_many({})
         await db.nfts.insert_many([{**it} for it in items])
@@ -348,7 +291,7 @@ async def seed_collection():
 
 
 def _released(batch):
-    return batch <= RELEASED_BATCHES
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -370,7 +313,7 @@ async def stats():
         "tiers": tiers,
         "trait_categories": 8,
         "waitlist_count": await db.waitlist.count_documents({}),
-        "released_count": await db.nfts.count_documents({"batch": {"$lte": RELEASED_BATCHES}}),
+        "released_count": total,
         "creator_wallet": "0x0d7704E370b21DB2Ae66CF6b599b71B819E1BA9c",
     }
 
@@ -378,13 +321,13 @@ async def stats():
 @api_router.get("/batches")
 async def batches():
     out = []
-    total_batches = (200 + BATCH_SIZE - 1) // BATCH_SIZE
+    total_batches = (COLLECTION_SIZE + BATCH_SIZE - 1) // BATCH_SIZE
     for b in range(1, total_batches + 1):
         out.append({
             "batch": b,
             "released": _released(b),
             "size": BATCH_SIZE,
-            "range": [(b - 1) * BATCH_SIZE + 1, min(b * BATCH_SIZE, 200)],
+            "range": [(b - 1) * BATCH_SIZE + 1, min(b * BATCH_SIZE, COLLECTION_SIZE)],
             "unlock_date": batch_unlock(b),
         })
     return {"batch_size": BATCH_SIZE, "released_batches": RELEASED_BATCHES, "batches": out}
@@ -411,8 +354,8 @@ async def trait_lab_estimate(payload: TraitLabIn):
         v = payload.traits.get(c)
         cnt = counts.get(c, {}).get(v, 0) if v else 0
         if v and cnt:
-            score += 200.0 / cnt
-            per[c] = round(cnt / 200 * 100, 1)
+            score += 100.0 / cnt
+            per[c] = round(cnt / COLLECTION_SIZE * 100, 1)
         else:
             per[c] = None
     score = round(score, 2)
@@ -420,13 +363,13 @@ async def trait_lab_estimate(payload: TraitLabIn):
     scores = [d["rarity_score"] for d in docs] or [0]
     rarer_than = sum(1 for s in scores if s < score)
     percentile = round(rarer_than / len(scores) * 100, 1)
-    if percentile >= 98.5:
+    if percentile >= 97:
         tier = "Mythic"
-    elif percentile >= 96:
+    elif percentile >= 90:
         tier = "Legendary"
-    elif percentile >= 84:
+    elif percentile >= 77:
         tier = "Epic"
-    elif percentile >= 59:
+    elif percentile >= 52:
         tier = "Rare"
     else:
         tier = "Common"
@@ -484,7 +427,7 @@ async def get_nft(token_id: int):
         raise HTTPException(status_code=404, detail="Gremlin not found")
     trait_doc = await db.meta.find_one({"_id": "trait_counts"})
     counts = trait_doc["counts"] if trait_doc else {}
-    doc["trait_rarity_pct"] = {cat: (round(counts.get(cat, {}).get(val, 0) / 200 * 100, 1) if counts.get(cat, {}).get(val) else None)
+    doc["trait_rarity_pct"] = {cat: (round(counts.get(cat, {}).get(val, 0) / COLLECTION_SIZE * 100, 1) if counts.get(cat, {}).get(val) else None)
                                for cat, val in doc["traits"].items()}
     return _decorate(doc)
 

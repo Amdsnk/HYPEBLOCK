@@ -262,3 +262,150 @@ agent_communication:
     -message: "Round 3 backend: please retest /api/stats (Mythic:3, Legendary:5, Epic:24, Rare:50, Common:118 = 200; released_count=40), /api/nfts?tier=Mythic returns 3 with price_pol 0, /api/nfts/{id} released flag (batch<=2 True else False with unlock_date), POST /api/trait-lab/estimate happy path + a maxed combo returns high tier, GET /api/render-status returns generated<=200, GET /api/render/1 returns image bytes (200), GET /api/render/199 likely 404 (not generated). Do NOT test frontend."
     -agent: "testing"
     -message: "✅ ALL BACKEND TESTS PASSED (29/29). Comprehensive testing completed for collection v5. All new endpoints working correctly: (1) GET /api/stats returns correct v5 specs (3 Mythics, 40 released). (2) GET /api/nfts?tier=Mythic returns 3 items (Genesis King, Toxic Queen, Diamond Warlord) all with price_pol=0. (3) Released flag & unlock_date working correctly for all batches. (4) POST /api/trait-lab/estimate returns correct tier predictions. (5) GET /api/render-status shows 35/200 generated. (6) GET /api/render/{id} serves images correctly. All regression tests passed (pagination, filters, sort, metadata export, waitlist, admin). No critical issues found. Backend is production-ready."
+
+## Update 2026-09 (round 4) — rebuilt from user-uploaded art (96 unique)
+backend:
+  - task: "Collection v6 generation - 96 unique items from user art"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "Collection rebuilt from user ZIP: 96 UNIQUE images (6 exact dups removed). Each token -> its own uploaded image served at /api/render/{id} (jpeg). Traits classified per-image via vision (8 grids). collection_data.json drives seeding. COLLECTION_SIZE dynamic (96). COLLECTION_VERSION v6. Tiers: Common50/Rare24/Epic13/Legendary6/Mythic3. Removed drip/coming-soon: _released()=True for all, batch_unlock=None, stats.released_count=total."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Collection v6 working perfectly. GET /api/stats returns total_supply=96, released_count=96, tiers exactly {Common:50, Rare:24, Epic:13, Legendary:6, Mythic:3}. All 96 items generated from user-uploaded art. All images served correctly from /api/render/{id}."
+  
+  - task: "NFT list/filter/sort endpoints for v6 collection"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "GET /api/nfts total=96, pagination, tier filter (Mythic=3 price 0), skin filter works with new values (e.g. Gold, Diamond, Zombie)."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: All list/filter/sort operations working correctly. GET /api/nfts returns total=96. Pagination works (page/limit). Filter tier=Mythic returns exactly 3 items, all with price_pol=0. Skin filters work correctly: ?skin=Gold returns only Gold-skinned items, ?skin=Zombie returns only Zombie items. Sorting works: sort=rank_asc first item is Mythic (rank 1), sort=price_desc and price_asc order correctly."
+  
+  - task: "NFT detail endpoint for v6 collection"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "GET /api/nfts/{id} released=true always, unlock_date null, image URL ends /api/render/{id}, trait_rarity_pct present."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: NFT detail endpoint working correctly. GET /api/nfts/1 and /api/nfts/96 return 200 with released=true, unlock_date=null, image URL ends with /api/render/{id}, trait_rarity_pct is object. GET /api/nfts/97 and /api/nfts/500 correctly return 404."
+  
+  - task: "Image render endpoints for v6 collection"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "GET /api/render/1 and /api/render/96 -> 200 image; /api/render/97 -> 404."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Image render endpoints working correctly. GET /api/render/1 and /api/render/96 return HTTP 200 with content-type image/jpeg and valid image data. GET /api/render/97 correctly returns 404. All 96 images (1.jpeg through 96.jpeg) present in backend/generated/ directory."
+  
+  - task: "Metadata export for v6 collection"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "GET /api/metadata/export -> array length 96."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Metadata export working correctly. GET /api/metadata/export returns JSON array of exactly 96 objects. Each object has proper OpenSea-standard fields (name, description, image, attributes). Attributes include Rarity trait as required."
+  
+  - task: "Traits endpoint for v6 collection"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "GET /api/traits returns counts for all 8 trait categories."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Traits endpoint working correctly. GET /api/traits returns counts object with all 8 categories (Gender, Skin, Eyes, Headwear, Mouth, Outfit, Background, Accessory). Gender counts sum to 96 as expected."
+  
+  - task: "Trait Lab estimate for v6 collection"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "POST /api/trait-lab/estimate returns score/tier_guess/percentile/rank_estimate. trait-lab estimate + per-trait pct use COLLECTION_SIZE; tier percentile bands retuned for 96."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Trait Lab working correctly for v6 collection. POST /api/trait-lab/estimate returns all required fields (score, per_trait_pct, percentile, tier_guess, rank_estimate). High rarity combo (Gold skin, Flame eyes, Crown, Diamond Chain, etc.) correctly returns high tier (Epic/Legendary/Mythic). Percentile calculations adjusted for 96-item collection."
+  
+  - task: "Waitlist and Admin endpoints (regression)"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "Waitlist + admin (key hypeblock2026) still work."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Waitlist and admin endpoints working correctly. POST /api/waitlist accepts unique emails and returns {ok:true, count}, duplicate emails return 409. GET /api/waitlist/count returns count. GET /api/admin/waitlist?key=hypeblock2026 returns entries (200), wrong key returns 401."
+
+metadata:
+  created_by: "main_agent"
+  version: "3.0"
+  test_sequence: 3
+  run_ui: false
+
+test_plan:
+  current_focus:
+    - "Collection v6 generation - 96 unique items from user art"
+    - "NFT list/filter/sort endpoints for v6 collection"
+    - "NFT detail endpoint for v6 collection"
+    - "Image render endpoints for v6 collection"
+    - "Metadata export for v6 collection"
+    - "Traits endpoint for v6 collection"
+    - "Trait Lab estimate for v6 collection"
+  stuck_tasks: []
+  test_all: false
+  test_priority: "high_first"
+
+agent_communication:
+    -agent: "main"
+    -message: "Round 4: retest backend for the rebuilt 96-item collection. Check: GET /api/stats total_supply=96, released_count=96, tiers {Common:50,Rare:24,Epic:13,Legendary:6,Mythic:3}. GET /api/nfts total=96, pagination, tier filter (Mythic=3 price 0), skin filter works with new values (e.g. Gold, Diamond, Zombie). GET /api/nfts/{id} released=true always, unlock_date null, image URL ends /api/render/{id}, trait_rarity_pct present. GET /api/render/1 and /api/render/96 -> 200 image; /api/render/97 -> 404. GET /api/metadata/export -> array length 96. POST /api/trait-lab/estimate returns score/tier_guess/percentile/rank_estimate. Waitlist + admin (key hypeblock2026) still work. Do NOT test frontend."
+    -agent: "testing"
+    -message: "✅ ALL BACKEND TESTS PASSED (87/87). Comprehensive testing completed for collection v6 (96 unique items from user-uploaded art). All endpoints working perfectly: (1) GET /api/stats returns correct v6 specs (total_supply=96, released_count=96, tiers exactly {Common:50, Rare:24, Epic:13, Legendary:6, Mythic:3}). (2) GET /api/nfts returns total=96, pagination works, tier=Mythic returns exactly 3 items all with price_pol=0, skin filters (Gold, Zombie) work correctly, sorting (rank_asc, price_desc, price_asc) all work correctly. (3) GET /api/nfts/1 and /api/nfts/96 return 200 with released=true, unlock_date=null, image URL ends with /api/render/{id}, trait_rarity_pct is object. GET /api/nfts/97 and /api/nfts/500 correctly return 404. (4) GET /api/render/1 and /api/render/96 return HTTP 200 with content-type image/jpeg. GET /api/render/97 returns 404. (5) GET /api/metadata/export returns JSON array of exactly 96 objects with proper OpenSea structure including Rarity trait. (6) GET /api/traits returns all 8 categories, Gender counts sum to 96. (7) POST /api/trait-lab/estimate returns all required fields, high rarity combo returns high tier. (8) Waitlist endpoints work (unique email ok, duplicate 409, count works). (9) Admin endpoints work (correct key returns 200, wrong key returns 401). No 500 errors, no mismatches. Backend is production-ready for v6 collection."

@@ -58,7 +58,7 @@ export default function Admin() {
       const a = document.createElement("a");
       a.href = url; a.download = "hypeblock-metadata.json"; a.click();
       URL.revokeObjectURL(url);
-      toast.success("Metadata JSON downloaded (200 items)");
+      toast.success("Mint Kit metadata JSON downloaded");
     } catch (e) {
       toast.error("Failed to export metadata");
     }
