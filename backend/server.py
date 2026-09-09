@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Query
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, FileResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -27,7 +27,7 @@ ADMIN_KEY = os.environ.get('ADMIN_KEY', 'hypeblock2026')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
 BATCH_SIZE = 20
 LAUNCH_DATE = datetime(2026, 6, 16, tzinfo=timezone.utc)
-COLLECTION_VERSION = "v4"
+COLLECTION_VERSION = "v5"
 
 app = FastAPI(title="HYPEBLOCK API")
 api_router = APIRouter(prefix="/api")
@@ -75,6 +75,19 @@ SKIN_IMAGES = {
 }
 EPIC_IMAGES = {"Toxic Blue": ["blue_laser_epic"], "Purple Haze": ["purple_flame_epic"],
                "Zombie": ["zombie_laser_epic", "att_zombie_devil_epic"]}
+
+# The 3 crown-jewel 1-of-1 Mythics (each a unique founding character)
+MYTHIC_SPECS = [
+    {"name": "Genesis King", "image": MYTHIC_IMAGE,
+     "traits": {"Gender": "Male", "Skin": "Toxic Blue", "Eyes": "Flame", "Headwear": "Crown",
+                "Mouth": "Gold Grillz", "Outfit": "Chain-only", "Background": "Legendary Glow", "Accessory": "Diamond Chain"}},
+    {"name": "Toxic Queen", "image": IMG["att_female_blue_neon"],
+     "traits": {"Gender": "Female", "Skin": "Toxic Blue", "Eyes": "Laser", "Headwear": "Flaming Halo",
+                "Mouth": "Bubblegum", "Outfit": "Leather", "Background": "Legendary Glow", "Accessory": "Diamond Chain"}},
+    {"name": "Diamond Warlord", "image": IMG["att_zombie_devil_epic"],
+     "traits": {"Gender": "Male", "Skin": "Diamond", "Eyes": "Flame", "Headwear": "Devil Horns",
+                "Mouth": "Gold Grillz", "Outfit": "Leather", "Background": "Legendary Glow", "Accessory": "Diamond Chain"}},
+]
 
 
 def _fallback_image(skin, tier, gender, rng):
@@ -149,65 +162,64 @@ BG_D = {"Neon Split": "a neon split pink-and-cyan", "Acid Green": "a solid acid-
         "Deep Purple": "a solid deep-purple", "Graffiti Wall": "a graffiti brick-wall", "Legendary Glow": "a radiant legendary golden-glow"}
 
 
-def build_prompt(t):
+POSES = ["facing forward, straight-on", "with a slight side glance", "with head tilted, cocky",
+         "looking up with attitude", "three-quarter view, smirking", "chin down, menacing stare",
+         "leaning slightly to one side", "shoulders squared, confident"]
+
+
+def build_prompt(t, name=None, seed=0):
     g = "female" if t["Gender"] == "Female" else "male"
-    fem = " with feminine face, long eyelashes and lipstick," if t["Gender"] == "Female" else ""
+    fem = " with a feminine face, long eyelashes and glossy lips," if t["Gender"] == "Female" else " with a rugged masculine face,"
     acc = ACC_D.get(t["Accessory"], "")
     acc_clause = f" and {acc}" if acc else ""
+    pose = POSES[seed % len(POSES)]
+    tag = f' The graffiti tag "{name}" is sprayed in the background.' if name else ""
     return (
         f"Bold graffiti street-art NFT PFP illustration of an original cartoon GREMLIN mascot (NOT an ape), "
-        f"front bust portrait, pointy ears. A {g} gremlin{fem} with {SKIN_D[t['Skin']]}, {EYES_D[t['Eyes']]}, "
+        f"front bust portrait, pointy ears, {pose}. A {g} gremlin{fem} with {SKIN_D[t['Skin']]}, {EYES_D[t['Eyes']]}, "
         f"{HEAD_D[t['Headwear']]}, {MOUTH_D[t['Mouth']]}. Wearing {OUT_D[t['Outfit']]}{acc_clause}. "
-        f"Background: {BG_D[t['Background']]} background covered in neon graffiti tags. "
+        f"Background: {BG_D[t['Background']]} background covered in neon graffiti tags.{tag} "
         f"Thick heavy black outline comic style, neon spray-paint drip texture, high-contrast vivid neon colors, "
-        f"centered, edgy underground streetwear vibe."
+        f"centered, edgy underground streetwear vibe. Unique variation #{seed:03d}."
     )
 
 
 def generate_collection():
     rng = random.Random(77)
-    # 200 total = 1 Mythic (1-of-1) + 5 Legendary + 24 Epic + 50 Rare + 120 Common
-    tiers = ["Common"] * 120 + ["Rare"] * 50 + ["Epic"] * 24 + ["Legendary"] * 5 + ["Mythic"] * 1
+    # 200 total = 3 Mythic (1-of-1) + 5 Legendary + 24 Epic + 50 Rare + 118 Common
+    tiers = ["Common"] * 118 + ["Rare"] * 50 + ["Epic"] * 24 + ["Legendary"] * 5 + ["Mythic"] * 3
     order = list(range(200))
     rng.shuffle(order)
     tier_map = {idx: tiers[slot] for slot, idx in enumerate(order)}
 
     items = []
     leg_count = 0
+    mythic_count = 0
     for i in range(200):
         token_id = i + 1
         tier = tier_map[i]
 
         if tier == "Mythic":
-            # The single crown-jewel 1-of-1 — the founding "Genesis King"
-            gender = "Male"
-            skin = "Toxic Blue"
-            eyes = "Flame"
-            headwear = "Crown"
-            mouth = "Gold Grillz"
-            outfit = "Chain-only"
-            background = "Legendary Glow"
-            accessory = "Diamond Chain"
-            traits = {"Gender": gender, "Skin": skin, "Eyes": eyes, "Headwear": headwear,
-                      "Mouth": mouth, "Outfit": outfit, "Background": background, "Accessory": accessory,
-                      "1 of 1": "Genesis King"}
+            spec = MYTHIC_SPECS[mythic_count % len(MYTHIC_SPECS)]
+            mythic_count += 1
+            traits = {**spec["traits"], "1 of 1": spec["name"]}
             batch = (token_id - 1) // BATCH_SIZE + 1
             items.append({
                 "id": str(uuid.uuid4()),
                 "token_id": token_id,
-                "name": "Genesis King",
+                "name": spec["name"],
                 "title": f"HYPEBLOCK #{token_id:03d}",
-                "description": "The 1-of-1 crown jewel of the HYPEBLOCK underground collective — the founding Genesis King. Sold via auction.",
-                "image": MYTHIC_IMAGE,
+                "description": f"A 1-of-1 crown jewel of the HYPEBLOCK underground collective — the {spec['name']}. Sold via auction.",
+                "image": spec["image"],
                 "tier": tier,
                 "traits": traits,
                 "price_pol": 0,  # 0 == auction / 1-of-1
                 "batch": batch,
-                "prompt": build_prompt(traits),
+                "prompt": build_prompt(spec["traits"], spec["name"], token_id),
             })
             continue
 
-        gender = "Female" if rng.random() < 0.35 else "Male"
+        gender = "Female" if rng.random() < 0.45 else "Male"
 
         if tier == "Legendary":
             skin = "Gold" if leg_count % 2 == 0 else "Diamond"
@@ -250,10 +262,11 @@ def generate_collection():
         traits = {"Gender": gender, "Skin": skin, "Eyes": eyes, "Headwear": headwear,
                   "Mouth": mouth, "Outfit": outfit, "Background": background, "Accessory": accessory}
         batch = (token_id - 1) // BATCH_SIZE + 1
+        gremlin_name = f"{rng.choice(ADJ)} {rng.choice(NOUN)}"
         items.append({
             "id": str(uuid.uuid4()),
             "token_id": token_id,
-            "name": f"{rng.choice(ADJ)} {rng.choice(NOUN)}",
+            "name": gremlin_name,
             "title": f"HYPEBLOCK #{token_id:03d}",
             "description": "One of 200 Graffiti Gremlins from the HYPEBLOCK underground collective.",
             "image": _fallback_image(skin, tier, gender, rng),
@@ -261,7 +274,7 @@ def generate_collection():
             "traits": traits,
             "price_pol": _price(tier, rng),
             "batch": batch,
-            "prompt": build_prompt(traits),
+            "prompt": build_prompt(traits, gremlin_name, token_id),
         })
 
     scored = ["Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory", "Gender"]
@@ -303,7 +316,11 @@ def _price(tier, rng):
 
 
 def batch_unlock(batch):
-    return (LAUNCH_DATE + timedelta(days=7 * (batch - 1))).isoformat()
+    # Released batches are already live (no countdown). Upcoming batches unlock weekly.
+    if batch <= RELEASED_BATCHES:
+        return None
+    weeks = batch - RELEASED_BATCHES
+    return (datetime.now(timezone.utc) + timedelta(days=7 * weeks - 4)).isoformat()
 
 
 # ---------------------------------------------------------------------------
@@ -377,6 +394,44 @@ async def batches():
 async def traits():
     doc = await db.meta.find_one({"_id": "trait_counts"})
     return {"total": 200, "counts": doc["counts"] if doc else {}}
+
+
+class TraitLabIn(BaseModel):
+    traits: dict
+
+
+@api_router.post("/trait-lab/estimate")
+async def trait_lab_estimate(payload: TraitLabIn):
+    scored = ["Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory", "Gender"]
+    doc = await db.meta.find_one({"_id": "trait_counts"})
+    counts = doc["counts"] if doc else {}
+    score = 0.0
+    per = {}
+    for c in scored:
+        v = payload.traits.get(c)
+        cnt = counts.get(c, {}).get(v, 0) if v else 0
+        if v and cnt:
+            score += 200.0 / cnt
+            per[c] = round(cnt / 200 * 100, 1)
+        else:
+            per[c] = None
+    score = round(score, 2)
+    docs = await db.nfts.find({}, {"_id": 0, "rarity_score": 1}).to_list(1000)
+    scores = [d["rarity_score"] for d in docs] or [0]
+    rarer_than = sum(1 for s in scores if s < score)
+    percentile = round(rarer_than / len(scores) * 100, 1)
+    if percentile >= 98.5:
+        tier = "Mythic"
+    elif percentile >= 96:
+        tier = "Legendary"
+    elif percentile >= 84:
+        tier = "Epic"
+    elif percentile >= 59:
+        tier = "Rare"
+    else:
+        tier = "Common"
+    return {"score": score, "per_trait_pct": per, "percentile": percentile,
+            "tier_guess": tier, "rank_estimate": max(1, len(scores) - rarer_than)}
 
 
 def _decorate(doc):
@@ -460,6 +515,24 @@ async def metadata_export():
     docs = await db.nfts.find({}, {"_id": 0}).sort("token_id", 1).to_list(200)
     payload = [_opensea_meta(d) for d in docs]
     return JSONResponse(content=payload, headers={"Content-Disposition": "attachment; filename=hypeblock-metadata.json"})
+
+
+GENERATED_DIR = ROOT_DIR / "generated"
+
+
+@api_router.get("/render/{token_id}")
+async def render_image(token_id: int):
+    for ext in ("png", "jpeg", "jpg", "webp"):
+        p = GENERATED_DIR / f"{token_id}.{ext}"
+        if p.exists():
+            return FileResponse(str(p), media_type=f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}")
+    raise HTTPException(status_code=404, detail="Render not available yet")
+
+
+@api_router.get("/render-status")
+async def render_status():
+    done = len(list(GENERATED_DIR.glob("*.png"))) if GENERATED_DIR.exists() else 0
+    return {"generated": done, "total": 200}
 
 
 @api_router.post("/waitlist")

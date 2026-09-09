@@ -1,0 +1,99 @@
+"""Generate unique gremlin renders with Gemini nano-banana (image) via EMERGENT_LLM_KEY.
+
+Resumable: skips tokens whose image already exists.
+Updates MongoDB nft.image and backend/gremlin_images.json so the app serves the render.
+Run:  python generate_images.py            (all remaining)
+      GEN_LIMIT=2 python generate_images.py (only first 2 remaining, for a smoke test)
+"""
+import asyncio
+import base64
+import json
+import os
+from pathlib import Path
+
+from dotenv import load_dotenv
+from motor.motor_asyncio import AsyncIOMotorClient
+from emergentintegrations.llm.chat import LlmChat, UserMessage
+
+ROOT = Path(__file__).parent
+load_dotenv(ROOT / ".env")
+
+API_KEY = os.getenv("EMERGENT_LLM_KEY")
+MONGO_URL = os.getenv("MONGO_URL", "mongodb://localhost:27017")
+DB_NAME = os.getenv("DB_NAME", "hypeblock")
+MODEL = "gemini-3.1-flash-image-preview"
+GEN_LIMIT = int(os.getenv("GEN_LIMIT", "0"))  # 0 == no limit
+CONCURRENCY = int(os.getenv("GEN_CONCURRENCY", "4"))
+
+GEN_DIR = ROOT / "generated"
+GEN_DIR.mkdir(exist_ok=True)
+MAP_FILE = ROOT / "gremlin_images.json"
+
+
+def _public_base():
+    fe = ROOT.parent / "frontend" / ".env"
+    if fe.exists():
+        for line in fe.read_text().splitlines():
+            if line.startswith("REACT_APP_BACKEND_URL"):
+                return line.split("=", 1)[1].strip()
+    return os.getenv("APP_URL", "")
+
+
+PUBLIC_BASE = _public_base().rstrip("/")
+
+
+async def gen_one(sem, token_id, prompt):
+    out = GEN_DIR / f"{token_id}.png"
+    if out.exists() and out.stat().st_size > 1000:
+        return token_id, True, "skip"
+    async with sem:
+        for attempt in range(3):
+            try:
+                chat = (LlmChat(api_key=API_KEY, session_id=f"hypeblock-{token_id}",
+                                system_message="You are an expert NFT concept artist.")
+                        .with_model("gemini", MODEL).with_params(modalities=["image", "text"]))
+                _text, images = await chat.send_message_multimodal_response(UserMessage(text=prompt))
+                if images:
+                    data = base64.b64decode(images[0]["data"])
+                    out.write_bytes(data)
+                    return token_id, True, "ok"
+                await asyncio.sleep(2)
+            except Exception as e:  # noqa
+                print(f"  #{token_id} attempt {attempt+1} error: {str(e)[:160]}", flush=True)
+                await asyncio.sleep(3)
+    return token_id, False, "fail"
+
+
+async def main():
+    client = AsyncIOMotorClient(MONGO_URL)
+    db = client[DB_NAME]
+    docs = await db.nfts.find({}, {"_id": 0, "token_id": 1, "prompt": 1}).sort("token_id", 1).to_list(1000)
+
+    todo = [(d["token_id"], d.get("prompt", "")) for d in docs
+            if not (GEN_DIR / f"{d['token_id']}.png").exists()]
+    if GEN_LIMIT:
+        todo = todo[:GEN_LIMIT]
+    print(f"Public base: {PUBLIC_BASE}", flush=True)
+    print(f"To generate: {len(todo)} (concurrency={CONCURRENCY})", flush=True)
+
+    sem = asyncio.Semaphore(CONCURRENCY)
+    mapping = json.loads(MAP_FILE.read_text()) if MAP_FILE.exists() else {}
+    done = 0
+    tasks = [gen_one(sem, tid, pr) for tid, pr in todo]
+    for coro in asyncio.as_completed(tasks):
+        token_id, ok, status = await coro
+        if ok:
+            url = f"{PUBLIC_BASE}/api/render/{token_id}"
+            mapping[str(token_id)] = url
+            await db.nfts.update_one({"token_id": token_id}, {"$set": {"image": url}})
+            MAP_FILE.write_text(json.dumps(mapping, indent=0))
+        done += 1
+        if done % 5 == 0 or status == "fail":
+            total_done = len(list(GEN_DIR.glob("*.png")))
+            print(f"[{done}/{len(todo)}] last #{token_id} {status} | on-disk={total_done}/200", flush=True)
+    print(f"FINISHED. on-disk={len(list(GEN_DIR.glob('*.png')))}/200", flush=True)
+    client.close()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

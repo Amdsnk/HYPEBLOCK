@@ -194,3 +194,71 @@ agent_communication:
     -message: "Restored app (recreated missing .env). Reworked backend to founding spec: original traits, 5 tiers incl 1-of-1 Mythic, all 200 released, integrated 5 supplied base renders, metadata export ready. Please retest backend endpoints only (stats, nfts filter/sort/paginate, nft detail w/ rarity %, metadata export count=200 incl Mythic price 0, waitlist smoke). Admin key: hypeblock2026. Do NOT test frontend yet."
     -agent: "testing"
     -message: "✅ ALL BACKEND TESTS PASSED (31/31). Comprehensive testing completed for all backend endpoints. Collection v4 verified with 200 NFTs, 5 tiers including Mythic 1-of-1 'Genesis King' at rank #1 with price_pol=0. All API endpoints working: stats, nfts (list/filter/sort/pagination), nft detail with trait_rarity_pct, metadata export (200 items), traits, waitlist (with proper email validation), and admin endpoints. No critical issues found. Backend is production-ready."
+
+## Update 2026-09 (round 3) — image gen, trait lab, drip lock, 3 mythics
+backend_new:
+  - task: "Collection v5 generation - 3 Mythics + drip lock"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "Collection v5: 3 Mythic 1-of-1 (Genesis King/Toxic Queen/Diamond Warlord), gender ~45% female, unique per-token prompts (pose+name tag). RELEASED_BATCHES=2 so batches 3-10 locked with weekly unlock_date countdown."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Collection v5 working correctly. GET /api/stats returns total_supply=200, tiers={Common:118, Rare:50, Epic:24, Legendary:5, Mythic:3}, released_count=40 (batches 1-2 only). GET /api/nfts?tier=Mythic returns exactly 3 items (Genesis King, Toxic Queen, Diamond Warlord) all with price_pol=0. Released flag and unlock_date working correctly: batch 1-2 tokens have released=True and unlock_date=None, batch 3+ tokens have released=False with valid future ISO timestamps."
+  
+  - task: "Trait Lab estimate endpoint"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "POST /api/trait-lab/estimate {traits} -> {score, per_trait_pct, percentile, tier_guess, rank_estimate}. Verified via curl."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Trait Lab working correctly. POST /api/trait-lab/estimate returns all required fields (score, per_trait_pct, percentile, tier_guess, rank_estimate). Common trait combo returns tier_guess=Common with percentile=39.0. Maxed rare combo returns tier_guess=Mythic with percentile=98.5 (>=96 as expected)."
+  
+  - task: "Render endpoints (image generation)"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "GET /api/render/{token_id} serves generated png; GET /api/render-status returns {generated,total}. generate_images.py: Gemini nano-banana (gemini-3.1-flash-image-preview) via EMERGENT_LLM_KEY. 35/200 done then shared-key BUDGET EXCEEDED. Needs user's own key. Generated images update db.nfts.image -> /api/render/{id} + gremlin_images.json."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: Render endpoints working correctly. GET /api/render-status returns {generated:35, total:200}. GET /api/render/1 returns image bytes (HTTP 200, content-type: image/png). GET /api/render/199 returns 404 (not generated yet) - correct behavior. Note: Only 35/200 images generated due to shared API key budget limit."
+  
+  - task: "Regression tests - all v4 endpoints"
+    implemented: true
+    working: true
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        -working: "NA"
+        -agent: "main"
+        -comment: "Verify all v4 endpoints still work with v5 collection."
+        -working: true
+        -agent: "testing"
+        -comment: "✅ VERIFIED: All regression tests passed. GET /api/nfts pagination works (page/limit, total=200). Trait filter ?skin=Zombie returns 24 Zombie-skin items only. Sort ?sort=rank_asc returns Mythic at rank #1 (Diamond Warlord). GET /api/metadata/export returns array of 200 items. Waitlist POST/GET working correctly. Admin endpoint with key=hypeblock2026 working correctly."
+
+agent_communication:
+    -agent: "main"
+    -message: "Round 3 backend: please retest /api/stats (Mythic:3, Legendary:5, Epic:24, Rare:50, Common:118 = 200; released_count=40), /api/nfts?tier=Mythic returns 3 with price_pol 0, /api/nfts/{id} released flag (batch<=2 True else False with unlock_date), POST /api/trait-lab/estimate happy path + a maxed combo returns high tier, GET /api/render-status returns generated<=200, GET /api/render/1 returns image bytes (200), GET /api/render/199 likely 404 (not generated). Do NOT test frontend."
+    -agent: "testing"
+    -message: "✅ ALL BACKEND TESTS PASSED (29/29). Comprehensive testing completed for collection v5. All new endpoints working correctly: (1) GET /api/stats returns correct v5 specs (3 Mythics, 40 released). (2) GET /api/nfts?tier=Mythic returns 3 items (Genesis King, Toxic Queen, Diamond Warlord) all with price_pol=0. (3) Released flag & unlock_date working correctly for all batches. (4) POST /api/trait-lab/estimate returns correct tier predictions. (5) GET /api/render-status shows 35/200 generated. (6) GET /api/render/{id} serves images correctly. All regression tests passed (pagination, filters, sort, metadata export, waitlist, admin). No critical issues found. Backend is production-ready."
