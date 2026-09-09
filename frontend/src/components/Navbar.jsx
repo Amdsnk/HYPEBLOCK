@@ -7,6 +7,7 @@ const NAV = [
   { label: "Showcase", to: "/#showcase" },
   { label: "The Gremlins", to: "/gremlins" },
   { label: "Trait Lab", to: "/trait-lab" },
+  { label: "Perks", to: "/perks" },
   { label: "Roadmap", to: "/#roadmap" },
   { label: "FAQ", to: "/#faq" },
   { label: "Waitlist", to: "/#waitlist" },

@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Query
-from fastapi.responses import JSONResponse, FileResponse
+from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -7,6 +7,8 @@ import os
 import json
 import logging
 import random
+import io
+import zipfile
 from pathlib import Path
 from pydantic import BaseModel, EmailStr
 from typing import Optional
@@ -466,6 +468,33 @@ async def metadata_export():
 
 
 GENERATED_DIR = ROOT_DIR / "generated"
+
+
+@api_router.get("/wallpapers")
+async def wallpapers(limit: int = 12):
+    docs = await db.nfts.find({"image": {"$regex": "/api/render/"}}, {"_id": 0, "prompt": 0}).sort("rank", 1).to_list(1000)
+    limit = max(1, min(limit, 60))
+    items = [_decorate(d) for d in docs[:limit]]
+    return {"count": len(items), "items": items}
+
+
+@api_router.get("/wallpapers/pack")
+async def wallpapers_pack(limit: int = 12):
+    docs = await db.nfts.find({"image": {"$regex": "/api/render/"}}, {"_id": 0}).sort("rank", 1).to_list(1000)
+    docs = docs[:max(1, min(limit, 60))]
+    buf = io.BytesIO()
+    with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
+        for d in docs:
+            tid = d["token_id"]
+            for ext in ("png", "jpeg", "jpg", "webp"):
+                p = GENERATED_DIR / f"{tid}.{ext}"
+                if p.exists():
+                    safe = "".join(ch if ch.isalnum() else "_" for ch in d["name"])
+                    z.write(str(p), arcname=f"HYPEBLOCK_{tid:03d}_{safe}.{ext}")
+                    break
+    buf.seek(0)
+    return StreamingResponse(buf, media_type="application/zip",
+                             headers={"Content-Disposition": "attachment; filename=hypeblock-wallpaper-pack.zip"})
 
 
 @api_router.get("/render/{token_id}")
