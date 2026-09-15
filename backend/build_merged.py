@@ -25,6 +25,84 @@ PRICE = {"Common": 15, "Rare": 40, "Epic": 80, "Legendary": 200, "Mythic": 0}
 
 rng = random.Random(4207)
 
+# Keep the merge step deterministic and make it impossible for two records to
+# receive the same metadata combination. Values are collected from both source
+# datasets below as well, so this list is only a fallback for a new source
+# trait that has not appeared in either dataset yet.
+TRAIT_ORDER = ["Gender", "Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory"]
+TRAIT_FALLBACKS = {
+    "Gender": ["Male", "Female"],
+    "Skin": ["Classic Green", "Toxic Blue", "Purple Haze", "Albino", "Zombie", "Gold", "Diamond"],
+    "Eyes": ["Mischief", "3D Glasses", "Stoned", "VR Visor", "Cyclops", "Laser", "Flame", "Visor"],
+    "Headwear": ["Beanie", "Snapback", "Bucket Hat", "Durag", "Devil Horns", "None", "Crown", "Flaming Halo"],
+    "Mouth": ["Grin", "Gold Grillz", "Toothpick", "Tongue Out", "Cigar", "Bubblegum"],
+    "Outfit": ["Hoodie", "Bomber", "Tie-dye Tee", "Puffer", "Tracksuit", "Chain-only", "Leather", "Denim"],
+    "Background": ["Neon Split", "Acid Green", "Hot Pink", "Deep Purple", "Graffiti Wall", "Legendary Glow"],
+    "Accessory": ["None", "Chain", "Diamond Chain", "Earring", "Face Tattoo", "Iced Chain", "Hoop", "Star Tattoo"],
+}
+
+
+def _trait_signature(traits):
+    return tuple(traits.get(category) for category in TRAIT_ORDER)
+
+
+def _make_unique_traits(records):
+    """Repair duplicate trait combinations without dropping collection items.
+
+    Token IDs and names remain stable. When a source record collides with an
+    earlier record, change the least significant trait that yields a signature
+    not already in use. This keeps the collection size intact while ensuring
+    each metadata record represents a distinct gremlin.
+    """
+    observed = {category: set(values) for category, values in TRAIT_FALLBACKS.items()}
+    for record in records:
+        for category in TRAIT_ORDER:
+            if record["traits"].get(category) is not None:
+                observed[category].add(record["traits"][category])
+
+    used = set()
+    repaired = []
+    for record in records:
+        traits = dict(record["traits"])
+        signature = _trait_signature(traits)
+        if signature in used:
+            repaired_signature = None
+            # Prefer changing a cosmetic/low-impact attribute before changing
+            # the gremlin's skin or gender.
+            for category in ["Mouth", "Accessory", "Outfit", "Background", "Headwear", "Eyes", "Skin", "Gender"]:
+                current = traits.get(category)
+                candidates = sorted(observed[category] - {current})
+                for candidate in candidates:
+                    candidate_traits = dict(traits)
+                    candidate_traits[category] = candidate
+                    candidate_signature = _trait_signature(candidate_traits)
+                    if candidate_signature not in used:
+                        traits = candidate_traits
+                        repaired_signature = candidate_signature
+                        break
+                if repaired_signature is not None:
+                    break
+            if repaired_signature is None:
+                raise ValueError(f"Unable to make unique traits for {record['name']}")
+            signature = repaired_signature
+        used.add(signature)
+        repaired.append({**record, "traits": traits})
+    return repaired
+
+
+def _validate_records(records):
+    token_ids = [record["token_id"] for record in records]
+    names = [record["name"] for record in records]
+    signatures = [_trait_signature(record["traits"]) for record in records]
+    checks = [
+        ("token IDs", token_ids),
+        ("names", names),
+        ("trait combinations", signatures),
+    ]
+    for label, values in checks:
+        if len(values) != len(set(values)):
+            raise ValueError(f"Duplicate {label} found while building the collection")
+
 
 def unique_name(used):
     for _ in range(500):
@@ -73,6 +151,7 @@ def main():
             "art_ext": "png" if has else None,
         })
 
+    records = _make_unique_traits(records)
     assert len(records) == 296, len(records)
     rng.shuffle(records)
 
@@ -95,6 +174,7 @@ def main():
             "has_render": has_render,
         })
 
+    _validate_records(out)
     (ROOT / "merged_collection.json").write_text(json.dumps(out, indent=1))
     tiers = {}
     for o in out:

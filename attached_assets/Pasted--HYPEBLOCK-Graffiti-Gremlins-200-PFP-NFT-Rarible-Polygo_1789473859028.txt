@@ -1,0 +1,87 @@
+## HYPEBLOCK — Graffiti Gremlins (200 PFP NFT · Rarible/Polygon)
+Koleksi 200 PFP maskot "graffiti gremlin" original. Bold, edgy, streetwear, gaya spray-paint neon. Format terbukti laku (PFP + trait + rarity ala BAYC/Pudgy) tapi maskot 100% original (gremlin, bukan kera → aman dari tuduhan jiplak). Art-only, biaya mint ~0 (Polygon lazy mint).
+
+**Jenis produk:** Web-based — aset NFT + situs showcase (React + FastAPI + MongoDB) + listing di Rarible.
+
+### Identitas Koleksi
+- Nama: **HYPEBLOCK**
+- Nama item: `HYPEBLOCK #001` … `#200`
+- Vibe: "underground gremlin collective" — geng, nakal, hype
+- Style terkunci: graffiti street-art, thick outline, neon drip, bust portrait, background warna solid + tag graffiti
+
+### Skema Teknis (final)
+- **ERC-721 "Collection" (Single / 1-of-1)** — bukan ERC-1155. Tiap gremlin unik.
+- **Polygon + Lazy Mint (Free minting)** — gas dibayar pembeli saat beli. Biaya kamu 0.
+- Gambar disimpan di **IPFS**; royalty kreator 5–10%.
+
+### Sistem Trait & Rarity (200 pcs)
+Tiap NFT dirakit dari kategori berikut (rarity dari kombinasi trait):
+- **Skin:** Classic Green, Toxic Blue, Purple Haze, Albino, Zombie, Gold*, Diamond*
+- **Eyes:** Mischief, 3D Glasses, Stoned, VR Visor, Cyclops, Laser*, Flame*
+- **Headwear:** Beanie, Snapback, Bucket Hat, Durag, Devil Horns, None, Crown*, Flaming Halo*
+- **Mouth:** Grin, Gold Grillz, Toothpick, Tongue Out, Cigar, Bubblegum
+- **Outfit:** Hoodie, Bomber, Tie-dye Tee, Puffer, Tracksuit, Chain-only
+- **Background:** Neon Split, Acid Green, Hot Pink, Deep Purple, Graffiti Wall, Legendary Glow*
+- **Accessory:** None, Chain, Diamond Chain, Earring, Face Tattoo
+(* = trait langka)
+
+**Distribusi rarity:**
+- Common 60% (120 pcs)
+- Rare 25% (50 pcs)
+- Epic 12% (24 pcs)
+- Legendary 3% (6 pcs — gold/diamond, crown, flaming halo)
+
+### Struktur Metadata (per NFT, standar OpenSea/Rarible)
+```json
+{
+  "name": "HYPEBLOCK #001",
+  "description": "One of 200 Graffiti Gremlins from the HYPEBLOCK underground collective.",
+  "image": "ipfs://<cid>/001.png",
+  "attributes": [
+    {"trait_type":"Skin","value":"Toxic Blue"},
+    {"trait_type":"Eyes","value":"Laser"},
+    {"trait_type":"Headwear","value":"Snapback"},
+    {"trait_type":"Mouth","value":"Gold Grillz"},
+    {"trait_type":"Outfit","value":"Bomber"},
+    {"trait_type":"Background","value":"Acid Green"},
+    {"trait_type":"Accessory","value":"Diamond Chain"},
+    {"trait_type":"Rarity","value":"Epic"}
+  ]
+}
+```
+
+### Harga & Rilis (Polygon)
+- Common 8–15 POL · Rare 20–40 · Epic 60–120 · Legendary 200+ / lelang
+- **Drip release bertahap**: jangan list 200 sekaligus. Batch ~20–30/minggu biar ada momentum & FOMO.
+
+### Situs Showcase (React + TS + FastAPI + MongoDB)
+- Hero: logo HYPEBLOCK + tagline + tombol "View on Rarible"
+- Galeri 200 gremlin + filter by trait + rarity ranking
+- Halaman detail per NFT (gambar, traits, tier, link beli)
+- Roadmap + FAQ
+- **Waitlist email capture** (disimpan di MongoDB) → solusi utama karena audiens = 0
+- Backend FastAPI: endpoint katalog NFT, filter/rarity, submit waitlist
+
+### Implementasi (fase)
+1. **Aset:** kunci base gremlin → generate 200 kombinasi trait konsisten → QA buang yang jelek
+2. **Data:** rakit 200 metadata JSON + hitung rarity score + upload ke IPFS
+3. **Web:** bangun situs showcase + waitlist (React/FastAPI/MongoDB)
+4. **Listing:** lazy-mint 200 di Rarible (Single/ERC-721, Free minting), set harga + royalty
+5. **Go-to-market:** akun X/IG/Discord + konten harian (lihat bank teks di bawah), drip release
+
+### Strategi Konten X (anti-flag "inauthentic")
+- Warm-up 1–2 minggu tanpa jualan; variasikan kalimat (jangan copy-paste); link di reply, bukan di post utama; maks 1–2 hashtag; jangan mass-follow.
+- Contoh post (variasikan terus):
+  - "Gue lagi gambar 200 gremlin jalanan, satu-satu tiap malam. Ini yang paling ngeselin mukanya 😭 [gambar]"
+  - "Tiap gremlin punya attitude beda. Yang mana lo banget? [4 gambar]"
+  - "Baru drop 20 gremlin pertama di Rarible (Polygon, murah). Bukan buat cepat kaya — buat yang demen art nyeleneh. Link di reply 👇"
+
+### Ekspektasi Jujur
+- Tanpa audiens, penjualan awal tetap berat — Fase 5 (konten + komunitas) itu 80% penentu, bukan artnya.
+- Konsistensi graffiti = risiko utama; sudah dimitigasi dengan mengunci 1 base maskot.
+- Kalau mau naik level nanti: tambah soft-utility gratis (wallpaper pack, Discord role holder, lore mini-comic).
+
+### Yang Perlu Kamu Siapkan
+- Wallet (MetaMask) + sedikit POL untuk verifikasi/aktivitas Rarible
+- Handle sosial (nama akun X/IG/Discord) untuk HYPEBLOCK
+- Konfirmasi harga awal & jumlah batch pertama (saran: 20)

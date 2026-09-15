@@ -29,12 +29,28 @@ ADMIN_KEY = os.environ.get('ADMIN_KEY', 'hypeblock2026')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
 BATCH_SIZE = 20
 LAUNCH_DATE = datetime(2026, 6, 16, tzinfo=timezone.utc)
-COLLECTION_VERSION = "v7"
+COLLECTION_VERSION = "v8"
 
 try:
     COLLECTION_SIZE = len(json.loads((ROOT_DIR / "merged_collection.json").read_text()))
 except Exception:
     COLLECTION_SIZE = 296
+
+TRAIT_KEYS = ("Gender", "Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Background", "Accessory")
+
+
+def _trait_signature(traits):
+    return tuple(traits.get(category) for category in TRAIT_KEYS)
+
+
+def _validate_collection(raw):
+    token_ids = [item.get("token_id") for item in raw]
+    names = [item.get("name") for item in raw]
+    signatures = [_trait_signature(item.get("traits", {})) for item in raw]
+    for label, values in (("token IDs", token_ids), ("names", names), ("trait combinations", signatures)):
+        if len(values) != len(set(values)):
+            raise RuntimeError(f"Collection contains duplicate {label}; refusing to seed")
+    return raw
 
 
 def _public_base():
@@ -208,7 +224,7 @@ def build_prompt(t, name=None, seed=0):
 
 def generate_collection():
     data_file = ROOT_DIR / "merged_collection.json"
-    raw = json.loads(data_file.read_text())
+    raw = _validate_collection(json.loads(data_file.read_text()))
     N = len(raw)
     items = []
     for c in raw:
