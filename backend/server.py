@@ -2,7 +2,7 @@ from fastapi import FastAPI, APIRouter, HTTPException, Query
 from fastapi.responses import JSONResponse, FileResponse, Response, StreamingResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
-from motor.motor_asyncio import AsyncIOMotorClient
+import asyncio
 import os
 import json
 import logging
@@ -79,7 +79,9 @@ class _MemoryCursor:
     def __init__(self, documents, projection=None):
         self.documents = [_project_doc(doc, projection) for doc in documents]
 
-    def sort(self, ordering):
+    def sort(self, ordering, direction=None):
+        if direction is not None:
+            ordering = [(ordering, direction)]
         for field, direction in reversed(ordering):
             self.documents.sort(
                 key=lambda doc: (_nested_value(doc, field) is None, _nested_value(doc, field)),
@@ -144,17 +146,120 @@ class _MemoryCollection:
                 return
 
 
-class _MemoryDatabase:
-    def __init__(self):
-        self.meta = _MemoryCollection()
-        self.nfts = _MemoryCollection()
-        self.waitlist = _MemoryCollection()
+class _JsonCollection:
+    """Small async collection adapter backed by one atomic JSON file."""
+
+    def __init__(self, database, name):
+        self.database = database
+        self.name = name
+
+    @property
+    def documents(self):
+        return self.database.state[self.name]
+
+    async def find_one(self, query, projection=None):
+        for document in self.documents:
+            if _matches_query(document, query):
+                return _project_doc(document, projection)
+        return None
+
+    def find(self, query=None, projection=None):
+        query = query or {}
+        return _MemoryCursor(
+            [document for document in self.documents if _matches_query(document, query)],
+            projection,
+        )
+
+    async def count_documents(self, query):
+        return sum(1 for document in self.documents if _matches_query(document, query))
+
+    async def delete_many(self, query):
+        async with self.database.lock:
+            self.database.state[self.name] = [
+                document for document in self.documents if not _matches_query(document, query)
+            ]
+            await self.database.save()
+
+    async def insert_many(self, documents):
+        async with self.database.lock:
+            self.documents.extend(dict(document) for document in documents)
+            await self.database.save()
+
+    async def insert_one(self, document):
+        async with self.database.lock:
+            self.documents.append(dict(document))
+            await self.database.save()
+
+    async def replace_one(self, query, replacement, upsert=False):
+        async with self.database.lock:
+            for index, document in enumerate(self.documents):
+                if _matches_query(document, query):
+                    self.documents[index] = dict(replacement)
+                    await self.database.save()
+                    return
+            if upsert:
+                self.documents.append(dict(replacement))
+                await self.database.save()
+
+    async def update_one(self, query, update):
+        async with self.database.lock:
+            for document in self.documents:
+                if _matches_query(document, query):
+                    for key, value in update.get("$set", {}).items():
+                        document[key] = value
+                    await self.database.save()
+                    return
+
+    async def delete_one(self, query):
+        async with self.database.lock:
+            for index, document in enumerate(self.documents):
+                if _matches_query(document, query):
+                    del self.documents[index]
+                    await self.database.save()
+                    return
 
 
-mongo_url = os.environ.get("MONGO_URL")
-client = AsyncIOMotorClient(mongo_url) if mongo_url else None
-db = client[os.environ["DB_NAME"]] if client else _MemoryDatabase()
-DEMO_MODE = client is None
+class _JsonDatabase:
+    """Persistent replacement for MongoDB for traditional hosting."""
+
+    def __init__(self, path):
+        self.path = Path(path)
+        self.lock = asyncio.Lock()
+        self.state = {"meta": [], "nfts": [], "waitlist": []}
+        self._load()
+        self.meta = _JsonCollection(self, "meta")
+        self.nfts = _JsonCollection(self, "nfts")
+        self.waitlist = _JsonCollection(self, "waitlist")
+
+    def _load(self):
+        if not self.path.exists():
+            return
+        try:
+            raw = json.loads(self.path.read_text(encoding="utf-8"))
+            if isinstance(raw, dict):
+                for name in self.state:
+                    if isinstance(raw.get(name), list):
+                        self.state[name] = raw[name]
+        except (OSError, json.JSONDecodeError) as exc:
+            raise RuntimeError(f"Cannot read local data store {self.path}: {exc}") from exc
+
+    async def save(self):
+        self.path.parent.mkdir(parents=True, exist_ok=True)
+        temporary = self.path.with_suffix(self.path.suffix + ".tmp")
+        temporary.write_text(
+            json.dumps(self.state, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+        temporary.replace(self.path)
+
+    async def close(self):
+        async with self.lock:
+            await self.save()
+
+
+DATA_DIR = Path(os.environ.get("HYPEBLOCK_DATA_DIR", ROOT_DIR / "data"))
+DATA_FILE = Path(os.environ.get("HYPEBLOCK_DATA_FILE", DATA_DIR / "store.json"))
+db = _JsonDatabase(DATA_FILE)
 
 ADMIN_KEY = os.environ.get('ADMIN_KEY', 'hypeblock2026')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
@@ -211,6 +316,14 @@ api_router = APIRouter(prefix="/api")
 # Fallback image library (used until a per-token render exists)
 # ---------------------------------------------------------------------------
 BASE = "https://static.prod-images.emergentagent.com/jobs/5805fef9-3e3d-44d7-9d0a-cc7916d51f1d/images/"
+FALLBACK_ASSETS_DIR = ROOT_DIR / "fallback_assets"
+
+
+def _fallback_asset_url(asset_key):
+    """Use a same-host asset URL so renders work without third-party storage."""
+    return f"/api/assets/{asset_key}.jpeg"
+
+
 IMG = {
     "green_beanie": BASE + "de2465864aefac69c38f99e0c8719e2c190ef17a3f67c4052e2afd8cfee6866e.jpeg",
     "green_vr": BASE + "9e0a66744be295415aa6405906e62b17c158e914ecac15719294c850415975c7.jpeg",
@@ -267,9 +380,9 @@ MYTHIC_SPECS = [
 
 def _fallback_image(skin, tier, gender, rng):
     if skin == "Gold":
-        return IMG["gold_crown_laser"]
+        return _fallback_asset_url("gold_crown_laser")
     if skin == "Diamond":
-        return IMG["diamond_halo_flame"]
+        return _fallback_asset_url("diamond_halo_flame")
     pool = list(SKIN_IMAGES[skin])
     if tier == "Epic" and skin in EPIC_IMAGES:
         pool = EPIC_IMAGES[skin] * 2 + pool
@@ -281,7 +394,7 @@ def _fallback_image(skin, tier, gender, rng):
         male = [k for k in pool if k not in FEMALE_IMAGES]
         if male:
             pool = male
-    return IMG[rng.choice(pool)]
+    return _fallback_asset_url(rng.choice(pool))
 
 
 # ---------------------------------------------------------------------------
@@ -622,6 +735,19 @@ async def metadata_export():
 GENERATED_DIR = ROOT_DIR / "generated"
 
 
+@api_router.get("/assets/{asset_name}")
+async def local_asset(asset_name: str):
+    """Serve checked-in/downloaded fallback art from this hosting account."""
+    safe_name = Path(asset_name).name
+    if safe_name != asset_name or not safe_name.endswith(".jpeg"):
+        raise HTTPException(status_code=404, detail="Asset not found")
+    asset = FALLBACK_ASSETS_DIR / safe_name
+    if not asset.is_file():
+        raise HTTPException(status_code=404, detail="Asset not found")
+    return FileResponse(str(asset), media_type="image/jpeg",
+                        headers={"Cache-Control": "public, max-age=31536000, immutable"})
+
+
 def _fallback_svg(token_id, record):
     """Build a unique, cacheable SVG composite for tokens without uploaded art.
 
@@ -806,5 +932,4 @@ app.add_middleware(CORSMiddleware, allow_credentials=True,
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    if client:
-        client.close()
+    await db.close()

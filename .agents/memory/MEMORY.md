@@ -1,0 +1,1 @@
+- [File-backed hosting storage](file-storage-migration.md) — HYPEBLOCK runs without MongoDB; persistent JSON data and local artwork are required for traditional hosting.
