@@ -26,6 +26,25 @@ serve `frontend/build` through the host's web server. Configure the web server
 to proxy `/api` to the FastAPI process, or set `REACT_APP_BACKEND_URL` before
 building when frontend and backend use different domains.
 
+### Admin on traditional hosting
+
+The admin page is already included in the frontend at `/admin`. The included
+`frontend/public/.htaccess` keeps that route working after a browser refresh on
+Apache/cPanel hosting. For Nginx, use `try_files $uri /index.html` for the
+frontend site instead.
+
+Copy `backend/.env.example` to `backend/.env` on the server and set a private
+`ADMIN_KEY`, `APP_URL`, and `CORS_ORIGINS`. If the API is on a separate
+subdomain, copy `frontend/.env.example` to `frontend/.env`, set
+`REACT_APP_BACKEND_URL` to the API URL, and rebuild the frontend. Then open:
+
+```text
+https://your-frontend-domain.com/admin
+```
+
+There is no username; the page uses the `ADMIN_KEY` value. Never commit the
+real `.env` files or expose the admin key in frontend code.
+
 ## Replit preview
 
 The `HYPEBLOCK Preview` workflow starts the FastAPI backend and React

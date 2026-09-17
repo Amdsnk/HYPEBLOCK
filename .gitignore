@@ -35,6 +35,11 @@ dist
 
 # Environment files (comprehensive coverage)
 
+*.env
+.env.*
+!.env.example
+!backend/.env.example
+!frontend/.env.example
 *token.json*
 *credentials.json*
 
@@ -89,3 +94,8 @@ android-sdk/
 credentials.json
 *.key
 .credentials
+
+# Keep safe configuration templates in version control.
+!.env.example
+!backend/.env.example
+!frontend/.env.example
