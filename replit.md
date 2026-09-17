@@ -26,6 +26,11 @@ serve `frontend/build` through the host's web server. Configure the web server
 to proxy `/api` to the FastAPI process, or set `REACT_APP_BACKEND_URL` before
 building when frontend and backend use different domains.
 
+For cPanel/Passenger hosting, use `backend/passenger_wsgi.py` as the startup
+file and install the smaller runtime dependency set from
+`backend/requirements-hosting.txt`. The complete cPanel walkthrough is in
+`deploy/traditional-hosting/README.md`.
+
 ### Admin on traditional hosting
 
 The admin page is already included in the frontend at `/admin`. The included

@@ -1,0 +1,9 @@
+# Minimal runtime dependencies for cPanel/Passenger hosting.
+# The full requirements.txt is intended for development and image-generation
+# tooling; this file keeps a production web app install small and reliable.
+fastapi==0.110.1
+uvicorn==0.25.0
+python-dotenv>=1.0.1
+pydantic>=2.6.4
+email-validator>=2.2.0
+a2wsgi>=1.10.0
