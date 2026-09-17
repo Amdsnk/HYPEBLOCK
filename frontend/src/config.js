@@ -1,4 +1,7 @@
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
+// Keep the preview self-contained: CRA proxies relative /api requests to the
+// local FastAPI service. A deployed environment can still provide an explicit
+// backend URL through REACT_APP_BACKEND_URL.
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || "";
 export const API = `${BACKEND_URL}/api`;
 
 // HYPEBLOCK links — Rarible points to the creator profile/collection on Polygon

@@ -54,6 +54,15 @@ def test_all_items_have_image_url(s):
         assert img.startswith("http") or "/api/render/" in img
 
 
+def test_all_image_urls_are_unique(s):
+    urls = []
+    for page in (1, 2):
+        d = s.get(f"{API}/nfts?limit=200&page={page}", timeout=20).json()
+        urls.extend(item["image"] for item in d["items"])
+    assert len(urls) == TOTAL
+    assert len(set(urls)) == TOTAL
+
+
 # -------- Filters --------
 def test_filter_mythic_returns_three(s):
     r = s.get(f"{API}/nfts?tier=Mythic&limit=50", timeout=15).json()
@@ -143,16 +152,17 @@ def test_render_real_art_ok(s):
     assert r.headers.get("content-type", "").startswith("image/")
 
 
-def test_render_fallback_404(s):
-    # find a token that uses a fallback external image
+def test_render_composite_fallback_ok(s):
+    # Tokens without uploaded art now receive a unique SVG composite.
     for page in (1, 2):
         d = s.get(f"{API}/nfts?limit=200&page={page}", timeout=20).json()
-        fb = next((i for i in d["items"] if "/api/render/" not in i["image"]), None)
+        fb = next((i for i in d["items"] if i["token_id"] in {1, 3, 8, 9}), None)
         if fb:
             r = s.get(f"{API}/render/{fb['token_id']}", timeout=15)
-            assert r.status_code == 404
+            assert r.status_code == 200
+            assert r.headers.get("content-type", "").startswith("image/svg+xml")
             return
-    pytest.skip("no fallback image token found")
+    pytest.fail("no fallback-render token found")
 
 
 # -------- Traits --------

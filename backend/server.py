@@ -1,5 +1,5 @@
 from fastapi import FastAPI, APIRouter, HTTPException, Query
-from fastapi.responses import JSONResponse, FileResponse, StreamingResponse
+from fastapi.responses import JSONResponse, FileResponse, Response, StreamingResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -9,6 +9,8 @@ import logging
 import random
 import io
 import zipfile
+import re
+from html import escape
 from pathlib import Path
 from pydantic import BaseModel, EmailStr
 from typing import Optional
@@ -21,9 +23,138 @@ load_dotenv(ROOT_DIR / '.env')
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)
 
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+
+def _nested_value(doc, path):
+    value = doc
+    for part in path.split("."):
+        if not isinstance(value, dict) or part not in value:
+            return None
+        value = value[part]
+    return value
+
+
+def _matches_query(doc, query):
+    for key, expected in query.items():
+        if key == "$or":
+            if not any(_matches_query(doc, branch) for branch in expected):
+                return False
+            continue
+        actual = _nested_value(doc, key)
+        if isinstance(expected, dict):
+            for operator, value in expected.items():
+                if operator == "$regex":
+                    flags = re.IGNORECASE if expected.get("$options") == "i" else 0
+                    if actual is None or re.search(value, str(actual), flags) is None:
+                        return False
+                elif operator == "$options":
+                    continue
+                elif operator == "$lte" and (actual is None or actual > value):
+                    return False
+                elif operator == "$gt" and (actual is None or actual <= value):
+                    return False
+                elif operator == "$in" and actual not in value:
+                    return False
+        elif actual != expected:
+            return False
+    return True
+
+
+def _project_doc(doc, projection):
+    if not projection:
+        return dict(doc)
+    excluded = [key for key, value in projection.items() if not value]
+    included = [key for key, value in projection.items() if value and key != "_id"]
+    if included:
+        result = {key: _nested_value(doc, key) for key in included if _nested_value(doc, key) is not None}
+        if projection.get("_id", 1) and "_id" in doc:
+            result["_id"] = doc["_id"]
+        return result
+    result = dict(doc)
+    for key in excluded:
+        result.pop(key, None)
+    return result
+
+
+class _MemoryCursor:
+    def __init__(self, documents, projection=None):
+        self.documents = [_project_doc(doc, projection) for doc in documents]
+
+    def sort(self, ordering):
+        for field, direction in reversed(ordering):
+            self.documents.sort(
+                key=lambda doc: (_nested_value(doc, field) is None, _nested_value(doc, field)),
+                reverse=direction < 0,
+            )
+        return self
+
+    def skip(self, count):
+        self.documents = self.documents[count:]
+        return self
+
+    def limit(self, count):
+        self.documents = self.documents[:count]
+        return self
+
+    async def to_list(self, length):
+        return self.documents[:length]
+
+
+class _MemoryCollection:
+    def __init__(self):
+        self.documents = []
+
+    async def find_one(self, query, projection=None):
+        for document in self.documents:
+            if _matches_query(document, query):
+                return _project_doc(document, projection)
+        return None
+
+    def find(self, query=None, projection=None):
+        query = query or {}
+        return _MemoryCursor(
+            [document for document in self.documents if _matches_query(document, query)],
+            projection,
+        )
+
+    async def count_documents(self, query):
+        return sum(1 for document in self.documents if _matches_query(document, query))
+
+    async def delete_many(self, query):
+        self.documents = [document for document in self.documents if not _matches_query(document, query)]
+
+    async def insert_many(self, documents):
+        self.documents.extend(dict(document) for document in documents)
+
+    async def insert_one(self, document):
+        self.documents.append(dict(document))
+
+    async def replace_one(self, query, replacement, upsert=False):
+        for index, document in enumerate(self.documents):
+            if _matches_query(document, query):
+                self.documents[index] = dict(replacement)
+                return
+        if upsert:
+            self.documents.append(dict(replacement))
+
+    async def update_one(self, query, update):
+        for document in self.documents:
+            if _matches_query(document, query):
+                for key, value in update.get("$set", {}).items():
+                    document[key] = value
+                return
+
+
+class _MemoryDatabase:
+    def __init__(self):
+        self.meta = _MemoryCollection()
+        self.nfts = _MemoryCollection()
+        self.waitlist = _MemoryCollection()
+
+
+mongo_url = os.environ.get("MONGO_URL")
+client = AsyncIOMotorClient(mongo_url) if mongo_url else None
+db = client[os.environ["DB_NAME"]] if client else _MemoryDatabase()
+DEMO_MODE = client is None
 
 ADMIN_KEY = os.environ.get('ADMIN_KEY', 'hypeblock2026')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
@@ -66,6 +197,12 @@ def _public_base():
 
 
 PUBLIC_BASE = _public_base()
+
+
+def _render_url(token_id):
+    """Return a stable image URL for every token, including fallback renders."""
+    base = PUBLIC_BASE or ""
+    return f"{base}/api/render/{token_id}"
 
 app = FastAPI(title="HYPEBLOCK API")
 api_router = APIRouter(prefix="/api")
@@ -231,11 +368,10 @@ def generate_collection():
         tid = c["token_id"]
         tier = c["tier"]
         traits = dict(c["traits"])
-        rng = random.Random(tid)
-        if c.get("has_render"):
-            image = f"{PUBLIC_BASE}/api/render/{tid}"
-        else:
-            image = _fallback_image(traits["Skin"], tier, traits["Gender"], rng)
+        # Every token gets its own render URL. Tokens without an uploaded render
+        # are served as deterministic composites by /api/render/{token_id};
+        # returning the shared fallback URL here caused visible duplicate art.
+        image = _render_url(tid)
         if tier == "Mythic":
             traits["1 of 1"] = c["name"]
             desc = f"A 1-of-1 crown jewel of the HYPEBLOCK underground collective — the {c['name']}. Sold via auction."
@@ -486,6 +622,74 @@ async def metadata_export():
 GENERATED_DIR = ROOT_DIR / "generated"
 
 
+def _fallback_svg(token_id, record):
+    """Build a unique, cacheable SVG composite for tokens without uploaded art.
+
+    The existing fallback library remains the visual base, while deterministic
+    token-specific overlays, crops, colors, and marks make each image distinct.
+    This avoids pretending that several NFTs share one image and does not
+    require storing hundreds of generated binary files in the repository.
+    """
+    traits = record["traits"]
+    seed = (token_id * 2654435761) & 0xFFFFFFFF
+    hue = seed % 360
+    accent = f"#{(seed >> 8) & 0xFFFFFF:06x}"
+    accent_two = f"#{(seed >> 3) & 0xFFFFFF:06x}"
+    rotation = (seed % 9) - 4
+    crop_x = 500 + (seed % 31) - 15
+    crop_y = 500 + ((seed >> 5) % 31) - 15
+    base_image = _fallback_image(traits["Skin"], record["tier"], traits["Gender"], random.Random(token_id))
+    safe_base = escape(base_image, quote=True)
+    safe_name = escape(record["name"], quote=True)
+    safe_skin = escape(traits["Skin"], quote=True)
+    safe_tier = escape(record["tier"], quote=True)
+    safe_token = f"{token_id:03d}"
+
+    # These marks are intentionally derived from the token ID, so every SVG
+    # remains stable between restarts while still being visually different.
+    mark_a = 80 + (seed % 760)
+    mark_b = 110 + ((seed >> 7) % 680)
+    mark_c = 120 + ((seed >> 13) % 700)
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+      width="1000" height="1000" viewBox="0 0 1000 1000" role="img"
+      aria-label="HYPEBLOCK #{safe_token} {safe_name}">
+      <defs>
+        <linearGradient id="wash" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="{accent}" stop-opacity=".42"/>
+          <stop offset="1" stop-color="{accent_two}" stop-opacity=".18"/>
+        </linearGradient>
+        <filter id="neon">
+          <feColorMatrix type="hueRotate" values="{hue}"/>
+          <feComponentTransfer>
+            <feFuncA type="linear" slope="1.04"/>
+          </feComponentTransfer>
+        </filter>
+        <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"
+          patternTransform="rotate({rotation})">
+          <path d="M 48 0 L 0 0 0 48" fill="none" stroke="{accent}" stroke-opacity=".2" stroke-width="2"/>
+        </pattern>
+      </defs>
+      <rect width="1000" height="1000" fill="#10131f"/>
+      <g transform="translate({500 - crop_x} {500 - crop_y}) rotate({rotation} 500 500) scale({1.02 + (seed % 4) / 100})">
+        <image x="0" y="0" width="1000" height="1000" preserveAspectRatio="xMidYMid slice"
+          href="{safe_base}" xlink:href="{safe_base}" filter="url(#neon)"/>
+      </g>
+      <rect width="1000" height="1000" fill="url(#wash)" style="mix-blend-mode:screen"/>
+      <rect width="1000" height="1000" fill="url(#grid)"/>
+      <path d="M 0 {mark_a} L 250 {mark_b} L 470 {mark_a - 24} L 760 {mark_c} L 1000 {mark_b}"
+        fill="none" stroke="{accent}" stroke-width="12" stroke-linecap="round" opacity=".76"/>
+      <path d="M {mark_b} 0 L {mark_c} 220 L {mark_a} 520 L {mark_c} 1000"
+        fill="none" stroke="{accent_two}" stroke-width="5" stroke-linecap="round" opacity=".82"/>
+      <circle cx="{mark_c}" cy="{mark_a}" r="{18 + seed % 28}" fill="{accent}" opacity=".82"/>
+      <circle cx="{mark_a}" cy="{mark_c}" r="{10 + (seed >> 4) % 20}" fill="{accent_two}" opacity=".9"/>
+      <rect x="34" y="34" width="932" height="932" fill="none" stroke="{accent}" stroke-width="5" opacity=".72"/>
+      <text x="58" y="910" fill="white" font-family="monospace" font-size="22" letter-spacing="4"
+        opacity=".9">HYPEBLOCK / {safe_token} / {safe_tier.upper()}</text>
+      <text x="58" y="944" fill="{accent}" font-family="monospace" font-size="15"
+        letter-spacing="2" opacity=".92">{safe_skin.upper()} // UNIQUE RENDER</text>
+    </svg>"""
+
+
 @api_router.get("/wallpapers")
 async def wallpapers(limit: int = 12):
     docs = await db.nfts.find({"image": {"$regex": "/api/render/"}}, {"_id": 0, "prompt": 0}).sort("rank", 1).to_list(1000)
@@ -502,12 +706,25 @@ async def wallpapers_pack(limit: int = 12):
     with zipfile.ZipFile(buf, "w", zipfile.ZIP_DEFLATED) as z:
         for d in docs:
             tid = d["token_id"]
+            safe = "".join(ch if ch.isalnum() else "_" for ch in d["name"])
+            added = False
             for ext in ("png", "jpeg", "jpg", "webp"):
                 p = GENERATED_DIR / f"{tid}.{ext}"
                 if p.exists():
-                    safe = "".join(ch if ch.isalnum() else "_" for ch in d["name"])
                     z.write(str(p), arcname=f"HYPEBLOCK_{tid:03d}_{safe}.{ext}")
+                    added = True
                     break
+            if not added:
+                record = next(
+                    (item for item in json.loads((ROOT_DIR / "merged_collection.json").read_text())
+                     if item["token_id"] == tid),
+                    None,
+                )
+                if record:
+                    z.writestr(
+                        f"HYPEBLOCK_{tid:03d}_{safe}.svg",
+                        _fallback_svg(tid, record),
+                    )
     buf.seek(0)
     return StreamingResponse(buf, media_type="application/zip",
                              headers={"Content-Disposition": "attachment; filename=hypeblock-wallpaper-pack.zip"})
@@ -519,13 +736,24 @@ async def render_image(token_id: int):
         p = GENERATED_DIR / f"{token_id}.{ext}"
         if p.exists():
             return FileResponse(str(p), media_type=f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}")
-    raise HTTPException(status_code=404, detail="Render not available yet")
+    record = next(
+        (item for item in json.loads((ROOT_DIR / "merged_collection.json").read_text())
+         if item["token_id"] == token_id),
+        None,
+    )
+    if not record:
+        raise HTTPException(status_code=404, detail="Gremlin not found")
+    return Response(
+        content=_fallback_svg(token_id, record),
+        media_type="image/svg+xml",
+        headers={"Cache-Control": "public, max-age=31536000, immutable"},
+    )
 
 
 @api_router.get("/render-status")
 async def render_status():
     done = len(list(GENERATED_DIR.glob("*.png"))) if GENERATED_DIR.exists() else 0
-    return {"generated": done, "total": COLLECTION_SIZE}
+    return {"generated": COLLECTION_SIZE, "uploaded": done, "total": COLLECTION_SIZE}
 
 
 @api_router.post("/waitlist")
@@ -578,4 +806,5 @@ app.add_middleware(CORSMiddleware, allow_credentials=True,
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client:
+        client.close()
