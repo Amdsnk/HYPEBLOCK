@@ -31,6 +31,9 @@ function makeDevServerV5Compatible(devServerConfig) {
     ...compatibleConfig.headers,
     "Cross-Origin-Resource-Policy": "same-origin",
   };
+  // Replit serves the preview through a proxied hostname that is not known
+  // ahead of time to webpack-dev-server.
+  compatibleConfig.allowedHosts = "all";
 
   if (onBeforeSetupMiddleware || setupMiddlewares) {
     compatibleConfig.setupMiddlewares = (middlewares, devServer) => {
