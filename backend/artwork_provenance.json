@@ -1,0 +1,19 @@
+{
+  "3": {
+    "created_at": "2026-10-02",
+    "method": "OpenAI built-in image generation",
+    "reference": "generated/10.jpeg (style only)",
+    "state": "candidate",
+    "visual_check": {
+      "Skin": "Albino pale white",
+      "Eyes": "Mischief, two uncovered eyes",
+      "Headwear": "Snapback",
+      "Mouth": "Bubblegum",
+      "Outfit": "Leather jacket",
+      "Background": "Deep Purple",
+      "Accessory": "Silver Chain",
+      "Gender": "Male character requested; stylized presentation"
+    },
+    "creator_approved": false
+  }
+}
