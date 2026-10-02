@@ -57,9 +57,9 @@ export default function NftDetail() {
             <div className="relative rounded-[24px] overflow-hidden border border-[#252A3E]">
               <img data-testid="nft-detail-image" src={nft.image} alt={nft.title} className="w-full aspect-square object-cover" />
             </div>
+          <p className="relative mt-4 text-sm text-slate-400">{nft.artwork_state === "canonical" ? "Artwork approved. Marketplace availability is announced separately." : nft.artwork_state === "candidate" ? "Artwork under review. This character is not yet approved for mint." : "Concept preview. Final artwork is still in production."}</p>
           </div>
 
-          <p className="lg:col-span-2 text-sm text-slate-400">{nft.artwork_state === "canonical" ? "Artwork approved. Marketplace availability is announced separately." : nft.artwork_state === "candidate" ? "Artwork under review. This character is not yet approved for mint." : "Concept preview. Final artwork is still in production."}</p>
           {/* Info */}
           <div>
             <div className="flex items-center gap-3">
