@@ -1,1 +1,51 @@
-# Here are your Instructions
+# HYPEBLOCK
+
+Grim Genesis character universe: React gallery, rarity explorer, trait lab, lore, perks, waitlist and private artwork studio. Existing character traits, tiers, levels and token IDs are preserved.
+
+## Website
+
+Production URL: https://hypeblock-production.up.railway.app
+
+Admin URL: https://hypeblock-production.up.railway.app/admin
+
+The administrator key is the private `ADMIN_KEY` variable in the HYPEBLOCK Railway service. Open Railway Variables to reveal it; do not put it into source code or a frontend environment variable.
+
+## Deployment
+
+Use Railway with the root Dockerfile, one replica and a `/data` volume. React and FastAPI share one origin. See [deployment instructions](deploy/RAILWAY.md). No MongoDB or Emergent subscription is required for the running website.
+
+## Artwork and release
+
+296 token identities and unique core trait combinations. 131 image files are candidates for review; 165 token records still use concept previews. Final approved status requires a human check of each image against its traits. The website is a showcase and preparation tool; it does not contain a deployed mint contract or a verified marketplace collection.
+
+In `/admin`, upload final artwork, review traits, approve it and select approved characters for release. Download the selected images, pin the image folder to IPFS, enter its real CID, then export the final metadata and hash manifest. Replacing artwork invalidates its approval. Exact duplicate uploads and unapproved release exports are rejected.
+
+Audit details: [collection audit](backend/collection_audit.json), [Genesis manifest](COLLECTION_MANIFEST.md), [current plan](HYPEBLOCK_PLAN.md).
+
+## Local development
+
+```bash
+python -m venv .venv
+.venv/bin/pip install -r backend/requirements-hosting.txt
+ADMIN_KEY=your-private-key .venv/bin/uvicorn backend.server:app --host 0.0.0.0 --port 8000
+```
+
+In another terminal:
+
+```bash
+cd frontend
+npm ci --legacy-peer-deps --ignore-scripts
+npm start
+```
+
+For production, run `npm run build` in `frontend` before starting FastAPI. The server automatically serves the production build, including SPA routes.
+
+## Verification
+
+```bash
+.venv/bin/pip install -r backend/requirements-test.txt
+PYTHONPATH=. ADMIN_KEY=your-private-key .venv/bin/pytest backend/tests -q
+python backend/audit_collection.py
+```
+
+The API tests use `http://127.0.0.1:8000` by default; use `REACT_APP_BACKEND_URL` for a separate test deployment. Use a temporary data file when testing mutable endpoints. Artwork tests use an isolated temporary store and do not approve production assets.

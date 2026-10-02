@@ -32,6 +32,7 @@ export default function NftCard({ nft }) {
           loading="lazy"
           className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-105 ${locked ? "blur-[6px] scale-105 opacity-60" : ""}`}
         />
+        {nft.artwork_state === "placeholder" && <span className="absolute bottom-2 right-2 rounded-md bg-black/80 px-2 py-1 text-[10px] text-slate-200">Concept preview</span>}
         {locked && (
           <div className="absolute inset-0 grid place-items-center bg-black/45">
             <div className="text-center">

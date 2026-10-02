@@ -823,7 +823,7 @@ def _fallback_svg(token_id, record):
       <text x="58" y="910" fill="white" font-family="monospace" font-size="22" letter-spacing="4"
         opacity=".9">HYPEBLOCK / {safe_token} / {safe_tier.upper()}</text>
       <text x="58" y="944" fill="{accent}" font-family="monospace" font-size="15"
-        letter-spacing="2" opacity=".92">{safe_skin.upper()} // UNIQUE RENDER</text>
+        letter-spacing="2" opacity=".92">{safe_skin.upper()} // CONCEPT PREVIEW</text>
     </svg>"""
 
 
