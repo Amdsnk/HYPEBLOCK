@@ -64,7 +64,7 @@ class ArtworkManager:
         return {"review_notes": issues, "token_id": doc["token_id"], "name": doc["name"], "tier": doc["tier"],
                 "traits": doc["traits"], "artwork_state": "canonical" if approved else "candidate" if p else "placeholder",
                 "sha256": sha, "approved_at": review.get("approved_at") if approved else None,
-                "image": f"/api/render/{doc['token_id']}" + (f"?v={sha[:12]}" if sha else "")}
+                "image": f"/api/render/{doc['token_id']}" + (f"?v={sha[:12]}" if sha else "?v=concept-2")}
 
     async def save(self, token_id, values):
         async with self.db.lock:

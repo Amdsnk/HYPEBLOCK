@@ -6,6 +6,8 @@ if __package__:
     from .artwork import ArtworkManager
 else:
     from artwork import ArtworkManager
+from functools import lru_cache
+from PIL import Image
 import base64
 import secrets
 import asyncio
@@ -760,6 +762,19 @@ async def local_asset(asset_name: str):
                         headers={"Cache-Control": "public, max-age=31536000, immutable"})
 
 
+@lru_cache(maxsize=32)
+def _embedded_preview_asset(name):
+    path = FALLBACK_ASSETS_DIR / name
+    if not path.is_file():
+        return None
+    with Image.open(path) as source:
+        image = source.convert("RGB")
+        image.thumbnail((1000, 1000), Image.Resampling.LANCZOS)
+        buf = io.BytesIO()
+        image.save(buf, format="JPEG", quality=82, optimize=True)
+    return "data:image/jpeg;base64," + base64.b64encode(buf.getvalue()).decode("ascii")
+
+
 def _fallback_svg(token_id, record):
     """Build a unique, cacheable SVG composite for tokens without uploaded art.
 
@@ -777,9 +792,7 @@ def _fallback_svg(token_id, record):
     crop_x = 500 + (seed % 31) - 15
     crop_y = 500 + ((seed >> 5) % 31) - 15
     base_image = _fallback_image(traits["Skin"], record["tier"], traits["Gender"], random.Random(token_id))
-    base_path = FALLBACK_ASSETS_DIR / Path(base_image).name
-    if base_path.is_file():
-        base_image = "data:image/jpeg;base64," + base64.b64encode(base_path.read_bytes()).decode("ascii")
+    base_image = _embedded_preview_asset(Path(base_image).name) or base_image
     safe_base = escape(base_image, quote=True)
     safe_name = escape(record["name"], quote=True)
     safe_skin = escape(traits["Skin"], quote=True)
@@ -813,7 +826,7 @@ def _fallback_svg(token_id, record):
       <rect width="1000" height="1000" fill="#10131f"/>
       <g transform="translate({500 - crop_x} {500 - crop_y}) rotate({rotation} 500 500) scale({1.02 + (seed % 4) / 100})">
         <image x="0" y="0" width="1000" height="1000" preserveAspectRatio="xMidYMid slice"
-          href="{safe_base}" xlink:href="{safe_base}" filter="url(#neon)"/>
+          href="{safe_base}" filter="url(#neon)"/>
       </g>
       <rect width="1000" height="1000" fill="url(#wash)" style="mix-blend-mode:screen"/>
       <rect width="1000" height="1000" fill="url(#grid)"/>
