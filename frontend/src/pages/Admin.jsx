@@ -15,7 +15,7 @@ export default function Admin() {
   const load = async (k) => {
     setLoading(true);
     try {
-      const r = await axios.get(`${API}/admin/waitlist`, { params: { key: k } });
+      const r = await axios.get(`${API}/admin/waitlist`, { headers: { "X-Admin-Key": k } });
       setEntries(r.data.entries);
       setAuthed(true);
     } catch (e) {
@@ -29,13 +29,13 @@ export default function Admin() {
   const submit = (e) => { e.preventDefault(); load(key); };
 
   const markContacted = async (id) => {
-    await axios.post(`${API}/admin/waitlist/${id}/contacted`, null, { params: { key } });
+    await axios.post(`${API}/admin/waitlist/${id}/contacted`, null, { headers: { "X-Admin-Key": key } });
     setEntries((es) => es.map((x) => (x.id === id ? { ...x, contacted: true } : x)));
     toast.success("Marked as contacted");
   };
 
   const del = async (id) => {
-    await axios.delete(`${API}/admin/waitlist/${id}`, { params: { key } });
+    await axios.delete(`${API}/admin/waitlist/${id}`, { headers: { "X-Admin-Key": key } });
     setEntries((es) => es.filter((x) => x.id !== id));
     toast.success("Entry deleted");
   };

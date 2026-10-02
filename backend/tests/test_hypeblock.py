@@ -3,10 +3,10 @@ import uuid
 import pytest
 import requests
 
-BASE_URL = os.environ.get("REACT_APP_BACKEND_URL") or open("/app/frontend/.env").read().split("REACT_APP_BACKEND_URL=")[1].split()[0]
+BASE_URL = os.environ.get("REACT_APP_BACKEND_URL", "http://127.0.0.1:8000")
 BASE_URL = BASE_URL.rstrip("/")
 API = f"{BASE_URL}/api"
-ADMIN_KEY = "hypeblock2026"
+ADMIN_KEY = os.environ.get("ADMIN_KEY", "test-admin-key")
 
 TOTAL = 296
 EXPECTED_TIERS = {"Common": 170, "Rare": 74, "Epic": 37, "Legendary": 12, "Mythic": 3}
@@ -217,16 +217,16 @@ def test_waitlist_duplicate(s, waitlist_email):
 
 # -------- Admin --------
 def test_admin_wrong_key(s):
-    r = s.get(f"{API}/admin/waitlist?key=wrong")
+    r = s.get(f"{API}/admin/waitlist", headers={"X-Admin-Key": "wrong"})
     assert r.status_code == 401
 
 
 def test_admin_flow(s, waitlist_email):
-    r = s.get(f"{API}/admin/waitlist?key={ADMIN_KEY}")
+    r = s.get(f"{API}/admin/waitlist", headers={"X-Admin-Key": ADMIN_KEY})
     assert r.status_code == 200
     entries = r.json()["entries"]
     entry = next((e for e in entries if e["email"] == waitlist_email), None)
     assert entry is not None
     eid = entry["id"]
-    r4 = s.delete(f"{API}/admin/waitlist/{eid}?key={ADMIN_KEY}")
+    r4 = s.delete(f"{API}/admin/waitlist/{eid}", headers={"X-Admin-Key": ADMIN_KEY})
     assert r4.status_code == 200

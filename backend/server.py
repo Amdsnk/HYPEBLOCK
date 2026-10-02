@@ -1,7 +1,8 @@
-from fastapi import FastAPI, APIRouter, HTTPException, Query
+from fastapi import FastAPI, APIRouter, HTTPException, Query, Header
 from fastapi.responses import JSONResponse, FileResponse, Response, StreamingResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
+import secrets
 import asyncio
 import os
 import json
@@ -261,7 +262,7 @@ DATA_DIR = Path(os.environ.get("HYPEBLOCK_DATA_DIR", ROOT_DIR / "data"))
 DATA_FILE = Path(os.environ.get("HYPEBLOCK_DATA_FILE", DATA_DIR / "store.json"))
 db = _JsonDatabase(DATA_FILE)
 
-ADMIN_KEY = os.environ.get('ADMIN_KEY', 'hypeblock2026')
+ADMIN_KEY = os.environ.get('ADMIN_KEY', '')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
 BATCH_SIZE = 20
 LAUNCH_DATE = datetime(2026, 6, 16, tzinfo=timezone.utc)
@@ -712,7 +713,7 @@ def _opensea_meta(doc):
         "name": doc["title"],
         "description": doc["description"],
         "image": doc["image"],
-        "external_url": f"https://hypeblock.xyz/gremlin/{doc['token_id']}",
+        "external_url": f"{PUBLIC_BASE}/gremlin/{doc['token_id']}",
         "attributes": attrs,
     }
 
@@ -899,27 +900,27 @@ async def waitlist_count():
 
 
 def _check_admin(key: str):
-    if key != ADMIN_KEY:
+    if not ADMIN_KEY or not secrets.compare_digest(key, ADMIN_KEY):
         raise HTTPException(status_code=401, detail="Invalid admin key")
 
 
 @api_router.get("/admin/waitlist")
-async def admin_waitlist(key: str = Query(...)):
-    _check_admin(key)
+async def admin_waitlist(x_admin_key: str = Header(default="")):
+    _check_admin(x_admin_key)
     entries = await db.waitlist.find({}, {"_id": 0}).sort("created_at", -1).to_list(5000)
     return {"count": len(entries), "entries": entries}
 
 
 @api_router.post("/admin/waitlist/{entry_id}/contacted")
-async def admin_mark_contacted(entry_id: str, key: str = Query(...)):
-    _check_admin(key)
+async def admin_mark_contacted(entry_id: str, x_admin_key: str = Header(default="")):
+    _check_admin(x_admin_key)
     await db.waitlist.update_one({"id": entry_id}, {"$set": {"contacted": True}})
     return {"ok": True}
 
 
 @api_router.delete("/admin/waitlist/{entry_id}")
-async def admin_delete(entry_id: str, key: str = Query(...)):
-    _check_admin(key)
+async def admin_delete(entry_id: str, x_admin_key: str = Header(default="")):
+    _check_admin(x_admin_key)
     await db.waitlist.delete_one({"id": entry_id})
     return {"ok": True}
 
@@ -933,3 +934,23 @@ app.add_middleware(CORSMiddleware, allow_credentials=True,
 @app.on_event("shutdown")
 async def shutdown_db_client():
     await db.close()
+
+# Serve the production React build on the same origin as the API.
+FRONTEND_BUILD = ROOT_DIR.parent / "frontend" / "build"
+
+@app.get("/healthz")
+async def healthcheck():
+    return {"ok": True, "collection_size": await db.nfts.count_documents({})}
+
+if FRONTEND_BUILD.is_dir():
+    from fastapi.staticfiles import StaticFiles
+    app.mount("/static", StaticFiles(directory=FRONTEND_BUILD / "static"), name="static")
+
+    @app.get("/{path:path}")
+    async def frontend_page(path: str):
+        if path == "api" or path.startswith("api/"):
+            raise HTTPException(status_code=404, detail="API endpoint not found")
+        candidate = (FRONTEND_BUILD / path).resolve()
+        if candidate.is_relative_to(FRONTEND_BUILD.resolve()) and candidate.is_file():
+            return FileResponse(candidate)
+        return FileResponse(FRONTEND_BUILD / "index.html")

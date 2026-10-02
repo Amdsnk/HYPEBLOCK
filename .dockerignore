@@ -1,0 +1,9 @@
+.git
+**/node_modules
+**/build
+**/__pycache__
+**/.env
+backend/data
+attached_assets
+.agents
+.emergent

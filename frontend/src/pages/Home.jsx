@@ -28,7 +28,7 @@ const TIER_INFO = [
 
 const FAQS = [
   { q: "What is HYPEBLOCK Graffiti Gremlins?", a: "A collection of 296 original 'graffiti gremlin' PFP mascots — bold, edgy, streetwear, neon spray-paint style. Every gremlin is a unique 1-of-1 artwork, with traits & rarity like top PFP collections, but 100% original mascots (gremlins, not apes)." },
-  { q: "How big is the collection and where is it listed?", a: "296 unique items total (HYPEBLOCK #001–#296). Listed on Rarible on the Polygon network as ERC-721 (Single / 1-of-1) with free lazy minting — the buyer pays gas at purchase." },
+  { q: "How big is the collection and where is it listed?", a: "296 character records (HYPEBLOCK #001–#296). Genesis is currently in artwork review. Marketplace listings and mint details will be announced after the final artwork and metadata are approved." },
   { q: "Why Polygon?", a: "Polygon is cheap and fast. With lazy minting the creator cost is ~0 and buyers only pay a tiny gas fee at purchase. Perfect for an art-only drop." },
   { q: "How are Rarity Score & Tier calculated?", a: "The rarity score is based on how scarce each trait is across the 296 items (the rarer a trait, the higher the score). Tiers: Common, Rare, Epic, Legendary, and 3 Mythic 1-of-1 crown jewels." },
   { q: "How do I join the Gremlin Gang waitlist?", a: "Drop your email (and optional wallet) in the Waitlist form. The waitlist hears about drops and Mythic auctions first." },
@@ -174,7 +174,7 @@ export default function Home() {
         <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-extrabold uppercase text-white mt-2">Roadmap</h2>
         <div className="mt-10 relative border-l-2 border-[#252A3E] ml-3 space-y-10">
           {[
-            { p: "PHASE 1", t: "Tagging the Block", d: "296 unique original gremlin PFPs live, Rarible store on Polygon, lazy mint ready." },
+            { p: "PHASE 1", t: "Tagging the Block", d: "296 Genesis characters available to explore. Final artwork review and marketplace preparation are underway." },
             { p: "PHASE 2", t: "Gremlin Gang Invasion", d: "Waitlist + drip release ~20–30/week, underground Discord gang opens." },
             { p: "PHASE 3", t: "Merch Drip & Spray Cans", d: "Free wallpaper pack, sticker bombs, holder Discord role, mini-comic lore." },
             { p: "PHASE 4", t: "Underground Vault", d: "Community vault, secondary royalty sharing, artist collabs." },
