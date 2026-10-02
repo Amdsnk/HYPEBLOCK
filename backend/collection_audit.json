@@ -1,7 +1,7 @@
 {
   "tokens": 296,
-  "token_art_files": 131,
-  "placeholder_tokens": 165,
+  "token_art_files": 132,
+  "placeholder_tokens": 164,
   "supplied_files": 102,
   "unique_supplied_binary_images": 96,
   "unique_supplied_decoded_images": 96,
@@ -1446,6 +1446,16 @@
       ],
       "matches_supplied_file": false,
       "matches_supplied_pixels": false
+    },
+    {
+      "file": "3.webp",
+      "sha256": "9e92241ae07f6699b0bcff8c6a5f0e433654cf12b8b0fb5a399fea2c09e25858",
+      "dimensions": [
+        1254,
+        1254
+      ],
+      "matches_supplied_file": false,
+      "matches_supplied_pixels": false
     }
   ],
   "similarity_flags": [
@@ -1462,6 +1472,10 @@
     {
       "token_id": 254,
       "issue": "Contact-sheet review: image appears to be a HYPEBLOCK wordmark scene rather than a single character portrait. Review against character traits before approval."
+    },
+    {
+      "token_id": 3,
+      "issue": "New AI-generated candidate, visually checked against eight traits; creator approval required. Generation provenance: backend/artwork_provenance.json."
     }
   ],
   "note": "Similarity flags are heuristic review cues, not proof of duplication. File or pixel uniqueness does not prove visual originality."

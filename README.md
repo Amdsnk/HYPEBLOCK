@@ -16,7 +16,7 @@ Use Railway with the root Dockerfile, one replica and a `/data` volume. React an
 
 ## Artwork and release
 
-296 token identities and unique core trait combinations. 131 image files are candidates for review; 165 token records still use concept previews. Final approved status requires a human check of each image against its traits. The website is a showcase and preparation tool; it does not contain a deployed mint contract or a verified marketplace collection.
+296 token identities and unique core trait combinations. 132 image files are candidates for review; 164 token records still use concept previews. Final approved status requires a human check of each image against its traits. The website is a showcase and preparation tool; it does not contain a deployed mint contract or a verified marketplace collection.
 
 In `/admin`, upload final artwork, review traits, approve it and select approved characters for release. Download the selected images, pin the image folder to IPFS, enter its real CID, then export the final metadata and hash manifest. Replacing artwork invalidates its approval. Exact duplicate uploads and unapproved release exports are rejected.
 
