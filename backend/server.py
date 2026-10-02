@@ -6,6 +6,7 @@ if __package__:
     from .artwork import ArtworkManager
 else:
     from artwork import ArtworkManager
+import base64
 import secrets
 import asyncio
 import os
@@ -776,6 +777,9 @@ def _fallback_svg(token_id, record):
     crop_x = 500 + (seed % 31) - 15
     crop_y = 500 + ((seed >> 5) % 31) - 15
     base_image = _fallback_image(traits["Skin"], record["tier"], traits["Gender"], random.Random(token_id))
+    base_path = FALLBACK_ASSETS_DIR / Path(base_image).name
+    if base_path.is_file():
+        base_image = "data:image/jpeg;base64," + base64.b64encode(base_path.read_bytes()).decode("ascii")
     safe_base = escape(base_image, quote=True)
     safe_name = escape(record["name"], quote=True)
     safe_skin = escape(traits["Skin"], quote=True)

@@ -11,20 +11,20 @@ export default function Footer() {
             <span className="font-display text-lg font-extrabold text-white">HYPEBLOCK</span>
           </div>
           <p className="mt-3 text-sm text-slate-400 max-w-xs leading-relaxed">
-            296 original graffiti gremlin PFPs. Underground collective. Polygon · ERC-721 · Free lazy mint.
+            296 Genesis graffiti gremlin characters. Final artwork in production. Join the underground collective.
           </p>
         </div>
         <div className="font-mono2 text-xs text-slate-500 space-y-2">
-          <p className="text-slate-400 uppercase tracking-[0.2em]">Contract</p>
+          <p className="text-slate-400 uppercase tracking-[0.2em]">Creator</p>
           <p className="break-all">Creator: {CREATOR_WALLET}</p>
-          <p>Network: Polygon (MATIC) · Royalty 5–10%</p>
+          <p>Planned network: Polygon · Mint launch to be announced</p>
         </div>
         <div className="flex md:justify-end items-start gap-3">
           {[
             { icon: Twitter, url: LINKS.twitter, id: "x" },
             { icon: Instagram, url: LINKS.instagram, id: "ig" },
             { icon: MessageCircle, url: LINKS.discord, id: "discord" },
-          ].map(({ icon: Icon, url, id }) => (
+          ].filter((item) => item.url).map(({ icon: Icon, url, id }) => (
             <a
               key={id}
               data-testid={`footer-social-${id}`}

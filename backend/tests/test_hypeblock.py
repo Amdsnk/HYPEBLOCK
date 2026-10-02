@@ -161,6 +161,7 @@ def test_render_composite_fallback_ok(s):
             r = s.get(f"{API}/render/{fb['token_id']}", timeout=15)
             assert r.status_code == 200
             assert r.headers.get("content-type", "").startswith("image/svg+xml")
+            assert "data:image/jpeg;base64," in r.text
             return
     pytest.fail("no fallback-render token found")
 

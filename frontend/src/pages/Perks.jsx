@@ -134,17 +134,17 @@ export default function Perks() {
               </span>
               <h2 className="font-display text-3xl sm:text-4xl font-black uppercase text-white mt-2 leading-none">Claim your Holder role</h2>
               <p className="text-slate-400 text-sm mt-3 leading-relaxed">
-                Owning a HYPEBLOCK gremlin gets you a verified <span className="text-white font-semibold">Holder</span> role
-                in our Discord. It takes under a minute — no gas, no signing anything risky.
+                A <span className="text-white font-semibold">Holder</span> role is planned for the community launch.
+                Join the waitlist for confirmed access details.
               </p>
               <a
                 data-testid="join-discord-btn"
-                href={LINKS.discord}
+                href={LINKS.discord || "/#waitlist"}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-6 inline-flex items-center gap-2 bg-[#5865F2] hover:bg-[#6b77f5] text-white font-head font-bold px-6 py-3.5 rounded-full transition-colors shadow-[0_0_28px_rgba(88,101,242,0.45)]"
               >
-                Join Discord & Verify <ExternalLink size={16} />
+                {LINKS.discord ? "Join Discord" : "Join the waitlist"} <ExternalLink size={16} />
               </a>
             </div>
 

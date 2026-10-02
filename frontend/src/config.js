@@ -7,9 +7,9 @@ export const API = `${BACKEND_URL}/api`;
 // HYPEBLOCK links — Rarible points to the creator profile/collection on Polygon
 export const LINKS = {
   rarible: "https://rarible.com/0x0d7704E370b21DB2Ae66CF6b599b71B819E1BA9c",
-  twitter: "https://x.com/hypeblock",
-  instagram: "https://instagram.com/hypeblock",
-  discord: "https://discord.gg/hypeblock",
+  twitter: process.env.REACT_APP_TWITTER_URL || null,
+  instagram: process.env.REACT_APP_INSTAGRAM_URL || null,
+  discord: process.env.REACT_APP_DISCORD_URL || null,
   polygonScan: "https://polygonscan.com/address/0x0d7704E370b21DB2Ae66CF6b599b71B819E1BA9c",
 };
 

@@ -14,8 +14,8 @@ import RarityBadge from "@/components/RarityBadge";
 import WaitlistForm from "@/components/WaitlistForm";
 
 const TICKER = [
-  "296 ORIGINAL PFP", "POLYGON / MATIC", "ERC-721 SINGLE", "FREE LAZY MINT",
-  "5 RARITY TIERS", "8 TRAIT CATEGORIES", "RARIBLE VERIFIED", "ROYALTY 5–10%",
+  "296 GENESIS CHARACTERS", "GRIM STREET ART", "GENESIS IN PRODUCTION", "ARTWORK REVIEW",
+  "5 RARITY TIERS", "8 TRAIT CATEGORIES", "CHARACTER LORE", "JOIN THE GREMLIN GANG",
 ];
 
 const TIER_INFO = [
@@ -27,9 +27,9 @@ const TIER_INFO = [
 ];
 
 const FAQS = [
-  { q: "What is HYPEBLOCK Graffiti Gremlins?", a: "A collection of 296 original 'graffiti gremlin' PFP mascots — bold, edgy, streetwear, neon spray-paint style. Every gremlin is a unique 1-of-1 artwork, with traits & rarity like top PFP collections, but 100% original mascots (gremlins, not apes)." },
+  { q: "What is HYPEBLOCK Graffiti Gremlins?", a: "A Grim graffiti gremlin character universe: bold streetwear, neon spray-paint, eight core traits and five rarity tiers. Explore 296 Genesis characters while final artwork is completed and reviewed." },
   { q: "How big is the collection and where is it listed?", a: "296 character records (HYPEBLOCK #001–#296). Genesis is currently in artwork review. Marketplace listings and mint details will be announced after the final artwork and metadata are approved." },
-  { q: "Why Polygon?", a: "Polygon is cheap and fast. With lazy minting the creator cost is ~0 and buyers only pay a tiny gas fee at purchase. Perfect for an art-only drop." },
+  { q: "Why Polygon?", a: "Polygon is the planned network. The final marketplace, mint method, fees and royalty settings will be announced when the release is ready." },
   { q: "How are Rarity Score & Tier calculated?", a: "The rarity score is based on how scarce each trait is across the 296 items (the rarer a trait, the higher the score). Tiers: Common, Rare, Epic, Legendary, and 3 Mythic 1-of-1 crown jewels." },
   { q: "How do I join the Gremlin Gang waitlist?", a: "Drop your email (and optional wallet) in the Waitlist form. The waitlist hears about drops and Mythic auctions first." },
 ];
@@ -62,7 +62,7 @@ export default function Home() {
                 Graffiti Gremlin <span className="text-[#FF0055] neon-pink-text">Collective</span>
               </h1>
               <p className="mt-5 text-slate-300 text-base sm:text-lg max-w-xl leading-relaxed">
-                296 original street gremlin mascots. Bold, edgy, neon spray-paint. Rowdy, gang, hype —
+                296 Genesis street gremlin characters. Bold, edgy, neon spray-paint. Rowdy, gang, hype —
                 underground PFP for lovers of offbeat art.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
@@ -177,7 +177,7 @@ export default function Home() {
             { p: "PHASE 1", t: "Tagging the Block", d: "296 Genesis characters available to explore. Final artwork review and marketplace preparation are underway." },
             { p: "PHASE 2", t: "Gremlin Gang Invasion", d: "Waitlist + drip release ~20–30/week, underground Discord gang opens." },
             { p: "PHASE 3", t: "Merch Drip & Spray Cans", d: "Free wallpaper pack, sticker bombs, holder Discord role, mini-comic lore." },
-            { p: "PHASE 4", t: "Underground Vault", d: "Community vault, secondary royalty sharing, artist collabs." },
+            { p: "PHASE 4", t: "Underground Vault", d: "Planned community art projects, character stories and artist collaborations." },
           ].map((ph, i) => (
             <motion.div key={ph.p} initial={{ opacity: 0, x: -12 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: i * 0.05 }}
               className="relative pl-8">
