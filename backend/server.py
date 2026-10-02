@@ -888,7 +888,8 @@ async def wallpapers_pack(limit: int = 12):
 async def render_image(token_id: int):
     p = artwork.path(token_id)
     if p:
-        return FileResponse(p, headers={"Cache-Control": "no-cache"})
+        media_type = {".png": "image/png", ".jpg": "image/jpeg", ".jpeg": "image/jpeg", ".webp": "image/webp"}.get(p.suffix.lower())
+        return FileResponse(p, media_type=media_type, headers={"Cache-Control": "no-cache"})
     record = next(
         (item for item in json.loads((ROOT_DIR / "merged_collection.json").read_text())
          if item["token_id"] == token_id),
