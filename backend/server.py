@@ -2,6 +2,10 @@ from fastapi import FastAPI, APIRouter, HTTPException, Query, Header
 from fastapi.responses import JSONResponse, FileResponse, Response, StreamingResponse
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
+if __package__:
+    from .artwork import ArtworkManager
+else:
+    from artwork import ArtworkManager
 import secrets
 import asyncio
 import os
@@ -261,6 +265,7 @@ class _JsonDatabase:
 DATA_DIR = Path(os.environ.get("HYPEBLOCK_DATA_DIR", ROOT_DIR / "data"))
 DATA_FILE = Path(os.environ.get("HYPEBLOCK_DATA_FILE", DATA_DIR / "store.json"))
 db = _JsonDatabase(DATA_FILE)
+artwork = ArtworkManager(db, ROOT_DIR)
 
 ADMIN_KEY = os.environ.get('ADMIN_KEY', '')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
@@ -651,6 +656,9 @@ async def trait_lab_estimate(payload: TraitLabIn):
 
 
 def _decorate(doc):
+    state = artwork.describe(doc)
+    doc["artwork_state"] = state["artwork_state"]
+    doc["image"] = f"{PUBLIC_BASE}{state['image']}"
     doc["released"] = _released(doc.get("batch", 1))
     doc["unlock_date"] = batch_unlock(doc.get("batch", 1))
     return doc
@@ -676,10 +684,11 @@ async def list_nfts(
     elif availability == "upcoming":
         q["batch"] = {"$gt": RELEASED_BATCHES}
     if search:
-        s = search.strip()
+        raw_search = search.strip()
+        s = re.escape(raw_search)
         conds = [{"name": {"$regex": s, "$options": "i"}}, {"title": {"$regex": s, "$options": "i"}}]
-        if s.lstrip("#").isdigit():
-            conds.append({"token_id": int(s.lstrip("#"))})
+        if raw_search.lstrip("#").isdigit():
+            conds.append({"token_id": int(raw_search.lstrip("#"))})
         q["$or"] = conds
 
     sort_map = {"rank_asc": [("rank", 1)], "score_desc": [("rarity_score", -1)], "id_asc": [("token_id", 1)],
@@ -706,6 +715,7 @@ async def get_nft(token_id: int):
 
 
 def _opensea_meta(doc):
+    doc = _decorate(dict(doc))
     attrs = [{"trait_type": k, "value": v} for k, v in doc["traits"].items()]
     attrs.append({"trait_type": "Rarity", "value": doc["tier"]})
     attrs.append({"trait_type": "Rarity Rank", "value": doc["rank"]})
@@ -859,10 +869,9 @@ async def wallpapers_pack(limit: int = 12):
 
 @api_router.get("/render/{token_id}")
 async def render_image(token_id: int):
-    for ext in ("png", "jpeg", "jpg", "webp"):
-        p = GENERATED_DIR / f"{token_id}.{ext}"
-        if p.exists():
-            return FileResponse(str(p), media_type=f"image/{'jpeg' if ext in ('jpg','jpeg') else ext}")
+    p = artwork.path(token_id)
+    if p:
+        return FileResponse(p, headers={"Cache-Control": "no-cache"})
     record = next(
         (item for item in json.loads((ROOT_DIR / "merged_collection.json").read_text())
          if item["token_id"] == token_id),
@@ -925,6 +934,7 @@ async def admin_delete(entry_id: str, x_admin_key: str = Header(default="")):
     return {"ok": True}
 
 
+api_router.include_router(artwork.router(_check_admin, _opensea_meta))
 app.include_router(api_router)
 app.add_middleware(CORSMiddleware, allow_credentials=True,
                    allow_origins=os.environ.get('CORS_ORIGINS', '*').split(','),

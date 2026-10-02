@@ -59,6 +59,7 @@ export default function NftDetail() {
             </div>
           </div>
 
+          <p className="lg:col-span-2 text-sm text-slate-400">{nft.artwork_state === "canonical" ? "Artwork approved. Marketplace availability is announced separately." : nft.artwork_state === "candidate" ? "Artwork under review. This character is not yet approved for mint." : "Concept preview. Final artwork is still in production."}</p>
           {/* Info */}
           <div>
             <div className="flex items-center gap-3">
@@ -79,13 +80,13 @@ export default function NftDetail() {
               </div>
               <div className="rounded-xl border border-[#252A3E] bg-[#0F111A] p-4">
                 <p className="font-mono2 text-[10px] uppercase tracking-[0.2em] text-slate-500">Price</p>
-                <p className="font-display font-black text-[#CCFF00] text-xl mt-1">{nft.price_pol === 0 ? "Auction" : <>{nft.price_pol}<span className="text-xs"> POL</span></>}</p>
+                <p className="text-xs text-slate-400">Proposed asking price</p><p className="font-display font-black text-[#CCFF00] text-xl mt-1">{nft.price_pol === 0 ? "Auction" : <>{nft.price_pol}<span className="text-xs"> POL</span></>}</p>
               </div>
             </div>
 
             <a data-testid="buy-rarible-btn" href={LINKS.rarible} target="_blank" rel="noreferrer"
               className="mt-6 w-full inline-flex items-center justify-center gap-2 bg-[#FF0055] hover:bg-[#ff2e73] text-white font-head font-bold px-6 py-3.5 rounded-xl transition-colors shadow-[0_0_24px_rgba(255,0,85,0.4)]">
-              Buy on Rarible (Polygon) <ExternalLink size={17} />
+              View creator on Rarible <ExternalLink size={17} />
             </a>
 
             {/* Traits */}

@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "sonner";
 import { Link } from "react-router-dom";
 import { Lock, Download, Trash2, Check, ArrowLeft, RefreshCw } from "lucide-react";
+import ArtworkAdmin from "@/components/ArtworkAdmin";
 import { API } from "@/config";
 
 export default function Admin() {
@@ -58,7 +59,7 @@ export default function Admin() {
       const a = document.createElement("a");
       a.href = url; a.download = "hypeblock-metadata.json"; a.click();
       URL.revokeObjectURL(url);
-      toast.success("Mint Kit metadata JSON downloaded");
+      toast.success("Preview metadata JSON downloaded");
     } catch (e) {
       toast.error("Failed to export metadata");
     }
@@ -94,7 +95,7 @@ export default function Admin() {
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div>
             <Link to="/" className="inline-flex items-center gap-1.5 text-slate-500 text-sm hover:text-white mb-2"><ArrowLeft size={14} /> Back to site</Link>
-            <h1 className="font-display text-3xl font-black text-white uppercase">Waitlist Admin</h1>
+            <h1 className="font-display text-3xl font-black text-white uppercase">HYPEBLOCK Admin</h1>
             <p className="font-mono2 text-sm text-slate-400 mt-1"><span className="text-[#00E5FF] font-bold">{entries.length}</span> total signups</p>
           </div>
           <div className="flex items-center gap-2">
@@ -105,10 +106,12 @@ export default function Admin() {
               <Download size={16} /> Export CSV
             </button>
             <button data-testid="admin-metadata-btn" onClick={downloadMetadata} className="h-11 px-4 rounded-xl bg-[#00E5FF] text-black inline-flex items-center gap-2 font-head font-bold text-sm">
-              <Download size={16} /> Mint Kit JSON
+              <Download size={16} /> Preview metadata JSON
             </button>
           </div>
         </div>
+
+        <ArtworkAdmin adminKey={key} />
 
         <input data-testid="admin-search-input" value={q} onChange={(e) => setQ(e.target.value)} placeholder="Search email / wallet…"
           className="mt-6 w-full max-w-md h-11 rounded-xl bg-[#161926] border border-[#252A3E] px-4 text-white placeholder:text-slate-500 focus:border-[#00E5FF] outline-none" />

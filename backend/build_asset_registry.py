@@ -37,7 +37,7 @@ def main():
             if sha in hashes:
                 raise RuntimeError(f"Exact duplicate artwork: token {tid} and {hashes[sha]}")
             hashes[sha]=tid
-            state="canonical"
+            state="candidate"
             artwork=f"generated/{p.name}"
         else:
             sha=None; state="placeholder"; artwork=None
@@ -49,7 +49,7 @@ def main():
             "artwork_path":artwork,
             "sha256":sha,
             "render_endpoint":f"/api/render/{tid}",
-            "metadata_endpoint":f"/api/metadata/{tid}"
+            "metadata_endpoint":f"/api/nfts/{tid}/metadata"
         })
     OUT.write_text(json.dumps(registry,indent=2),encoding="utf-8")
     canonical=sum(x["artwork_state"]=="canonical" for x in registry)

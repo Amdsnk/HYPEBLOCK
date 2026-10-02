@@ -7,3 +7,4 @@ python-dotenv>=1.0.1
 pydantic>=2.6.4
 email-validator>=2.2.0
 a2wsgi>=1.10.0
+Pillow>=10.4,<13
