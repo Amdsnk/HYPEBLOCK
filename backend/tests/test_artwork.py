@@ -46,7 +46,7 @@ def test_approval_gates_export_and_survives_restart(studio):
     assert uploaded["artwork_state"] == "candidate"
     review = {"sha256": uploaded["sha256"], "approved": True}
     assert client.post("/api/admin/artwork/1/review", json=review, headers=HEADERS).status_code == 422
-    review.update(traits_match=True, original_artwork=True)
+    review.update(traits_match=True, original_artwork=True, art_direction_checked=True)
     assert client.post("/api/admin/artwork/1/review", json=review, headers=HEADERS).json()["artwork_state"] == "canonical"
     restarted = ArtworkManager(_JsonDatabase(db.path), manager.root)
     assert restarted.describe(db.state["nfts"][0])["artwork_state"] == "canonical"

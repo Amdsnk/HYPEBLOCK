@@ -1,21 +1,77 @@
 {
   "3": {
-    "created_at": "2026-10-02",
-    "method": "OpenAI built-in image generation",
-    "reference": "generated/10.jpeg (style only)",
+    "created_at": "2026-10-03",
+    "method": "OpenAI built-in image editing",
     "state": "candidate",
+    "art_direction_version": "two-eyes-brand-v1",
     "visual_check": {
-      "Skin": "Albino pale white",
-      "Eyes": "Mischief, two uncovered eyes",
-      "Headwear": "Snapback",
-      "Mouth": "Bubblegum",
-      "Outfit": "Leather jacket",
-      "Background": "Deep Purple",
-      "Accessory": "Silver Chain",
-      "Gender": "Male character requested; stylized presentation"
+      "eye_count": 2,
+      "HYPEBLOCK_branding": true
     },
     "creator_approved": false,
-    "sha256": "35b2b2ae0efa04e0565c8b855094e8aec943ff1a8506a9c3c7d1d6dc35f0992f",
-    "encoding": "WebP quality 92, original resolution"
+    "sha256": "cd1a343b6f2f7a823afb64c88a80541eff149d0f53dadf461dbe07d2e82864b4"
+  },
+  "135": {
+    "created_at": "2026-10-03",
+    "method": "OpenAI built-in image editing",
+    "state": "candidate",
+    "art_direction_version": "two-eyes-brand-v1",
+    "visual_check": {
+      "eye_count": 2,
+      "HYPEBLOCK_branding": true
+    },
+    "creator_approved": false,
+    "sha256": "006f30a58bed5f8051e9f2cad1580ab8e7b1306edc6b16668f0f6d2c3fa625ab"
+  },
+  "196": {
+    "created_at": "2026-10-03",
+    "method": "OpenAI built-in image editing",
+    "state": "candidate",
+    "art_direction_version": "two-eyes-brand-v1",
+    "visual_check": {
+      "eye_count": 2,
+      "HYPEBLOCK_branding": true
+    },
+    "creator_approved": false,
+    "sha256": "fa1884e0e95cec795614c65151826dad44e3949750d299adc61ace6490bd7ffb"
+  },
+  "197": {
+    "created_at": "2026-10-03",
+    "method": "OpenAI built-in image editing",
+    "state": "candidate",
+    "art_direction_version": "two-eyes-brand-v1",
+    "visual_check": {
+      "eye_count": 2,
+      "HYPEBLOCK_branding": true
+    },
+    "creator_approved": false,
+    "sha256": "2f98ebec1b19c688530bb17306e13553bacb76fd09e1c5212306381a5089f680"
+  },
+  "155": {
+    "created_at": "2026-10-03",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "sha256": "8308b8f0650d199c40ce3598c4fcb07b508489c7122567a116dc65b614df151e",
+    "art_direction_version": "two-eyes-brand-v1",
+    "visual_check": {
+      "eye_count": 2,
+      "branding": "HYPEBLOCK clothing label, no chain; accessory None"
+    }
+  },
+  "178": {
+    "created_at": "2026-10-03",
+    "method": "OpenAI built-in image generation and hoodie correction",
+    "state": "candidate",
+    "creator_approved": false,
+    "sha256": "9602e8f0cbdf136f0068e91cefb79e46073380b2c831b66c1099dd2b927c454a",
+    "art_direction_version": "two-eyes-brand-v1",
+    "visual_check": {
+      "eye_count": 2,
+      "Skin": "Zombie",
+      "Headwear": "Cyber Ponytail",
+      "Outfit": "Hoodie",
+      "Accessory": "Diamond Chain with HYPEBLOCK pendant"
+    }
   }
 }

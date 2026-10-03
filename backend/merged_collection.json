@@ -58,7 +58,7 @@
   "traits": {
    "Gender": "Male",
    "Skin": "Purple Haze",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "Bucket Hat",
    "Mouth": "Cigar",
    "Outfit": "Tracksuit",
@@ -126,7 +126,7 @@
   "traits": {
    "Gender": "Male",
    "Skin": "Classic Green",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "Snapback",
    "Mouth": "Grin",
    "Outfit": "Hoodie",
@@ -1299,7 +1299,7 @@
   "traits": {
    "Gender": "Female",
    "Skin": "Zombie",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "Space-buns",
    "Mouth": "Cigar",
    "Outfit": "Puffer",
@@ -1843,7 +1843,7 @@
   "traits": {
    "Gender": "Male",
    "Skin": "Purple Haze",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "Devil Horns",
    "Mouth": "Bubblegum",
    "Outfit": "Tracksuit",
@@ -2625,7 +2625,7 @@
   "traits": {
    "Gender": "Female",
    "Skin": "Toxic Blue",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "None",
    "Mouth": "Cigar",
    "Outfit": "Bomber",
@@ -3016,7 +3016,7 @@
   "traits": {
    "Gender": "Female",
    "Skin": "Zombie",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "Cyber Ponytail",
    "Mouth": "Grin",
    "Outfit": "Hoodie",
@@ -3288,7 +3288,7 @@
   "traits": {
    "Gender": "Female",
    "Skin": "Zombie",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "None",
    "Mouth": "Bubblegum",
    "Outfit": "Chain-only",
@@ -3344,7 +3344,7 @@
    "Mouth": "Tongue Out",
    "Outfit": "Tracksuit",
    "Background": "Deep Purple",
-   "Accessory": "None"
+   "Accessory": "Diamond Chain"
   },
   "has_render": true
  },
@@ -4478,7 +4478,7 @@
   "traits": {
    "Gender": "Male",
    "Skin": "Purple Haze",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "Bucket Hat",
    "Mouth": "Tongue Out",
    "Outfit": "Leather",
@@ -4818,7 +4818,7 @@
   "traits": {
    "Gender": "Male",
    "Skin": "Toxic Blue",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "Devil Horns",
    "Mouth": "Gold Grillz",
    "Outfit": "Tracksuit",
@@ -4869,7 +4869,7 @@
   "traits": {
    "Gender": "Female",
    "Skin": "Albino",
-   "Eyes": "Cyclops",
+   "Eyes": "Neon Gaze",
    "Headwear": "None",
    "Mouth": "Gold Grillz",
    "Outfit": "Denim",

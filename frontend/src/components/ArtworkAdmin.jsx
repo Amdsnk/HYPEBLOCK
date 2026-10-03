@@ -10,6 +10,7 @@ export default function ArtworkAdmin({ adminKey }) {
   const [page, setPage] = useState(1);
   const [selected, setSelected] = useState(null);
   const [traitsMatch, setTraitsMatch] = useState(false);
+  const [directionChecked, setDirectionChecked] = useState(false);
   const [original, setOriginal] = useState(false);
   const [busy, setBusy] = useState(false);
   const [cid, setCid] = useState("");
@@ -23,7 +24,7 @@ export default function ArtworkAdmin({ adminKey }) {
   const error = (e) => toast.error(e.response?.data?.detail || "Artwork action failed");
   const update = (item) => {
     setItems((all) => all.map((x) => x.token_id === item.token_id ? item : x));
-    setSelected(item); setTraitsMatch(false); setOriginal(false);
+    setSelected(item); setTraitsMatch(false); setOriginal(false); setDirectionChecked(false);
     setRelease((ids) => ids.filter((id) => id !== item.token_id));
   };
   const upload = async (file) => {
@@ -40,7 +41,7 @@ export default function ArtworkAdmin({ adminKey }) {
     setBusy(true);
     try {
       const r = await axios.post(`${API}/admin/artwork/${selected.token_id}/review`, {
-        sha256: selected.sha256, approved, traits_match: traitsMatch, original_artwork: original,
+        sha256: selected.sha256, approved, traits_match: traitsMatch, original_artwork: original, art_direction_checked: directionChecked,
       }, config);
       update(r.data); toast.success(approved ? "Artwork approved" : "Approval removed");
     } catch (e) { error(e); } finally { setBusy(false); }
@@ -74,7 +75,7 @@ export default function ArtworkAdmin({ adminKey }) {
       <button onClick={() => { setFilter("all"); setPage(1); }} className="px-4 text-slate-300">All characters</button>
     </div>
     <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 mt-5">
-      {visible.slice((page - 1) * 12, page * 12).map((item) => <button key={item.token_id} onClick={() => { setSelected(item); setTraitsMatch(false); setOriginal(false); }} className="rounded-2xl bg-[#161926] border border-[#252A3E] overflow-hidden text-left">
+      {visible.slice((page - 1) * 12, page * 12).map((item) => <button key={item.token_id} onClick={() => { setSelected(item); setTraitsMatch(false); setOriginal(false); setDirectionChecked(false); }} className="rounded-2xl bg-[#161926] border border-[#252A3E] overflow-hidden text-left">
         <img src={`${API.replace(/\/api$/, "")}${item.image}`} alt={item.name} className="w-full aspect-square object-cover" loading="lazy" />
         <div className="p-3"><p className="font-bold">#{item.token_id} {item.name}</p><p className="text-xs text-slate-400 mt-1">{item.tier} · {item.artwork_state}</p></div>
       </button>)}
@@ -94,8 +95,9 @@ export default function ArtworkAdmin({ adminKey }) {
         </label>
         <label className="flex gap-2 mt-5"><input type="checkbox" checked={traitsMatch} onChange={(e) => setTraitsMatch(e.target.checked)} />I checked that the image matches every trait above.</label>
         <label className="flex gap-2 mt-3"><input type="checkbox" checked={original} onChange={(e) => setOriginal(e.target.checked)} />This is final original art, not a recolor, crop, or placeholder.</label>
+        <label className="flex gap-2 mt-3"><input type="checkbox" checked={directionChecked} onChange={(e) => setDirectionChecked(e.target.checked)} />Exactly two eyes; readable HYPEBLOCK branding and detailed traits are present.</label>
         <div className="flex flex-wrap gap-2 mt-4">
-          <button className={button} disabled={busy || !selected.sha256 || !traitsMatch || !original} onClick={() => review(true)}>Approve artwork</button>
+          <button className={button} disabled={busy || !selected.sha256 || !traitsMatch || !original || !directionChecked} onClick={() => review(true)}>Approve artwork</button>
           {selected.artwork_state === "canonical" && <button className="px-4 border border-[#252A3E] rounded-xl" disabled={busy} onClick={() => review(false)}>Remove approval</button>}
         </div>
       </div>

@@ -33,7 +33,7 @@ TRAIT_ORDER = ["Gender", "Skin", "Eyes", "Headwear", "Mouth", "Outfit", "Backgro
 TRAIT_FALLBACKS = {
     "Gender": ["Male", "Female"],
     "Skin": ["Classic Green", "Toxic Blue", "Purple Haze", "Albino", "Zombie", "Gold", "Diamond"],
-    "Eyes": ["Mischief", "3D Glasses", "Stoned", "VR Visor", "Cyclops", "Laser", "Flame", "Visor"],
+    "Eyes": ["Mischief", "3D Glasses", "Stoned", "VR Visor", "Neon Gaze", "Laser", "Flame", "Visor"],
     "Headwear": ["Beanie", "Snapback", "Bucket Hat", "Durag", "Devil Horns", "None", "Crown", "Flaming Halo"],
     "Mouth": ["Grin", "Gold Grillz", "Toothpick", "Tongue Out", "Cigar", "Bubblegum"],
     "Outfit": ["Hoodie", "Bomber", "Tie-dye Tee", "Puffer", "Tracksuit", "Chain-only", "Leather", "Denim"],

@@ -274,7 +274,7 @@ ADMIN_KEY = os.environ.get('ADMIN_KEY', '')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
 BATCH_SIZE = 20
 LAUNCH_DATE = datetime(2026, 6, 16, tzinfo=timezone.utc)
-COLLECTION_VERSION = "v8"
+COLLECTION_VERSION = "v9-two-eyes-brand"
 
 try:
     COLLECTION_SIZE = len(json.loads((ROOT_DIR / "merged_collection.json").read_text()))
@@ -295,6 +295,8 @@ def _validate_collection(raw):
     for label, values in (("token IDs", token_ids), ("names", names), ("trait combinations", signatures)):
         if len(values) != len(set(values)):
             raise RuntimeError(f"Collection contains duplicate {label}; refusing to seed")
+    if any(item.get("traits", {}).get("Eyes") == "Cyclops" for item in raw):
+        raise RuntimeError("Single-eye traits are excluded from HYPEBLOCK")
     return raw
 
 
@@ -337,14 +339,12 @@ IMG = {
     "green_beanie": BASE + "de2465864aefac69c38f99e0c8719e2c190ef17a3f67c4052e2afd8cfee6866e.jpeg",
     "green_vr": BASE + "9e0a66744be295415aa6405906e62b17c158e914ecac15719294c850415975c7.jpeg",
     "green_stoned": BASE + "4cbcd58bfba0340398d83766663b321392f8c91a78c9b2ad6addde7236b12262.jpeg",
-    "green_cyclops_cigar": BASE + "c0383b50853ac1d0128ecde8dc93d0df7ae6688c94e00ccce9931406e179830b.jpeg",
     "female_green_crown": BASE + "80d124b96fec73e24fac3e1b192188b6f1447334d92bc4eb9af420bfbbf5095c.jpeg",
     "blue_snapback": BASE + "eba46a9c8b42de7aa35e707632c16c9bbeee67600e024647b6cd87f3accda2ee.jpeg",
     "blue_bucket": BASE + "4779c283c1acf937ba259a421bc2e610ffd768023a2f76d512d1ce4ee868ba40.jpeg",
     "blue_chainonly": BASE + "17a6e7e45c79e5721f653b676bd02b01412fd5d45ffca29cf85fa5905e2060a7.jpeg",
     "female_blue_vr": BASE + "c6fba6e3262f7065e3faedbd84ba884662c1c62aceed702a3b8f8085839f9e34.jpeg",
     "purple_3dglasses": BASE + "9a3dde413f050a445b47183db65f185872d944049d4766e057278b8f8a8e06dc.jpeg",
-    "purple_cyclops": BASE + "ac7110d4f63e2596b5b1412f02d0caee588a66fb1fdd5beac8a77c5dffd8513d.jpeg",
     "albino_durag": BASE + "5fe48fd67e7758fde61b4834f97099484d02ebb901854eb66afb3406fb0dba2d.jpeg",
     "albino_devil": BASE + "56b0a8cbaaa51c779020a90e99287128bf57d14e0af3716d58fa1dbd5786f415.jpeg",
     "zombie_horns": BASE + "33416a50f597391530af4fbaa7f1eb4929202a1a972ddf8728f82ba367a18ad5.jpeg",
@@ -364,9 +364,9 @@ IMG = {
 MYTHIC_IMAGE = "https://customer-assets-m6fa6gv7.emergentagent.net/job_hypeblock-nft/artifacts/6hfjziwu_image-5%20%288%29.jpeg"
 FEMALE_IMAGES = {"female_green_crown", "female_blue_vr", "att_female_green_buns", "att_female_blue_neon"}
 SKIN_IMAGES = {
-    "Classic Green": ["green_beanie", "green_vr", "green_stoned", "green_cyclops_cigar", "female_green_crown", "att_female_green_buns"],
+    "Classic Green": ["green_beanie", "green_vr", "green_stoned", "female_green_crown", "att_female_green_buns"],
     "Toxic Blue": ["blue_snapback", "blue_bucket", "blue_chainonly", "female_blue_vr", "att_blue_snapback", "att_female_blue_neon"],
-    "Purple Haze": ["purple_3dglasses", "purple_cyclops"],
+    "Purple Haze": ["purple_3dglasses"],
     "Albino": ["albino_durag", "albino_devil"],
     "Zombie": ["zombie_horns", "zombie_bomber"],
 }
@@ -416,7 +416,7 @@ HEADWEAR_STAR = ["Crown", "Flaming Halo"]
 HEADWEAR_EPIC_EXTRA = ["Devil Horns"]
 
 EYES_COMMON = ["Mischief", "3D Glasses", "Stoned", "VR Visor"]
-EYES_RARE = ["Cyclops"]
+EYES_RARE = ["Neon Gaze"]
 EYES_STAR = ["Laser", "Flame"]
 
 MOUTHS = ["Grin", "Gold Grillz", "Toothpick", "Tongue Out", "Cigar", "Bubblegum"]
@@ -443,7 +443,7 @@ SKIN_D = {"Classic Green": "classic bright green skin", "Toxic Blue": "glowing t
           "Diamond": "sparkling crystal diamond skin"}
 EYES_D = {"Mischief": "big mischievous eyes", "3D Glasses": "pixel 3D glasses", "Stoned": "droopy red stoned eyes",
           "VR Visor": "a futuristic VR visor", "Visor": "a sleek cyber visor over the eyes",
-          "Cyclops": "a single large cyclops eye", "Laser": "glowing red laser-beam eyes", "Flame": "burning fire flame eyes"}
+          "Neon Gaze": "two separate luminous neon eyes", "Laser": "glowing red laser-beam eyes", "Flame": "burning fire flame eyes"}
 HEAD_D = {"None": "no hat", "Beanie": "a knit beanie", "Snapback": "a backwards snapback cap", "Bucket Hat": "a bucket hat",
           "Durag": "a durag", "Headphones": "big DJ headphones", "Neon-green Hair": "spiky neon-green hair",
           "Cyber Ponytail": "a high cyber ponytail", "Pink Mohawk": "a bright pink mohawk", "Space-buns": "space-bun hair",
@@ -451,9 +451,9 @@ HEAD_D = {"None": "no hat", "Beanie": "a knit beanie", "Snapback": "a backwards 
 MOUTH_D = {"Grin": "a sharp toothy grin", "Gold Grillz": "gold grillz teeth", "Toothpick": "a toothpick in mouth",
            "Tongue Out": "tongue sticking out", "Cigar": "a smoking cigar", "Bubblegum": "blowing a bubblegum bubble"}
 OUT_D = {"Hoodie": "a streetwear hoodie", "Bomber": "a bomber jacket", "Tie-dye Tee": "a tie-dye tee",
-         "Puffer": "a puffer jacket", "Tracksuit": "a tracksuit", "Chain-only": "bare chest with chains",
+         "Puffer": "a puffer jacket", "Tracksuit": "a tracksuit", 'Chain-only': 'bare chest with detailed chains and a readable "HYPEBLOCK" pendant',
          "Leather": "a leather jacket", "Denim": "a denim jacket"}
-ACC_D = {"None": "", "Chain": "a silver chain", "Diamond Chain": "a diamond chain", "Iced Chain": "an iced-out chain",
+ACC_D = {"None": "", "Chain": 'a chunky silver chain with a readable silver "HYPEBLOCK" letter pendant', "Diamond Chain": 'a diamond chain with a readable diamond-set "HYPEBLOCK" pendant', "Iced Chain": 'an iced-out chain with a readable jeweled "HYPEBLOCK" pendant',
          "Hoop": "hoop earrings", "Earring": "an earring", "Face Tattoo": "a small face tattoo", "Star Tattoo": "a star face tattoo"}
 BG_D = {"Neon Split": "a neon split pink-and-cyan", "Acid Green": "a solid acid-green", "Hot Pink": "a solid hot-pink",
         "Deep Purple": "a solid deep-purple", "Graffiti Wall": "a graffiti brick-wall", "Legendary Glow": "a radiant legendary golden-glow"}
@@ -465,6 +465,8 @@ POSES = ["facing forward, straight-on", "with a slight side glance", "with head 
 
 
 def build_prompt(t, name=None, seed=0):
+    if t.get("Eyes") == "Cyclops":
+        raise ValueError("Single-eye traits are excluded from HYPEBLOCK")
     g = "female" if t["Gender"] == "Female" else "male"
     fem = " with a feminine face, long eyelashes and glossy lips," if t["Gender"] == "Female" else " with a rugged masculine face,"
     acc = ACC_D.get(t["Accessory"], "")
@@ -477,7 +479,11 @@ def build_prompt(t, name=None, seed=0):
         f"{HEAD_D[t['Headwear']]}, {MOUTH_D[t['Mouth']]}. Wearing {OUT_D[t['Outfit']]}{acc_clause}. "
         f"Background: {BG_D[t['Background']]} background covered in neon graffiti tags.{tag} "
         f"Thick heavy black outline comic style, neon spray-paint drip texture, high-contrast vivid neon colors, "
-        f"centered, edgy underground streetwear vibe. Unique variation #{seed:03d}."
+        f'centered, edgy underground streetwear vibe. Exactly TWO anatomically separate eyes, '+
+        'no single central eye, extra eye, missing eye or wink. Readable "HYPEBLOCK" graffiti tag '+
+        'and an embroidered HYPEBLOCK clothing label when clothed. Preserve intricate fabric seams, '+
+        'zippers, rivets, chain links, metallic bevels, skin texture, paint layers and dimensional shading. '+
+        f"Keep all listed traits visible; no unlisted accessories. Unique variation #{seed:03d}."
     )
 
 
@@ -756,7 +762,7 @@ async def local_asset(asset_name: str):
     if safe_name != asset_name or not safe_name.endswith(".jpeg"):
         raise HTTPException(status_code=404, detail="Asset not found")
     asset = FALLBACK_ASSETS_DIR / safe_name
-    if not asset.is_file():
+    if safe_name in {"green_cyclops_cigar.jpeg", "purple_cyclops.jpeg"} or not asset.is_file():
         raise HTTPException(status_code=404, detail="Asset not found")
     return FileResponse(str(asset), media_type="image/jpeg",
                         headers={"Cache-Control": "public, max-age=31536000, immutable"})
@@ -862,12 +868,10 @@ async def wallpapers_pack(limit: int = 12):
             tid = d["token_id"]
             safe = "".join(ch if ch.isalnum() else "_" for ch in d["name"])
             added = False
-            for ext in ("png", "jpeg", "jpg", "webp"):
-                p = GENERATED_DIR / f"{tid}.{ext}"
-                if p.exists():
-                    z.write(str(p), arcname=f"HYPEBLOCK_{tid:03d}_{safe}.{ext}")
-                    added = True
-                    break
+            p = artwork.path(tid)
+            if p:
+                z.write(str(p), arcname=f"HYPEBLOCK_{tid:03d}_{safe}{p.suffix}")
+                added = True
             if not added:
                 record = next(
                     (item for item in json.loads((ROOT_DIR / "merged_collection.json").read_text())
@@ -900,7 +904,7 @@ async def render_image(token_id: int):
     return Response(
         content=_fallback_svg(token_id, record),
         media_type="image/svg+xml",
-        headers={"Cache-Control": "public, max-age=31536000, immutable"},
+        headers={"Cache-Control": "no-cache"},
     )
 
 

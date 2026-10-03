@@ -19,6 +19,7 @@ class ArtworkReview(BaseModel):
     approved: bool
     traits_match: bool = False
     original_artwork: bool = False
+    art_direction_checked: bool = False
 
 
 class ReleaseSelection(BaseModel):
@@ -35,6 +36,9 @@ class ArtworkManager:
         self.root = root
         report_path = root / "collection_audit.json"
         self.audit = json.loads(report_path.read_text()) if report_path.is_file() else {}
+        policy_path = root / "art_direction.json"
+        self.policy = json.loads(policy_path.read_text()) if policy_path.is_file() else {}
+        self.blocked_hashes = {x["sha256"] for x in self.policy.get("blocked_artwork", [])}
         self.uploads = Path(os.environ.get("HYPEBLOCK_ARTWORK_DIR", root / "data" / "artwork"))
 
     def overrides(self):
@@ -46,11 +50,11 @@ class ArtworkManager:
             name = override["filename"]
             if Path(name).name == name:
                 p = self.uploads / name
-                if p.is_file():
+                if p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest() not in self.blocked_hashes:
                     return p
         for ext in ("png", "jpg", "jpeg", "webp"):
             p = self.root / "generated" / f"{token_id}.{ext}"
-            if p.is_file():
+            if p.is_file() and hashlib.sha256(p.read_bytes()).hexdigest() not in self.blocked_hashes:
                 return p
         return None
 
@@ -58,13 +62,15 @@ class ArtworkManager:
         p = self.path(doc["token_id"])
         sha = hashlib.sha256(p.read_bytes()).hexdigest() if p else None
         review = self.overrides().get(str(doc["token_id"]), {})
-        approved = bool(sha and review.get("approved_sha256") == sha)
+        approved = bool(sha and review.get("approved_sha256") == sha and review.get("art_direction_version") == self.policy.get("version"))
         issues = [x["issue"] for x in self.audit.get("manual_flags", []) if x["token_id"] == doc["token_id"]]
+        if not p and any(x["token_id"] == doc["token_id"] for x in self.policy.get("blocked_artwork", [])):
+            issues.append("Previous artwork excluded: exactly two eyes required. Replacement artwork pending.")
         issues += [f"Similar composition to token(s) {pair['tokens']}; compare before approval." for pair in self.audit.get("similarity_flags", []) if doc["token_id"] in pair["tokens"]]
         return {"review_notes": issues, "token_id": doc["token_id"], "name": doc["name"], "tier": doc["tier"],
                 "traits": doc["traits"], "artwork_state": "canonical" if approved else "candidate" if p else "placeholder",
                 "sha256": sha, "approved_at": review.get("approved_at") if approved else None,
-                "image": f"/api/render/{doc['token_id']}" + (f"?v={sha[:12]}" if sha else "?v=concept-2")}
+                "image": f"/api/render/{doc['token_id']}" + (f"?v={sha[:12]}" if sha else "?v=concept-3")}
 
     async def save(self, token_id, values):
         async with self.db.lock:
@@ -118,6 +124,8 @@ class ArtworkManager:
             except (UnidentifiedImageError, OSError, Image.DecompressionBombError):
                 raise HTTPException(422, "Invalid image")
             sha = hashlib.sha256(data).hexdigest()
+            if sha in self.blocked_hashes:
+                raise HTTPException(422, "This retired artwork does not meet the two-eye art direction")
             docs = await self.db.nfts.find({}, {"_id": 0}).to_list(1000)
             for other in docs:
                 if other["token_id"] != token_id and self.describe(other)["sha256"] == sha:
@@ -139,10 +147,10 @@ class ArtworkManager:
             current = self.describe(doc)
             if not current["sha256"] or current["sha256"] != payload.sha256:
                 raise HTTPException(409, "Artwork changed or missing; refresh before reviewing")
-            if payload.approved and not (payload.traits_match and payload.original_artwork):
-                raise HTTPException(422, "Confirm original artwork and agreement with all traits")
+            if payload.approved and not (payload.traits_match and payload.original_artwork and payload.art_direction_checked):
+                raise HTTPException(422, "Confirm original artwork, all traits, two eyes and HYPEBLOCK branding")
             values = dict(self.overrides().get(str(token_id), {}))
-            values.update(approved_sha256=payload.sha256 if payload.approved else None,
+            values.update(art_direction_version=self.policy.get("version"), approved_sha256=payload.sha256 if payload.approved else None,
                           approved_at=datetime.now(timezone.utc).isoformat() if payload.approved else None)
             await self.save(token_id, values)
             return self.describe(doc)

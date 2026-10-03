@@ -1,6 +1,6 @@
 # HYPEBLOCK
 
-Grim Genesis character universe: React gallery, rarity explorer, trait lab, lore, perks, waitlist and private artwork studio. Existing character traits, tiers, levels and token IDs are preserved.
+Grim Genesis character universe: React gallery, rarity explorer, trait lab, lore, perks, waitlist and private artwork studio. Character tiers, levels and token IDs are preserved. Single-eye traits are replaced with two-eye Neon Gaze under the creator’s October 3 art direction.
 
 ## Website
 
@@ -49,3 +49,9 @@ python backend/audit_collection.py
 ```
 
 The API tests use `http://127.0.0.1:8000` by default; use `REACT_APP_BACKEND_URL` for a separate test deployment. Use a temporary data file when testing mutable endpoints. Artwork tests use an isolated temporary store and do not approve production assets.
+
+## Artwork direction — October 3, 2026
+
+Exactly two eyes; single-eye, forehead-eye and winking legacy artwork is excluded. Cyclops metadata is replaced by Neon Gaze for ten records. HYPEBLOCK lettering, branded chain pendants where chains are present, clothing labels and detailed graffiti/materials are required in new prompts. Six artwork candidates (3, 135, 155, 178, 196, 197) were replaced. Token 197 now lists Diamond Chain to match the requested branded jewelry. Approval additionally confirms this art direction, and older approvals require review again. Retired image hashes cannot be served from persistent overrides or re-uploaded.
+
+Verification: production frontend build, 26 API integration tests, 5 artwork/art-direction tests, 296 unique trait combinations and no exact duplicate images. There are still 164 concept previews; these are not final NFT artwork.

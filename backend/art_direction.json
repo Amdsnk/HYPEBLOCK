@@ -1,0 +1,36 @@
+{
+  "version": "two-eyes-brand-v1",
+  "eye_rule": "Exactly two eyes. No single central eye, extra forehead eye, missing eye or wink.",
+  "branding": "Readable HYPEBLOCK graffiti and clothing labels; existing chains carry HYPEBLOCK pendants.",
+  "blocked_artwork": [
+    {
+      "token_id": 135,
+      "sha256": "7c7557ee9169b522e44dd0703958fa9920f7a25e3ca7cc180600ff7ef1f9a033",
+      "reason": "Eye anatomy needs replacement: exactly two eyes required"
+    },
+    {
+      "token_id": 155,
+      "sha256": "90d898c2b665e2ab5ff1f7d2ecc505b0f0cfca1b0e2c15714f89390c74557a8e",
+      "reason": "Eye anatomy needs replacement: exactly two eyes required"
+    },
+    {
+      "token_id": 178,
+      "sha256": "3f9f569264cf63e7df0ff73a75dffa4e98888a75827cacf210626566f64efcde",
+      "reason": "Eye anatomy needs replacement: exactly two eyes required"
+    },
+    {
+      "token_id": 196,
+      "sha256": "493a18f72c7f11e00270e99b7f0af913b1038792668e799d9c29cdafdb48e750",
+      "reason": "Eye anatomy needs replacement: exactly two eyes required"
+    },
+    {
+      "token_id": 197,
+      "sha256": "5ab1488c3323a64f4aafc71dfbc28676f8b54645f93e9377e79404d776f1da76",
+      "reason": "Eye anatomy needs replacement: exactly two eyes required"
+    }
+  ],
+  "blocked_fallback_assets": [
+    "green_cyclops_cigar.jpeg",
+    "purple_cyclops.jpeg"
+  ]
+}
