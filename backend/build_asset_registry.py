@@ -24,6 +24,8 @@ def main():
     items=json.loads(COLLECTION.read_text(encoding="utf-8"))
     hashes={}
     registry=[]
+    policy=json.loads((ROOT/"art_direction.json").read_text())
+    blocked={x["sha256"] for x in policy.get("blocked_artwork",[])}
     for item in items:
         tid=item["token_id"]
         matches=[]
@@ -37,8 +39,9 @@ def main():
             if sha in hashes:
                 raise RuntimeError(f"Exact duplicate artwork: token {tid} and {hashes[sha]}")
             hashes[sha]=tid
-            state="candidate"
-            artwork=f"generated/{p.name}"
+            state="placeholder" if sha in blocked else "candidate"
+            artwork=None if sha in blocked else f"generated/{p.name}"
+            if sha in blocked: sha=None
         else:
             sha=None; state="placeholder"; artwork=None
         registry.append({
@@ -53,6 +56,7 @@ def main():
         })
     OUT.write_text(json.dumps(registry,indent=2),encoding="utf-8")
     canonical=sum(x["artwork_state"]=="canonical" for x in registry)
-    print(f"Registry: {len(registry)} tokens; {canonical} canonical; {len(registry)-canonical} placeholders")
+    counts={state:sum(x["artwork_state"]==state for x in registry) for state in ("canonical","candidate","placeholder")}
+    print(f"Registry: {len(registry)} tokens; {counts}")
 
 if __name__=="__main__": main()

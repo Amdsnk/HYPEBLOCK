@@ -16,7 +16,7 @@ Use Railway with the root Dockerfile, one replica and a `/data` volume. React an
 
 ## Artwork and release
 
-296 token identities and unique core trait combinations. 132 image files are candidates for review; 164 token records still use concept previews. Final approved status requires a human check of each image against its traits. The website is a showcase and preparation tool; it does not contain a deployed mint contract or a verified marketplace collection.
+296 token identities and unique core trait combinations. 193 image files are candidates for review; 103 token records still use concept previews. Final approved status requires a human check of each image against its traits. The website is a showcase and preparation tool; it does not contain a deployed mint contract or a verified marketplace collection.
 
 In `/admin`, upload final artwork, review traits, approve it and select approved characters for release. Download the selected images, pin the image folder to IPFS, enter its real CID, then export the final metadata and hash manifest. Replacing artwork invalidates its approval. Exact duplicate uploads and unapproved release exports are rejected.
 
@@ -54,4 +54,6 @@ The API tests use `http://127.0.0.1:8000` by default; use `REACT_APP_BACKEND_URL
 
 Exactly two eyes; single-eye, forehead-eye and winking legacy artwork is excluded. Cyclops metadata is replaced by Neon Gaze for ten records. HYPEBLOCK lettering, branded chain pendants where chains are present, clothing labels and detailed graffiti/materials are required in new prompts. Six artwork candidates (3, 135, 155, 178, 196, 197) were replaced. Token 197 now lists Diamond Chain to match the requested branded jewelry. Approval additionally confirms this art direction, and older approvals require review again. Retired image hashes cannot be served from persistent overrides or re-uploaded.
 
-Verification: production frontend build, 26 API integration tests, 5 artwork/art-direction tests, 296 unique trait combinations and no exact duplicate images. There are still 164 concept previews; these are not final NFT artwork.
+Verification: production frontend build, 26 API integration tests, 5 artwork/art-direction tests, 296 unique trait combinations and no exact duplicate images. There are still 103 concept previews; these are not final NFT artwork.
+
+The restored batch contains 61 additional candidate artworks. Male artwork follows the original broad, compact cartoon Grim reference. New artwork must have intact skin and ears with no wounds, scars, skin stitches, blood or decay, including the Zombie skin color variant. Wounded legacy preview assets are blocked. Candidates still require creator review before mint release.

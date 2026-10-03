@@ -274,7 +274,7 @@ ADMIN_KEY = os.environ.get('ADMIN_KEY', '')
 RELEASED_BATCHES = int(os.environ.get('RELEASED_BATCHES', '3'))
 BATCH_SIZE = 20
 LAUNCH_DATE = datetime(2026, 6, 16, tzinfo=timezone.utc)
-COLLECTION_VERSION = "v9-two-eyes-brand"
+COLLECTION_VERSION = "v11-balanced-original-grim"
 
 try:
     COLLECTION_SIZE = len(json.loads((ROOT_DIR / "merged_collection.json").read_text()))
@@ -297,6 +297,10 @@ def _validate_collection(raw):
             raise RuntimeError(f"Collection contains duplicate {label}; refusing to seed")
     if any(item.get("traits", {}).get("Eyes") == "Cyclops" for item in raw):
         raise RuntimeError("Single-eye traits are excluded from HYPEBLOCK")
+    if len(raw) == 296:
+        genders = [item.get("traits", {}).get("Gender") for item in raw]
+        if genders.count("Male") != 148 or genders.count("Female") != 148:
+            raise RuntimeError("Genesis must contain exactly 148 male and 148 female Grim characters")
     return raw
 
 
@@ -368,10 +372,10 @@ SKIN_IMAGES = {
     "Toxic Blue": ["blue_snapback", "blue_bucket", "blue_chainonly", "female_blue_vr", "att_blue_snapback", "att_female_blue_neon"],
     "Purple Haze": ["purple_3dglasses"],
     "Albino": ["albino_durag", "albino_devil"],
-    "Zombie": ["zombie_horns", "zombie_bomber"],
+    "Zombie": ["zombie_intact"],
 }
 EPIC_IMAGES = {"Toxic Blue": ["blue_laser_epic"], "Purple Haze": ["purple_flame_epic"],
-               "Zombie": ["zombie_laser_epic", "att_zombie_devil_epic"]}
+               "Zombie": ["zombie_intact"]}
 
 # The 3 crown-jewel 1-of-1 Mythics (each a unique founding character)
 MYTHIC_SPECS = [
@@ -439,7 +443,7 @@ NOUN = ["Biter", "Tagger", "Creep", "Goblin", "Menace", "Shredder", "Bandit", "S
 # ---- prompt phrase maps ----
 SKIN_D = {"Classic Green": "classic bright green skin", "Toxic Blue": "glowing toxic blue skin",
           "Purple Haze": "purple haze skin", "Albino": "pale albino white skin with pink eyes",
-          "Zombie": "rotting grey-green zombie skin with stitches", "Gold": "shiny metallic gold skin",
+          "Zombie": "smooth intact grey-green skin, healthy continuous surface with no decay", "Gold": "shiny metallic gold skin",
           "Diamond": "sparkling crystal diamond skin"}
 EYES_D = {"Mischief": "big mischievous eyes", "3D Glasses": "pixel 3D glasses", "Stoned": "droopy red stoned eyes",
           "VR Visor": "a futuristic VR visor", "Visor": "a sleek cyber visor over the eyes",
@@ -468,22 +472,28 @@ def build_prompt(t, name=None, seed=0):
     if t.get("Eyes") == "Cyclops":
         raise ValueError("Single-eye traits are excluded from HYPEBLOCK")
     g = "female" if t["Gender"] == "Female" else "male"
-    fem = " with a feminine face, long eyelashes and glossy lips," if t["Gender"] == "Female" else " with a rugged masculine face,"
+    fem = " with a feminine face, long eyelashes and glossy lips," if t["Gender"] == "Female" else " with a compact broad cartoon gremlin head, short muzzle and chin, short neck, large pointed ears and a mischievous expression,"
     acc = ACC_D.get(t["Accessory"], "")
     acc_clause = f" and {acc}" if acc else ""
+    chain_allowed = t["Accessory"] in ("Chain", "Diamond Chain", "Iced Chain") or t["Outfit"] == "Chain-only"
+    accessory_rule = "" if chain_allowed else " CRITICAL FOR THIS TOKEN: NO necklace, neck chain, pendant, choker or extra jewelry. HYPEBLOCK clothing branding must be embroidery or printed fabric, never hanging metal letters."
+    outfit_description = OUT_D[t["Outfit"]]
+    if t["Outfit"] == "Chain-only":
+        outfit_description = 'detailed neck chains with a readable "HYPEBLOCK" pendant positioned high at the collarbone; head-and-shoulders portrait cropped at the collarbone, the torso fully outside the image'
     pose = POSES[seed % len(POSES)]
     tag = f' The graffiti tag "{name}" is sprayed in the background.' if name else ""
     return (
         f"Bold graffiti street-art NFT PFP illustration of an original cartoon GREMLIN mascot (NOT an ape), "
         f"front bust portrait, pointy ears, {pose}. A {g} gremlin{fem} with {SKIN_D[t['Skin']]}, {EYES_D[t['Eyes']]}, "
-        f"{HEAD_D[t['Headwear']]}, {MOUTH_D[t['Mouth']]}. Wearing {OUT_D[t['Outfit']]}{acc_clause}. "
+        f"{HEAD_D[t['Headwear']]}, {MOUTH_D[t['Mouth']]}. Wearing {outfit_description}{acc_clause}. "
         f"Background: {BG_D[t['Background']]} background covered in neon graffiti tags.{tag} "
         f"Thick heavy black outline comic style, neon spray-paint drip texture, high-contrast vivid neon colors, "
         f'centered, edgy underground streetwear vibe. Exactly TWO anatomically separate eyes, '+
         'no single central eye, extra eye, missing eye or wink. Readable "HYPEBLOCK" graffiti tag '+
         'and an embroidered HYPEBLOCK clothing label when clothed. Preserve intricate fabric seams, '+
-        'zippers, rivets, chain links, metallic bevels, skin texture, paint layers and dimensional shading. '+
-        f"Keep all listed traits visible; no unlisted accessories. Unique variation #{seed:03d}."
+        'zippers, rivets, chain links, metallic bevels, gentle natural skin folds, paint layers and dimensional shading. '+
+        'CRITICAL SKIN RULE: healthy intact skin and complete ears. No wounds, scars, cuts, scratches, bruises, blood, skin stitches, staples, exposed flesh, decay or torn skin. '+
+        f"Male characters must preserve the original compact cartoon mascot proportions, bold contour lines and stylized cel shading; no elongated gaunt face, realistic pores or deep age wrinkles. Keep all listed traits visible; no unlisted accessories.{accessory_rule} Unique variation #{seed:03d}."
     )
 
 
@@ -762,7 +772,7 @@ async def local_asset(asset_name: str):
     if safe_name != asset_name or not safe_name.endswith(".jpeg"):
         raise HTTPException(status_code=404, detail="Asset not found")
     asset = FALLBACK_ASSETS_DIR / safe_name
-    if safe_name in {"green_cyclops_cigar.jpeg", "purple_cyclops.jpeg"} or not asset.is_file():
+    if safe_name in set(artwork.policy.get("blocked_fallback_assets", [])) or not asset.is_file():
         raise HTTPException(status_code=404, detail="Asset not found")
     return FileResponse(str(asset), media_type="image/jpeg",
                         headers={"Cache-Control": "public, max-age=31536000, immutable"})
@@ -771,7 +781,7 @@ async def local_asset(asset_name: str):
 @lru_cache(maxsize=32)
 def _embedded_preview_asset(name):
     path = FALLBACK_ASSETS_DIR / name
-    if not path.is_file():
+    if name in set(artwork.policy.get("blocked_fallback_assets", [])) or not path.is_file():
         return None
     with Image.open(path) as source:
         image = source.convert("RGB")

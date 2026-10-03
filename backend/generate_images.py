@@ -12,6 +12,7 @@ import os
 from pathlib import Path
 
 from dotenv import load_dotenv
+from server import build_prompt
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 
 ROOT = Path(__file__).parent
@@ -65,7 +66,7 @@ async def main():
     collection = json.loads((ROOT / "merged_collection.json").read_text())
     docs = sorted(collection, key=lambda item: item["token_id"])
 
-    todo = [(d["token_id"], d.get("prompt", "")) for d in docs
+    todo = [(d["token_id"], build_prompt(d["traits"], d["name"], d["token_id"])) for d in docs
             if not (GEN_DIR / f"{d['token_id']}.png").exists()]
     if GEN_LIMIT:
         todo = todo[:GEN_LIMIT]
