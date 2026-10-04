@@ -1,5 +1,5 @@
 {
-  "version": "two-eyes-brand-v1",
+  "version": "original-grim-intact-skin-v3",
   "eye_rule": "Exactly two eyes. No single central eye, extra forehead eye, missing eye or wink.",
   "branding": "Readable HYPEBLOCK graffiti and clothing labels; existing chains carry HYPEBLOCK pendants.",
   "blocked_artwork": [
@@ -27,10 +27,172 @@
       "token_id": 197,
       "sha256": "5ab1488c3323a64f4aafc71dfbc28676f8b54645f93e9377e79404d776f1da76",
       "reason": "Eye anatomy needs replacement: exactly two eyes required"
+    },
+    {
+      "token_id": 49,
+      "sha256": "63109f1e0f29b7f130a9e46fdcffa6dbb21b24e976f9cede763d23b02ff9fcde",
+      "reason": "Superseded: restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 4,
+      "sha256": "cfdc6e23dbd2b69d2e7bc12247b1fafe225dbb94812cd59abbc9629dce71454f",
+      "reason": "Superseded: restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 5,
+      "sha256": "d1f032df58ffd1f01543b6f10212c8a6b06603d9f782b46364e1b6f8d5d468b1",
+      "reason": "Superseded: restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 7,
+      "sha256": "1e084164065f3ba2f3f5a81b48706eab1e7d9fa383152aec8679abfc1018c4e0",
+      "reason": "Superseded: restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 8,
+      "sha256": "24584c2688d3279cccffba1e32415747ff413cb20041d5fe91417bac11df537c",
+      "reason": "Superseded: restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 9,
+      "sha256": "c5f074110a9991a240893d713b1cc0f3af01f7dec41f3572995e783265e7e311",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 11,
+      "sha256": "ffe0a6745eb4abbaa5a12182ca5a60607459fd85e0980178b3bb18aa30fbbc26",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 14,
+      "sha256": "17640fbc08a3736c5369c18cc4e6dc8be819a7e278f9039aa3dfd0a9b24fc0b0",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 15,
+      "sha256": "23e40a1b51aa271c0d53166bfb4252ce0708a08504d8f1e08785f60eda2c37fb",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 19,
+      "sha256": "99aa547e8885af1471e5d67eb7af5b551782fe4d4cd476b0349bb426041f9cc0",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 22,
+      "sha256": "56d477b0d30230b8335991a9b5f5b12ab77879bfdac7a919c642e7f14872c6bb",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 23,
+      "sha256": "4380cb44a5f2425d3c910fec9d07ea2d63a6f916b40dac94ad1950cfb03d2885",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 27,
+      "sha256": "196d4d60a19666009cd412134098e901450bf97bdab1d03bec10364ec625180b",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 29,
+      "sha256": "c06318bf7cf2a7c3dd1a8bd0a81415a69d61f93eb6a5146de66a58540d376729",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 30,
+      "sha256": "464b2df9ac6cfbfb1a1d82e4935f23705090599e6f9a596f20489ce5b5683f4a",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 33,
+      "sha256": "5b5e70acbe25f4132243a97550e3979b40d219cd6e2f18d8809121f6b8cbc4f0",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 40,
+      "sha256": "5506bac8cea1582f9d04a88c14a87df316edcc6ecd3f5a587e442c2a31991019",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 42,
+      "sha256": "d3a9c86498ebe8179150e1fd4ccfcd7116b9aee7d2122baae2f3dd7b6ed051aa",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 46,
+      "sha256": "b41886892ab8bd42ee1735420faf3392249eab24bac2ebaafdf2d52d2e05a916",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 51,
+      "sha256": "7f9b35559c20ef3075350258f91c58f54cd75028eda53bafe1baeac24dd978a5",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 53,
+      "sha256": "40fdd65a0f748b6d10fb371f6531e6a9a4b1a2b3e591cbbeff8bf8a0e2917e15",
+      "reason": "Restore original compact cartoon male proportions and intact skin."
+    },
+    {
+      "token_id": 77,
+      "sha256": "767ddbcb201e2c9c90776ddf0d4867c45a0d622817867451b20b6f9653393509",
+      "reason": "Remove wounds and scars while preserving feminine character traits."
+    },
+    {
+      "token_id": 97,
+      "sha256": "c1126dc89431b94e349ee58736ec201ac3409e34a5617a3e5ba51f97f340fbb7",
+      "reason": "Remove wounds and scars while preserving feminine character traits."
+    },
+    {
+      "token_id": 178,
+      "sha256": "9602e8f0cbdf136f0068e91cefb79e46073380b2c831b66c1099dd2b927c454a",
+      "reason": "Remove wounds and scars while preserving feminine character traits."
+    },
+    {
+      "token_id": 81,
+      "sha256": "1442d1543f0ff9a0200d5b1efd2ea5e9e17526fcb27219624a88ed2c1601eaf8",
+      "reason": "Replaced realistic face or skin wounds with original compact cartoon Grim and intact skin."
+    },
+    {
+      "token_id": 62,
+      "sha256": "27455aa8341cd789268450bd8cfd18d424f930d5d27f534309cde46cf9ad7d65",
+      "reason": "Replaced realistic face or skin wounds with original compact cartoon Grim and intact skin."
+    },
+    {
+      "token_id": 78,
+      "sha256": "bce22ade9400542659062728497ddfa1ceacfcd60b96be0236c6602f3986f971",
+      "reason": "Replaced realistic face or skin wounds with original compact cartoon Grim and intact skin."
+    },
+    {
+      "token_id": 197,
+      "sha256": "2f98ebec1b19c688530bb17306e13553bacb76fd09e1c5212306381a5089f680",
+      "reason": "Replaced realistic face or skin wounds with original compact cartoon Grim and intact skin."
+    },
+    {
+      "token_id": 107,
+      "sha256": "dbf867dfd00d9bcfe5101c0237a551d7d4cc59fa0a36f6f4587fed9e4e630cc2",
+      "reason": "Replaced realistic face or skin wounds with original compact cartoon Grim and intact skin."
+    },
+    {
+      "token_id": 83,
+      "sha256": "1194e073ef474d440ddcfa3bbb93aa6689a042ae37e77cc269097de18d2703a4",
+      "reason": "Replaced realistic face or skin wounds with original compact cartoon Grim and intact skin."
+    },
+    {
+      "token_id": 59,
+      "sha256": "ab9d78c13257818d2ff05a643484d5a9fff63e137660e3b6522511bc572ddb2b",
+      "reason": "Replaced realistic face or skin wounds with original compact cartoon Grim and intact skin."
     }
   ],
   "blocked_fallback_assets": [
+    "att_zombie_devil_epic.jpeg",
     "green_cyclops_cigar.jpeg",
-    "purple_cyclops.jpeg"
-  ]
+    "purple_cyclops.jpeg",
+    "zombie_bomber.jpeg",
+    "zombie_horns.jpeg",
+    "zombie_laser_epic.jpeg"
+  ],
+  "skin_rule": "Healthy intact skin and complete ears for every Grim, including Zombie grey-green skin. No wounds, scars, cuts, scratches, bruises, blood, skin stitches, staples, exposed flesh, decay or torn skin.",
+  "male_rule": "Original compact cartoon Grim: broad head, short muzzle and chin, short neck, large pointed ears, mischievous expression, bold contours and stylized cel shading. No elongated gaunt face, realistic pores or deep age wrinkles.",
+  "male_reference": "art_reference/male-original-hypeblock.webp"
 }

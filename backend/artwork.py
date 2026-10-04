@@ -65,7 +65,7 @@ class ArtworkManager:
         approved = bool(sha and review.get("approved_sha256") == sha and review.get("art_direction_version") == self.policy.get("version"))
         issues = [x["issue"] for x in self.audit.get("manual_flags", []) if x["token_id"] == doc["token_id"]]
         if not p and any(x["token_id"] == doc["token_id"] for x in self.policy.get("blocked_artwork", [])):
-            issues.append("Previous artwork excluded: exactly two eyes required. Replacement artwork pending.")
+            issues.append("Previous artwork excluded by the current art direction. Replacement artwork pending.")
         issues += [f"Similar composition to token(s) {pair['tokens']}; compare before approval." for pair in self.audit.get("similarity_flags", []) if doc["token_id"] in pair["tokens"]]
         return {"review_notes": issues, "token_id": doc["token_id"], "name": doc["name"], "tier": doc["tier"],
                 "traits": doc["traits"], "artwork_state": "canonical" if approved else "candidate" if p else "placeholder",
@@ -125,7 +125,7 @@ class ArtworkManager:
                 raise HTTPException(422, "Invalid image")
             sha = hashlib.sha256(data).hexdigest()
             if sha in self.blocked_hashes:
-                raise HTTPException(422, "This retired artwork does not meet the two-eye art direction")
+                raise HTTPException(422, "This retired artwork does not meet the current Grim art direction")
             docs = await self.db.nfts.find({}, {"_id": 0}).to_list(1000)
             for other in docs:
                 if other["token_id"] != token_id and self.describe(other)["sha256"] == sha:
@@ -148,7 +148,7 @@ class ArtworkManager:
             if not current["sha256"] or current["sha256"] != payload.sha256:
                 raise HTTPException(409, "Artwork changed or missing; refresh before reviewing")
             if payload.approved and not (payload.traits_match and payload.original_artwork and payload.art_direction_checked):
-                raise HTTPException(422, "Confirm original artwork, all traits, two eyes and HYPEBLOCK branding")
+                raise HTTPException(422, "Confirm original artwork, all traits, two eyes, HYPEBLOCK branding, intact skin without wounds or scars, and original compact cartoon proportions for males")
             values = dict(self.overrides().get(str(token_id), {}))
             values.update(art_direction_version=self.policy.get("version"), approved_sha256=payload.sha256 if payload.approved else None,
                           approved_at=datetime.now(timezone.utc).isoformat() if payload.approved else None)

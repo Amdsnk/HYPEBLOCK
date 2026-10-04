@@ -36,16 +36,14 @@
     "sha256": "fa1884e0e95cec795614c65151826dad44e3949750d299adc61ace6490bd7ffb"
   },
   "197": {
-    "created_at": "2026-10-03",
-    "method": "OpenAI built-in image editing",
+    "created_at": "2026-10-03T12:11:44Z",
+    "method": "OpenAI built-in image generation/editing",
     "state": "candidate",
-    "art_direction_version": "two-eyes-brand-v1",
-    "visual_check": {
-      "eye_count": 2,
-      "HYPEBLOCK_branding": true
-    },
     "creator_approved": false,
-    "sha256": "2f98ebec1b19c688530bb17306e13553bacb76fd09e1c5212306381a5089f680"
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "368963035596dff9d8695ce52f12f203ea7b87df84e87afcbfcbe13ef5ceee90",
+    "retired_sha256": "2f98ebec1b19c688530bb17306e13553bacb76fd09e1c5212306381a5089f680",
+    "visual_review": "checked: compact cartoon proportions; no wounds or skin stitches"
   },
   "155": {
     "created_at": "2026-10-03",
@@ -60,18 +58,756 @@
     }
   },
   "178": {
-    "created_at": "2026-10-03",
-    "method": "OpenAI built-in image generation and hoodie correction",
+    "created_at": "2026-10-03T10:19:16.223723+00:00",
+    "method": "OpenAI built-in image generation/editing",
     "state": "candidate",
     "creator_approved": false,
-    "sha256": "9602e8f0cbdf136f0068e91cefb79e46073380b2c831b66c1099dd2b927c454a",
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "c08e30ec54f9f3eaf77f1685fb2080f563bdb1b7950973f7c8113c24d3b4de8e",
+    "retired_sha256": "9602e8f0cbdf136f0068e91cefb79e46073380b2c831b66c1099dd2b927c454a",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "1": {
+    "created_at": "2026-10-03T06:45:21.101857+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
     "art_direction_version": "two-eyes-brand-v1",
-    "visual_check": {
-      "eye_count": 2,
-      "Skin": "Zombie",
-      "Headwear": "Cyber Ponytail",
-      "Outfit": "Hoodie",
-      "Accessory": "Diamond Chain with HYPEBLOCK pendant"
+    "sha256": "5eb503c1e0c7b16f50f2018dc9517b704ba12581c816ad9fdf6d19e722e60e99",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
     }
+  },
+  "4": {
+    "created_at": "2026-10-03T10:07:12.392142+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "38425d0d4380eb875e5dd203ed793cfc7c62b1b4b1270b841f8bcf8366646b43",
+    "retired_sha256": "cfdc6e23dbd2b69d2e7bc12247b1fafe225dbb94812cd59abbc9629dce71454f",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "5": {
+    "created_at": "2026-10-03T10:07:12.922974+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "c907804cb9624fdcf7f4365341dc6bd2d142df8f0cc9304bf4a40afe5485a6f7",
+    "retired_sha256": "d1f032df58ffd1f01543b6f10212c8a6b06603d9f782b46364e1b6f8d5d468b1",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "6": {
+    "created_at": "2026-10-03T06:47:43.618091+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "09f82c7cb72ba4a307d6b56f6f2768331f899cfb29d7531023afef40c3c78a5c",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "7": {
+    "created_at": "2026-10-03T10:07:13.450476+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "aa5827926eeb7dfd84063d39cf4a927fd93c4187a1744759b324f3c918d76332",
+    "retired_sha256": "1e084164065f3ba2f3f5a81b48706eab1e7d9fa383152aec8679abfc1018c4e0",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "8": {
+    "created_at": "2026-10-03T10:07:13.988262+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "13e16fd99b9f0737fa2a0cfc206f157c029783855789b65b44cacba84e0651ed",
+    "retired_sha256": "24584c2688d3279cccffba1e32415747ff413cb20041d5fe91417bac11df537c",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "9": {
+    "created_at": "2026-10-03T10:18:10.587511+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "e41cf8d718fa86eb86c3e775cafeb2d771c08e34973343ff93782eda7408665a",
+    "retired_sha256": "c5f074110a9991a240893d713b1cc0f3af01f7dec41f3572995e783265e7e311",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "11": {
+    "created_at": "2026-10-03T10:18:11.196238+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "ef3782f3bdc18780a2285ebb1e9f75f9ce621a801e55628693dda417f2c4bc57",
+    "retired_sha256": "ffe0a6745eb4abbaa5a12182ca5a60607459fd85e0980178b3bb18aa30fbbc26",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "14": {
+    "created_at": "2026-10-03T10:18:11.724609+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "d090768e295917ca7082f74a78d90cb7ef996dcb15faf164505248a5b85614f8",
+    "retired_sha256": "17640fbc08a3736c5369c18cc4e6dc8be819a7e278f9039aa3dfd0a9b24fc0b0",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "15": {
+    "created_at": "2026-10-03T10:18:12.257514+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "b57c53bf751cb5a66de0b358cab1d00a69d70a3835ce6079350d0e7a5e3bfed2",
+    "retired_sha256": "23e40a1b51aa271c0d53166bfb4252ce0708a08504d8f1e08785f60eda2c37fb",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "18": {
+    "created_at": "2026-10-03T06:54:25.562903+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "6c77e05168792b3c72b5ba94d740a30e623ad64849d9a6fb9d931ad5d8959c4f",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "19": {
+    "created_at": "2026-10-03T10:18:12.800150+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "b764bea64dba4925c15ea7219a216e4b3ce5c1745ad5e5f0a661616d4a0e91a8",
+    "retired_sha256": "99aa547e8885af1471e5d67eb7af5b551782fe4d4cd476b0349bb426041f9cc0",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "21": {
+    "created_at": "2026-10-03T06:55:54.394383+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "ff55ab22c7a0aeea0ea4057623232612a82daf05eb5a616eef08028684637e51",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "22": {
+    "created_at": "2026-10-03T10:18:13.296892+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "7811d61e40175bca2c4f632386872c92ce5483c0e82502f952d897c8a9642b0f",
+    "retired_sha256": "56d477b0d30230b8335991a9b5f5b12ab77879bfdac7a919c642e7f14872c6bb",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "23": {
+    "created_at": "2026-10-03T10:18:13.793627+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "a07df792431e1d207e2ba364aaabcca442a28b2e21b4ebe00a23eb73ceb8cb6a",
+    "retired_sha256": "4380cb44a5f2425d3c910fec9d07ea2d63a6f916b40dac94ad1950cfb03d2885",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "24": {
+    "created_at": "2026-10-03T06:59:03.695371+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "0f05889f543b9dd0d08f60f7a94afd22a7d60fd812baed094b61d608b5d75d36",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "27": {
+    "created_at": "2026-10-03T10:18:14.270512+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "b049e55d5f2fbb7c4694edb78a8b663337c881146af5656ff139f9664b128d8b",
+    "retired_sha256": "196d4d60a19666009cd412134098e901450bf97bdab1d03bec10364ec625180b",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "33": {
+    "created_at": "2026-10-03T10:18:15.905615+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "9fd05e502f03263eadd9b2bc7e73755129413513970df6b301c54ee29072ae8c",
+    "retired_sha256": "5b5e70acbe25f4132243a97550e3979b40d219cd6e2f18d8809121f6b8cbc4f0",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "35": {
+    "created_at": "2026-10-03T07:02:42.549766+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "28036e821da76169ac8c809b7208fb7bea89d61665a3091473276a3bc358f526",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "40": {
+    "created_at": "2026-10-03T10:18:16.403747+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "7446b0b1ee8431f8ac50d2a94154e6495a0b5e8c15bee0136e0e24559c767ff3",
+    "retired_sha256": "5506bac8cea1582f9d04a88c14a87df316edcc6ecd3f5a587e442c2a31991019",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "42": {
+    "created_at": "2026-10-03T10:18:16.882785+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "17724d681a1ac39374865fd6f6a5357f60c088e9497b84af8ce99fce61cb746e",
+    "retired_sha256": "d3a9c86498ebe8179150e1fd4ccfcd7116b9aee7d2122baae2f3dd7b6ed051aa",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "28": {
+    "created_at": "2026-10-03T07:02:47.428409+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "a61668a90979b9861f9f12664af552d69fa3e595f6f6c10a1b54e5ed974da6fb",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "29": {
+    "created_at": "2026-10-03T10:18:14.785103+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "e0367ce4cc07158f4ecceeb6a5da689ffa42a44f3618ec81e78726f2d89c458c",
+    "retired_sha256": "c06318bf7cf2a7c3dd1a8bd0a81415a69d61f93eb6a5146de66a58540d376729",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "30": {
+    "created_at": "2026-10-03T10:18:15.319965+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "7a694a6ea9f55018041bc7a12f6e74c3c69cecd29ecdc8db7eb4d7352181d976",
+    "retired_sha256": "464b2df9ac6cfbfb1a1d82e4935f23705090599e6f9a596f20489ce5b5683f4a",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "43": {
+    "created_at": "2026-10-03T07:19:36.527742+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "7d817c88ad8705d592672f698d2a7d463d824616c3da9827e7c85d3503bb303b",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "45": {
+    "created_at": "2026-10-03T07:19:37.651886+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "3bea8b50bf684e0b22c7d33e539f4861bdafa5a179b4e04a394c8bbc40e1edd8",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "46": {
+    "created_at": "2026-10-03T10:18:17.357920+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "55b07780f06696ec689390370fe7faae8c82f1cacd08ece68c61eb7fcdd5e941",
+    "retired_sha256": "b41886892ab8bd42ee1735420faf3392249eab24bac2ebaafdf2d52d2e05a916",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "48": {
+    "created_at": "2026-10-03T07:19:39.859353+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "e2be1bbf19ce33ea502cac91890d74b3eab2ada4a758ebdae01b67f05f3bda9c",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "49": {
+    "created_at": "2026-10-03T10:02:43.383529+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "d8779dbcc3fad297ad7e0ddf257f54dc5f553aa152fbaed970f9bc84a9ba9667",
+    "retired_sha256": "63109f1e0f29b7f130a9e46fdcffa6dbb21b24e976f9cede763d23b02ff9fcde",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "51": {
+    "created_at": "2026-10-03T10:18:17.812107+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "fd1da20777bfb64f4ab69e4f3c84da3be7b706dda8fa24fa67b193869f17f31b",
+    "retired_sha256": "7f9b35559c20ef3075350258f91c58f54cd75028eda53bafe1baeac24dd978a5",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "53": {
+    "created_at": "2026-10-03T10:18:18.329546+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "37b53424d3e3641aaf76be81a0c8f8f06b8db5aaa3c40145ae014d43bae92ef6",
+    "retired_sha256": "40fdd65a0f748b6d10fb371f6531e6a9a4b1a2b3e591cbbeff8bf8a0e2917e15",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "54": {
+    "created_at": "2026-10-03T07:22:40.790735+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "b38acbaaf2411d76f632e32246fb3ebb72f2c58eac5951f958d41a9811cf769b",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "55": {
+    "created_at": "2026-10-03T07:26:27.552963+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "1c2cf446e5709eb7404670ab2eb89f3f2b4e506e52b284f0bf203ffef8f400ba",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "56": {
+    "created_at": "2026-10-03T07:26:28.665331+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "bf784a754393b54c31eb6c17a4d2a5490c2a427ea1620f2b2aedd085349d9382",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "59": {
+    "created_at": "2026-10-03T12:11:44Z",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "7c138003b2e156003a9b8a31eafd4e3092345e7c3614793aa2ac4bb9f01cf109",
+    "retired_sha256": "ab9d78c13257818d2ff05a643484d5a9fff63e137660e3b6522511bc572ddb2b",
+    "visual_review": "checked: compact cartoon proportions; no wounds or skin stitches"
+  },
+  "61": {
+    "created_at": "2026-10-03T07:26:30.967089+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "3e3993183581c47ec54c6c496e6c8c8ce00c79cfc4a53ece58add8b015148adc",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "62": {
+    "created_at": "2026-10-03T12:11:44Z",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "8a4fbcbd3a5c67b9b95cd3b02a74dce1365b3494e0624faff9f15f10e45985a9",
+    "retired_sha256": "27455aa8341cd789268450bd8cfd18d424f930d5d27f534309cde46cf9ad7d65",
+    "visual_review": "checked: compact cartoon proportions; no wounds or skin stitches"
+  },
+  "64": {
+    "created_at": "2026-10-03T07:30:18.731283+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "10e309a0710d8754608948705fc2084a14dc560c2053a6573b9d4f3b3153a0ec",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "65": {
+    "created_at": "2026-10-03T07:30:19.836098+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "441531aef3cc9b9c89dc2543cfc571845f356f79e28a4886e32071f4eeae7cfb",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "66": {
+    "created_at": "2026-10-03T07:42:08.188168+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "6a1b0a268d122142599b893b8c24884d49610df51f22476a5c095758112eb280",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "69": {
+    "created_at": "2026-10-03T07:42:09.240896+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "e0a23cda30dc17d212af1c6327cff1522808069dfd21b04c16b6fc1164c456ef",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "71": {
+    "created_at": "2026-10-03T07:43:15.018900+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "197be8ad0942255d890ec4ae1324c38e135ffebb4c56cb6f866e34ab1fdec033",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "73": {
+    "created_at": "2026-10-03T07:43:34.384737+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "01b769779af90bf69f0fddff1cd0738dbd830933d21a5956513c0678c03235cc",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "63": {
+    "created_at": "2026-10-03T07:47:47.702461+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "4e9bbd3d188a99d7f89d4b0358448313ad9e9a981dc228cd12647061010f3c9b",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "77": {
+    "created_at": "2026-10-03T10:19:15.231514+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "2ce5dfab59c9b3c54c1765f72211599de4e52a2fcf879121a8cef899e44f946a",
+    "retired_sha256": "767ddbcb201e2c9c90776ddf0d4867c45a0d622817867451b20b6f9653393509",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "80": {
+    "created_at": "2026-10-03T07:52:34.928888+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "56ad1b78a73993c00ea34051dc59e878ba1def7d2c4a8a3b461915aaf8734d72",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "81": {
+    "created_at": "2026-10-03T12:11:44Z",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "bbc5664ee05fdb9e5f7a09541515e4bde59051a9b8894c21940e3bebb86fdea8",
+    "retired_sha256": "1442d1543f0ff9a0200d5b1efd2ea5e9e17526fcb27219624a88ed2c1601eaf8",
+    "visual_review": "checked: compact cartoon proportions; no wounds or skin stitches"
+  },
+  "83": {
+    "created_at": "2026-10-03T12:11:44Z",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "f74e9ae553e806cf559522359f297795f086500a4915812cfeda6f9b522668e1",
+    "retired_sha256": "1194e073ef474d440ddcfa3bbb93aa6689a042ae37e77cc269097de18d2703a4",
+    "visual_review": "checked: compact cartoon proportions; no wounds or skin stitches"
+  },
+  "84": {
+    "created_at": "2026-10-03T07:56:48.573286+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "6080434d0e4d061cc11d385fca8346650fc09bd292ece5b35e310a5eb71e6c7e",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "85": {
+    "created_at": "2026-10-03T07:56:50.829404+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "d13d7cc6d1880e4ea563c4e10623fa1ae8bc060243cc3ba68fa7cf79a0541439",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "87": {
+    "created_at": "2026-10-03T07:56:51.990307+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "dc56cac0034e00c63249c1a66b0537b1e771fc7b219941518a1bd02cb58247b7",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "78": {
+    "created_at": "2026-10-03T12:11:44Z",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "9243e3b1e00e5a6f0d0d824fa6f26b0577724a279986b9606cf5d3550c45c2e8",
+    "retired_sha256": "bce22ade9400542659062728497ddfa1ceacfcd60b96be0236c6602f3986f971",
+    "visual_review": "checked: compact cartoon proportions; no wounds or skin stitches"
+  },
+  "88": {
+    "created_at": "2026-10-03T08:00:01.557004+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "53e7fce74a0baa6e3a89693afe3584c2a4bd05ad5c4403f378da6060f52ecb19",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "96": {
+    "created_at": "2026-10-03T08:00:02.708498+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "cbc6db8a8b8b4361046355df5b62befd5d542609494fcf7dc93447961f378936",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "97": {
+    "created_at": "2026-10-03T10:19:15.711430+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "e908378cf5af7d699b57020cc0f9ec32bfbef0ee3a7cd7d8ba59501dda12ea6f",
+    "retired_sha256": "c1126dc89431b94e349ee58736ec201ac3409e34a5617a3e5ba51f97f340fbb7",
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
+  },
+  "98": {
+    "created_at": "2026-10-03T08:01:25.992013+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "af94b7beac057af8d3666c6e48d2026bec1e2a070d715ad6dd22eb0741292d42",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "99": {
+    "created_at": "2026-10-03T08:05:24.876737+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "9c2751b58227c9b0886f79c21c99740ab5c3f7ca64c8b5bb69c97f933bbaae2b",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "103": {
+    "created_at": "2026-10-03T08:05:32.867232+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "2f2f4d548926c39aeac56fc1d2901fbf0f2f5dafdbe1e0a814a69accd2ef4fce",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "105": {
+    "created_at": "2026-10-03T08:05:33.995426+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "be7d8e83f32d18b28602965477668b173912e4eeecf478125a2b2cff708e1fc1",
+    "visual_review": {
+      "two_eyes": true,
+      "hypeblock_branding": true,
+      "canonical_traits_match": true,
+      "reviewed_by": "Codex visual inspection"
+    }
+  },
+  "107": {
+    "created_at": "2026-10-03T12:11:44Z",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "8c39b1a8cbeeab37649faddf9563057c87f9d44d8369ee01ac928469b89c950f",
+    "retired_sha256": "dbf867dfd00d9bcfe5101c0237a551d7d4cc59fa0a36f6f4587fed9e4e630cc2",
+    "visual_review": "checked: compact cartoon proportions; no wounds or skin stitches"
+  },
+  "112": {
+    "created_at": "2026-10-03T08:08:16.785197+00:00",
+    "method": "OpenAI built-in image generation",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "two-eyes-brand-v1",
+    "sha256": "6c71cd57e48b397e2a3da7689007e084dc80519232e7bd2b1bf24bfd2087ff75",
+    "visual_review": "pending"
+  },
+  "114": {
+    "created_at": "2026-10-03T16:07:36.400495+00:00",
+    "method": "OpenAI built-in image generation/editing",
+    "state": "candidate",
+    "creator_approved": false,
+    "art_direction_version": "original-grim-intact-skin-v3",
+    "sha256": "6e3c6d83e8ac4fafa3bf281ccf4cc907cfda01493b4489f7177e9029fb1b9606",
+    "retired_sha256": null,
+    "visual_review": "checked: compact cartoon proportions where male; no wounds or skin stitches"
   }
 }

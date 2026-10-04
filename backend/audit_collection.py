@@ -9,6 +9,7 @@ import hashlib
 import json
 from collections import Counter, defaultdict
 from pathlib import Path
+from PIL import Image
 
 ROOT = Path(__file__).resolve().parent
 COLLECTION = ROOT / "merged_collection.json"
@@ -38,6 +39,7 @@ def main() -> int:
 
     art = defaultdict(list)
     hashes = defaultdict(list)
+    invalid_images = []
     if GENERATED.exists():
         for path in sorted(GENERATED.iterdir()):
             if not path.is_file() or path.suffix.lower() not in EXTENSIONS:
@@ -48,6 +50,14 @@ def main() -> int:
                 continue
             art[token_id].append(path.name)
             hashes[sha256(path)].append(path.name)
+            try:
+                with Image.open(path) as image:
+                    image.verify()
+                with Image.open(path) as image:
+                    if min(image.size) < 512:
+                        raise ValueError("Image dimensions below 512 pixels")
+            except Exception as exc:
+                invalid_images.append({"file": path.name, "error": str(exc)})
 
     report = {
         "collection_size": len(items),
@@ -61,6 +71,7 @@ def main() -> int:
         "duplicate_trait_combinations": len(signatures) - len(set(signatures)),
         "tokens_with_multiple_binary_files": {str(k): v for k, v in art.items() if len(v) > 1},
         "exact_duplicate_art_groups": [v for v in hashes.values() if len(v) > 1],
+        "invalid_images": invalid_images,
         "missing_binary_token_ids": [token_id for token_id in ids if token_id not in art],
         "note": "Missing binary tokens are placeholders rendered by /api/render/{token_id}; replace them with canonical final artwork before minting."
     }
@@ -68,7 +79,7 @@ def main() -> int:
     invalid = any((
         report["duplicate_token_ids"], report["duplicate_names"],
         report["duplicate_trait_combinations"], report["tokens_with_multiple_binary_files"],
-        report["exact_duplicate_art_groups"],
+        report["exact_duplicate_art_groups"], report["invalid_images"],
     ))
     return 1 if invalid else 0
 

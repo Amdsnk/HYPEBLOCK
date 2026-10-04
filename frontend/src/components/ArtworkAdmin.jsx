@@ -95,7 +95,7 @@ export default function ArtworkAdmin({ adminKey }) {
         </label>
         <label className="flex gap-2 mt-5"><input type="checkbox" checked={traitsMatch} onChange={(e) => setTraitsMatch(e.target.checked)} />I checked that the image matches every trait above.</label>
         <label className="flex gap-2 mt-3"><input type="checkbox" checked={original} onChange={(e) => setOriginal(e.target.checked)} />This is final original art, not a recolor, crop, or placeholder.</label>
-        <label className="flex gap-2 mt-3"><input type="checkbox" checked={directionChecked} onChange={(e) => setDirectionChecked(e.target.checked)} />Exactly two eyes; readable HYPEBLOCK branding and detailed traits are present.</label>
+        <label className="flex gap-2 mt-3"><input type="checkbox" checked={directionChecked} onChange={(e) => setDirectionChecked(e.target.checked)} />Exactly two eyes; readable HYPEBLOCK branding and detailed traits; intact skin and ears without wounds, scars, blood or skin stitches; males follow the original compact cartoon Grim proportions.</label>
         <div className="flex flex-wrap gap-2 mt-4">
           <button className={button} disabled={busy || !selected.sha256 || !traitsMatch || !original || !directionChecked} onClick={() => review(true)}>Approve artwork</button>
           {selected.artwork_state === "canonical" && <button className="px-4 border border-[#252A3E] rounded-xl" disabled={busy} onClick={() => review(false)}>Remove approval</button>}

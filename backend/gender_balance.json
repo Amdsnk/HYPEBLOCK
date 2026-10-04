@@ -1,0 +1,375 @@
+{
+  "total": 296,
+  "male": 148,
+  "female": 148,
+  "changed_unrendered_tokens": [
+    {
+      "token_id": 247,
+      "name": "Feral Biter",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 276,
+      "name": "Toxic Biter",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 145,
+      "name": "Rabid Tagger",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 149,
+      "name": "Cyber Biter",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 235,
+      "name": "Rowdy Wraith",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 134,
+      "name": "Hazard Tagger",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 292,
+      "name": "Sludge Biter",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 269,
+      "name": "Vandal Lurker",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 176,
+      "name": "Static Creep",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 122,
+      "name": "Menace Hooligan",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 272,
+      "name": "Static Hooligan",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 188,
+      "name": "Glitch Trickster",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 221,
+      "name": "Vandal Hustler",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 120,
+      "name": "Cyber Lurker",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 231,
+      "name": "Savage Punk",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 237,
+      "name": "Hazard Prowler",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 233,
+      "name": "Vandal Tagger",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 203,
+      "name": "Rowdy Creep",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 163,
+      "name": "Blaze Goblin",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 182,
+      "name": "Rowdy Rascal",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 166,
+      "name": "Feral Brawler",
+      "tier": "Common",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 116,
+      "name": "Rabid Punk",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 133,
+      "name": "Blaze Rascal",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 250,
+      "name": "Cyber Trickster",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 154,
+      "name": "Hazard Hooligan",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 115,
+      "name": "Sludge Fiend",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 205,
+      "name": "Rowdy Hustler",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 214,
+      "name": "Wired Trickster",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 264,
+      "name": "Chrome Snitch",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 283,
+      "name": "Cyber Goblin",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 118,
+      "name": "Grimey Rat",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 296,
+      "name": "Vicious Scrapper",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 289,
+      "name": "Hazard Trickster",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 175,
+      "name": "Cyber Creep",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 248,
+      "name": "Toxic Outlaw",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 273,
+      "name": "Wired Tagger",
+      "tier": "Rare",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 164,
+      "name": "Static Vandal",
+      "tier": "Epic",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 185,
+      "name": "Vicious Snitch",
+      "tier": "Epic",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 158,
+      "name": "Rabid Prowler",
+      "tier": "Epic",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 181,
+      "name": "Cyber Hooligan",
+      "tier": "Epic",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 225,
+      "name": "Grimey Gremlin",
+      "tier": "Epic",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 284,
+      "name": "Rabid Creep",
+      "tier": "Epic",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 251,
+      "name": "Gutter Prowler",
+      "tier": "Epic",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 121,
+      "name": "Toxic Gremlin",
+      "tier": "Legendary",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 242,
+      "name": "Chrome Biter",
+      "tier": "Legendary",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    },
+    {
+      "token_id": 193,
+      "name": "Frantic Trickster",
+      "tier": "Legendary",
+      "from": "Male",
+      "to": "Female",
+      "reason": "Unrendered concept slot assigned to female character for equal Genesis quantities"
+    }
+  ]
+}

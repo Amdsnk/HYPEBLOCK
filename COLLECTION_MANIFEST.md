@@ -4,7 +4,7 @@
 
 HYPEBLOCK Genesis is a grim character collectible universe. The existing visual language, named characters, trait hierarchy, rarity tiers and level/batch mechanics are canon and should be evolved rather than replaced.
 
-The current dataset contains **296 Genesis tokens**. Supply must not be increased merely to create volume. New tokens should enter Genesis only when they add a genuinely new character, trait expression, narrative role, or exceptional 1/1 artwork.
+The current dataset contains **296 Genesis tokens: 148 male and 148 female characters**. Existing artwork identities are preserved; 46 previously unrendered concept slots were assigned to female characters under the creator’s direction. Supply must not be increased merely to create volume. New tokens should enter Genesis only when they add a genuinely new character, trait expression, narrative role, or exceptional 1/1 artwork.
 
 ## Non-negotiable asset rules
 

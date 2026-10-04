@@ -8,11 +8,11 @@ React gallery, search/filter/sort/pagination, NFT details, rarity engine, trait 
 
 ## Audit findings
 
-296 unique IDs, names and core trait signatures. 132 token image files have no exact binary duplicates. 164 tokens still use fallback previews. Distinct metadata, URLs and hashes are not evidence of visually unique final artwork or matching traits. Do not announce all 296 as mint-ready.
+296 unique IDs, names and core trait signatures. 193 token image files have no exact binary duplicates. 103 tokens still use fallback previews. Distinct metadata, URLs and hashes are not evidence of visually unique final artwork or matching traits. Do not announce all 296 as mint-ready.
 
 ## Remaining launch work
 
-1. Curate the 132 image files and supplied originals against their character metadata; review visual duplicates, quality and style consistency.
+1. Curate the 193 image files and supplied originals against their character metadata; review visual duplicates, quality and style consistency.
 2. Create and approve final original artwork for missing tokens. Preserve token identity rather than relabeling an unrelated image.
 3. Freeze token metadata and pin final images and per-token metadata to immutable content-addressed storage.
 4. Confirm network, actual collection/contract, royalties and sale configuration with the creator wallet. Wallet signatures are performed by the owner.
